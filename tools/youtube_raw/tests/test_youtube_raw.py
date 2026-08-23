@@ -647,3 +647,59 @@ class EnrichTests(unittest.TestCase):
         self.assertEqual(captured["output_config"]["format"]["type"], "json_schema")
         self.assertEqual(captured["system"][0]["cache_control"], {"type": "ephemeral"})
         self.assertNotIn("budget_tokens", json.dumps(captured, default=str))
+
+
+HAS_ANTHROPIC = importlib.util.find_spec("anthropic") is not None
+
+
+@unittest.skipUnless(HAS_ANTHROPIC, "SDK anthropic não instalado")
+class RealAnthropicSdkTests(unittest.TestCase):
+    """Confere os parâmetros contra os tipos reais do SDK.
+
+    A API mudou de forma algumas vezes (`output_format` -> `output_config`,
+    `budget_tokens` removido). Se mudar de novo, quebra aqui em vez de quebrar
+    na primeira chamada paga do usuário.
+    """
+
+    def test_the_format_literal_is_the_one_the_sdk_declares(self):
+        import typing
+
+        from anthropic.types.json_output_format_param import JSONOutputFormatParam
+
+        hints = typing.get_type_hints(JSONOutputFormatParam, include_extras=True)
+        self.assertIn("schema", hints)
+        self.assertIn("json_schema", str(hints["type"]))
+
+    def test_output_config_takes_effort_and_format(self):
+        import typing
+
+        from anthropic.types.output_config_param import OutputConfigParam
+
+        self.assertEqual(
+            set(typing.get_type_hints(OutputConfigParam)), {"effort", "format"}
+        )
+
+    def test_adaptive_thinking_exists_and_budget_tokens_is_gone(self):
+        from anthropic.types import thinking_config_param as tcp
+
+        self.assertTrue(hasattr(tcp, "ThinkingConfigAdaptiveParam"))
+        import typing
+
+        self.assertNotIn(
+            "budget_tokens", typing.get_type_hints(tcp.ThinkingConfigAdaptiveParam)
+        )
+
+    def test_messages_create_accepts_every_parameter_we_send(self):
+        import inspect
+
+        import anthropic
+
+        params = set(
+            inspect.signature(
+                anthropic.Anthropic(api_key="x").messages.create
+            ).parameters
+        )
+        for name in ("model", "max_tokens", "system", "messages", "thinking", "output_config"):
+            self.assertIn(name, params, name)
+        # Removido da API: se voltar a aparecer, foi alguem reintroduzindo.
+        self.assertNotIn("output_format", params)
