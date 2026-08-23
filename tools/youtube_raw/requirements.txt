@@ -1,0 +1,2 @@
+# Opcional: sem este pacote as notas sao geradas sem a secao de transcricao.
+youtube-transcript-api>=0.6
