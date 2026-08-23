@@ -7,6 +7,7 @@ import io
 import json
 import tempfile
 import unittest
+from unittest import mock
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -429,3 +430,92 @@ class ClassifiedRunTests(unittest.TestCase):
             content = moved[0].read_text()
             self.assertIn("meu texto", content)
             self.assertIn('category: "Inovação"', content)
+
+
+try:
+    import youtube_transcript_api  # noqa: F401
+
+    HAS_TRANSCRIPT_API = True
+except ImportError:
+    HAS_TRANSCRIPT_API = False
+
+
+@unittest.skipUnless(HAS_TRANSCRIPT_API, "youtube-transcript-api não instalado")
+class RealTranscriptApiTests(unittest.TestCase):
+    """Exercita fetch_transcript contra os objetos reais da biblioteca.
+
+    Sem rede: montamos um TranscriptList de verdade e devolvemos um
+    FetchedTranscript de verdade. Se a biblioteca mudar a API — nomes de
+    método, atributos, formato dos snippets — isto quebra aqui em vez de
+    quebrar silenciosamente na máquina do usuário.
+    """
+
+    CAPTIONS = {
+        "captionTracks": [
+            {
+                "baseUrl": "https://example.invalid/captions",
+                "name": {"runs": [{"text": "English (auto-generated)"}]},
+                "languageCode": "en",
+                "kind": "asr",
+            }
+        ],
+        "translationLanguages": [],
+    }
+
+    def _patched(self, snippets):
+        from youtube_transcript_api import YouTubeTranscriptApi
+        from youtube_transcript_api._transcripts import (
+            FetchedTranscript,
+            FetchedTranscriptSnippet,
+            Transcript,
+            TranscriptList,
+        )
+
+        listing = TranscriptList.build(mock.Mock(), "kCc8FmEb1nY", self.CAPTIONS)
+        fetched = FetchedTranscript(
+            snippets=[
+                FetchedTranscriptSnippet(text=text, start=start, duration=2.0)
+                for start, text in snippets
+            ],
+            video_id="kCc8FmEb1nY",
+            language="English",
+            language_code="en",
+            is_generated=True,
+        )
+        return (
+            mock.patch.object(YouTubeTranscriptApi, "list", return_value=listing),
+            mock.patch.object(Transcript, "fetch", return_value=fetched),
+        )
+
+    def test_fetch_reads_snippet_objects_not_just_dicts(self):
+        list_patch, fetch_patch = self._patched(
+            [(0.0, "hello"), (12.0, "world"), (95.0, "again")]
+        )
+        with list_patch, fetch_patch:
+            result = transcript.fetch_transcript("kCc8FmEb1nY", ["pt", "en"])
+
+        self.assertIsNotNone(result)
+        self.assertEqual(result.language, "en")
+        self.assertTrue(result.generated)
+        self.assertEqual([s["text"] for s in result.segments], ["hello", "world", "again"])
+
+    def test_transcript_reaches_the_note_with_working_timestamp_links(self):
+        list_patch, fetch_patch = self._patched([(0.0, "hello"), (95.0, "again")])
+        with list_patch, fetch_patch:
+            fetched = transcript.fetch_transcript("kCc8FmEb1nY", ["en"])
+
+        note = render.build_note(
+            merge_meta(_record(), None), _record(), fetched, base_tags=("youtube",)
+        )
+        self.assertIn("transcript: true", note)
+        self.assertIn('language: "en"', note)
+        self.assertIn("[01:35](https://youtu.be/kCc8FmEb1nY?t=95)", note)
+        self.assertIn("Legenda automática", note)
+
+    def test_network_failure_degrades_to_no_transcript(self):
+        from youtube_transcript_api import YouTubeTranscriptApi
+
+        with mock.patch.object(
+            YouTubeTranscriptApi, "list", side_effect=OSError("sem rede")
+        ):
+            self.assertIsNone(transcript.fetch_transcript("kCc8FmEb1nY", ["en"]))
