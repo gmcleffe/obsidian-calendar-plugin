@@ -337,6 +337,32 @@ class ClassifierTests(unittest.TestCase):
         ).classify("naoexiste00", "Como uma STARTUP escala")
         self.assertEqual((decision.folder, decision.reason), ("Inovação", "rule"))
 
+    def test_keyword_matches_on_a_word_boundary_not_a_substring(self):
+        # "smr" dentro de "#asmr" e "rag" dentro de "drag" eram falsos positivos.
+        c = classify.Classifier(rules={"Deep Tech": ["smr"], "AI": ["rag"]})
+        self.assertIsNone(c.classify("v", "IBANEZ PRESTIGE #asmr").folder)
+        self.assertIsNone(c.classify("v", "drag racing highlights").folder)
+        self.assertEqual(c.classify("v", "building a smr reactor").folder, "Deep Tech")
+
+    def test_keyword_matches_a_title_that_ends_with_the_term(self):
+        # " ai " com espaços perdia "...Keystone of AI"; a fronteira pega.
+        c = classify.Classifier(rules={"AI": ["ai"]})
+        for title in ("Ontologies: The Keystone of AI", "What is AI?", "The age of AI, explained"):
+            self.assertEqual(c.classify("v", title).folder, "AI", title)
+        self.assertIsNone(c.classify("v", "She said it was fine").folder)
+
+    def test_single_word_terms_do_not_match_the_channel_name(self):
+        # O canal "The Ai Democracy" jogava até clipe de Bruce Lee em AI.
+        c = classify.Classifier(rules={"AI": ["ai"]})
+        self.assertIsNone(c.classify("v", "Bruce Lee, Amazing Speed", "The Ai Democracy").folder)
+
+    def test_multi_word_terms_still_match_the_channel_name(self):
+        c = classify.Classifier(rules={"Eng": ["the pragmatic engineer"]})
+        self.assertEqual(
+            c.classify("v", "Scaling Uber with Thuan Pham", "The Pragmatic Engineer").folder,
+            "Eng",
+        )
+
     def test_rules_ignore_accents_and_case(self):
         decision = classify.Classifier(rules={"Inovação": ["inovacao"]}).classify(
             "naoexiste00", "Painel sobre INOVAÇÃO no Brasil"
