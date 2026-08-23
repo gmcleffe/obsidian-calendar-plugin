@@ -137,6 +137,38 @@ SORT watched DESC
 ```
 ````
 
+## Estágio 2: preencher as seções de análise
+
+A captura deixa Resumo, Conceitos-chave e as demais seções vazias de propósito.
+Para preenchê-las a partir da transcrição:
+
+```bash
+pip install anthropic
+export ANTHROPIC_API_KEY=...
+
+python3 -m tools.youtube_raw.enrich \
+  --vault "G:/Meu Drive/0_RAW/Youtube" --raw-dir "Notas" --folder AI --limit 10
+```
+
+Uma chamada ao `claude-opus-5` por nota, resposta em JSON schema.
+
+| Flag | Efeito |
+| --- | --- |
+| `--folder AI` | restringe a uma subpasta |
+| `--limit N` | teto de notas por execução |
+| `--dry-run` | conta quantas seriam enriquecidas |
+| `--redo` | reprocessa notas já enriquecidas |
+
+**Só preenche seção vazia** — o que você escreveu nunca é sobrescrito. **Nota
+sem transcrição é pulada**: resumir a partir do título seria inventar o
+conteúdo do vídeo. Rode a captura com `--update` antes, para as transcrições
+existirem. O frontmatter ganha `enriched: true` e `enriched_model`, então dá
+para separar o que é seu do que é da máquina:
+
+```dataview
+TABLE title, category FROM "0_RAW" WHERE enriched = true
+```
+
 ## Testes
 
 ```bash

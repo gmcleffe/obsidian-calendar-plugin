@@ -12,7 +12,7 @@ from unittest import mock
 from datetime import datetime, timezone
 from pathlib import Path
 
-from tools.youtube_raw import classify, cli, playlists, render, takeout, transcript, util
+from tools.youtube_raw import classify, cli, enrich, playlists, render, takeout, transcript, util
 from tools.youtube_raw.metadata import VideoMeta, merge_meta
 
 FIXTURES = Path(__file__).parent / "fixtures"
@@ -541,3 +541,109 @@ class RealTranscriptApiTests(unittest.TestCase):
             YouTubeTranscriptApi, "list", side_effect=OSError("sem rede")
         ):
             self.assertIsNone(transcript.fetch_transcript("kCc8FmEb1nY", ["en"]))
+
+
+class EnrichTests(unittest.TestCase):
+    """Estágio 2: preencher as seções de análise a partir da transcrição."""
+
+    def _note(self, transcript_line: str = "", conceitos: str = "- \n") -> str:
+        meta = merge_meta(_record(), None)
+        note = render.build_note(meta, _record(), None, base_tags=("youtube",))
+        if transcript_line:
+            # Substitui o aviso: uma nota que ainda diz "indisponível" é pulada
+            # de propósito, então o fixture precisa removê-lo.
+            start = note.find("*Transcrição indisponível")
+            end = note.find("\n", note.find("rede.*", start))
+            note = note[:start] + transcript_line + note[end:]
+        return note.replace("## 🧠 Conceitos-chave\n\n- \n", f"## 🧠 Conceitos-chave\n\n{conceitos}")
+
+    DATA = {
+        "resumo": ["Tese um.", "Tese dois."],
+        "conceitos": ["Conceito inventado"],
+        "reimplementar": ["Construir o mínimo"],
+        "perguntas": ["E se falhar?"],
+        "momentos": ["02:30 — o ponto"],
+        "conexoes": ["[[Um Conceito]]"],
+    }
+
+    def test_scaffold_counts_as_empty_but_your_text_does_not(self):
+        for scaffold in ("\n- \n- \n", "\n- [ ] \n", "\n- [[ ]]\n", "\n"):
+            self.assertTrue(enrich.section_is_empty(scaffold), repr(scaffold))
+        for written in ("\n- meu texto\n", "\n- [[Conceito Real]]\n", "\n- [x] feito\n"):
+            self.assertFalse(enrich.section_is_empty(written), repr(written))
+
+    def test_fills_every_empty_section(self):
+        filled, written = enrich.apply_sections(self._note(), self.DATA)
+        self.assertEqual(len(written), 6)
+        self.assertIn("- Tese um.", filled)
+        self.assertIn("- [[Um Conceito]]", filled)
+
+    def test_reimplementar_gets_checkboxes(self):
+        filled, _ = enrich.apply_sections(self._note(), self.DATA)
+        self.assertIn("- [ ] Construir o mínimo", filled)
+        self.assertIn("- E se falhar?", filled)  # as demais, bullets simples
+
+    def test_never_overwrites_a_section_you_wrote(self):
+        note = self._note(conceitos="- MEU TEXTO\n")
+        filled, written = enrich.apply_sections(note, self.DATA)
+        self.assertIn("- MEU TEXTO", filled)
+        self.assertNotIn("Conceito inventado", filled)
+        self.assertNotIn("conceitos", written)
+
+    def test_empty_list_leaves_the_section_alone(self):
+        data = dict(self.DATA, reimplementar=[])
+        filled, written = enrich.apply_sections(self._note(), data)
+        self.assertNotIn("reimplementar", written)
+        self.assertIn("## 🔨 Reimplementar do zero\n\n- [ ] \n", filled)
+
+    def test_transcript_is_read_back_out_of_the_note(self):
+        note = self._note("**[00:00](https://youtu.be/x?t=0)** palavra " * 50)
+        _, body = render.split_frontmatter(note)
+        self.assertIn("palavra", enrich.extract_transcript(body))
+
+    def test_a_note_still_marked_unavailable_is_treated_as_having_none(self):
+        note = self._note()
+        _, body = render.split_frontmatter(note)
+        self.assertEqual(enrich.extract_transcript(body), "")
+
+    def test_a_note_without_a_transcript_is_not_summarized(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp) / "0_RAW"
+            folder.mkdir(parents=True)
+            (folder / "sem.md").write_text(self._note(), encoding="utf-8")
+
+            def explode(**_):
+                raise AssertionError("não pode chamar a API sem transcrição")
+
+            client = mock.Mock()
+            client.messages.create = explode
+            with contextlib.redirect_stdout(io.StringIO()) as out:
+                code = enrich.main(["--vault", tmp, "--raw-dir", "0_RAW"], client=client)
+            self.assertEqual(code, 0)
+            self.assertIn("Sem transcrição (puladas): 1", out.getvalue())
+
+    def test_frontmatter_records_that_claude_wrote_it(self):
+        stamped = enrich.stamp_frontmatter(self._note(), "claude-opus-5")
+        self.assertIn("enriched: true", stamped)
+        self.assertIn('enriched_model: "claude-opus-5"', stamped)
+        # e não duplica ao reprocessar
+        self.assertEqual(enrich.stamp_frontmatter(stamped, "claude-opus-5").count("enriched: true"), 1)
+
+    def test_request_uses_opus_5_json_schema_and_a_cached_system(self):
+        captured = {}
+
+        class Stub:
+            class messages:
+                @staticmethod
+                def create(**kw):
+                    captured.update(kw)
+                    payload = json.dumps(EnrichTests.DATA)
+                    return mock.Mock(content=[mock.Mock(type="text", text=payload)])
+
+        note = enrich.Note(Path("x.md"), "", "T", "C", "palavra " * 200)
+        enrich.summarize(Stub(), note)
+        self.assertEqual(captured["model"], "claude-opus-5")
+        self.assertEqual(captured["thinking"], {"type": "adaptive"})
+        self.assertEqual(captured["output_config"]["format"]["type"], "json_schema")
+        self.assertEqual(captured["system"][0]["cache_control"], {"type": "ephemeral"})
+        self.assertNotIn("budget_tokens", json.dumps(captured, default=str))

@@ -1,2 +1,5 @@
-# Opcional: sem este pacote as notas sao geradas sem a secao de transcricao.
+# Estágio 1 (captura) — sem estes, a nota sai sem a seção de transcrição.
 youtube-transcript-api>=0.6
+
+# Estágio 2 (enriquecimento) — só necessário para `python3 -m tools.youtube_raw.enrich`.
+anthropic>=1.0

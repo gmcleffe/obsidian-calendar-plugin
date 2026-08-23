@@ -10,13 +10,22 @@ Obsidian. Toda a mecânica está no pipeline `tools/youtube_raw` deste repositó
 — seu trabalho é escolher os parâmetros certos, rodar e relatar. Não reescreva o
 pipeline nem gere Markdown à mão.
 
-## Princípio: 0_RAW é captura, não interpretação
+## Dois estágios, e a diferença importa
 
-As notas nascem cruas: metadados + transcrição literal + um andaime de seções
-vazias para o usuário preencher. **Você nunca preenche Resumo, Conceitos-chave,
-Reimplementar do zero, Perguntas abertas ou Conexões** — esse é o trabalho
-cognitivo que o método Karpathy exige do usuário. Se ele pedir explicitamente
-um resumo, faça em uma nota separada, fora de 0_RAW.
+**Estágio 1 — captura** (`python3 -m tools.youtube_raw`): sem LLM. Grava o que
+o vídeo É — metadados, transcrição literal — e deixa as seções de análise
+vazias. Nesse estágio **você nunca preenche Resumo, Conceitos-chave ou
+Reimplementar do zero à mão.**
+
+**Estágio 2 — enriquecimento** (`python3 -m tools.youtube_raw.enrich`): só
+quando o usuário pedir. Lê a transcrição já gravada na nota e preenche as
+seções via API do Claude.
+
+A regra que separa os dois: **resumo só sai de transcrição.** Uma nota sem
+transcrição é pulada, nunca resumida a partir do título — isso seria inventar
+o conteúdo do vídeo, e num sistema de estudo um resumo falso é pior que uma
+seção vazia. Se o usuário pedir os resumos e as notas não tiverem transcrição,
+diga isso e rode a captura com `--update` primeiro.
 
 ## O que o usuário precisa ter feito antes
 
@@ -139,6 +148,27 @@ pasta nova, com o texto do usuário intacto, em vez de duplicada.
   pulada. Para recriá-la: `--video-id <ID> --update`.
 - **Não invente categorias.** As subpastas são as playlists do usuário. Se um
   vídeo não cabe em nenhuma, ele fica na raiz — foi isso que ele pediu.
+
+## Estágio 2: preencher as análises
+
+```bash
+pip install anthropic   # e ANTHROPIC_API_KEY no ambiente
+
+python3 -m tools.youtube_raw.enrich \
+  --vault "<...>" --raw-dir "<...>" --folder AI --limit 10
+```
+
+Uma chamada ao `claude-opus-5` por nota, com saída em JSON schema. O custo é
+real: comece por `--limit 10`, mostre o resultado ao usuário e só siga com a
+pasta inteira depois que ele aprovar.
+
+Garantias que o módulo já dá, e que você não precisa reforçar à mão:
+
+- **Só preenche seção vazia.** Texto do usuário nunca é sobrescrito.
+- **Nota sem transcrição é pulada** — nada de resumo a partir do título.
+- Frontmatter ganha `enriched: true` e `enriched_model`, para o usuário sempre
+  distinguir o que ele escreveu do que a máquina escreveu.
+- Reprocessar exige `--redo`.
 
 ## Enriquecimento opcional
 
