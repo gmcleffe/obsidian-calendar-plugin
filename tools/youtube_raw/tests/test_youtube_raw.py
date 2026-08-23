@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import contextlib
+import importlib.util
 import io
 import json
 import tempfile
@@ -432,12 +433,7 @@ class ClassifiedRunTests(unittest.TestCase):
             self.assertIn('category: "Inovação"', content)
 
 
-try:
-    import youtube_transcript_api  # noqa: F401
-
-    HAS_TRANSCRIPT_API = True
-except ImportError:
-    HAS_TRANSCRIPT_API = False
+HAS_TRANSCRIPT_API = importlib.util.find_spec("youtube_transcript_api") is not None
 
 
 @unittest.skipUnless(HAS_TRANSCRIPT_API, "youtube-transcript-api não instalado")
