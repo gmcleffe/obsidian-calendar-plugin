@@ -99,10 +99,14 @@ def build_frontmatter(
     base_tags: Sequence[str],
     channel_tag: bool = True,
     now: Optional[datetime] = None,
+    category: Optional[str] = None,
+    playlists: Sequence[str] = (),
 ) -> List[Tuple[str, List[str]]]:
     tags = list(base_tags)
     if channel_tag and meta.channel:
         tags.append(f"canal/{tag_slug(meta.channel)}")
+    if category:
+        tags.append(f"tema/{tag_slug(category)}")
 
     fields: List[Tuple[str, object]] = [
         ("title", yaml_scalar(meta.title)),
@@ -140,6 +144,8 @@ def build_frontmatter(
         ("transcript", "true" if transcript else "false"),
         ("thumbnail", yaml_scalar(meta.thumbnail) if meta.thumbnail else None),
         ("metadata_source", yaml_scalar(meta.source)),
+        ("category", yaml_scalar(category) if category else None),
+        ("playlists", yaml_list(playlists) if playlists else None),
         ("tags", yaml_list(tags)),
         ("karpathy_stage", yaml_scalar("1-capture")),
         ("status", yaml_scalar("raw")),
@@ -227,9 +233,13 @@ def build_note(
     channel_tag: bool = True,
     transcript_window: float = 45.0,
     now: Optional[datetime] = None,
+    category: Optional[str] = None,
+    playlists: Sequence[str] = (),
 ) -> str:
     frontmatter = render_frontmatter(
-        build_frontmatter(meta, record, transcript, base_tags, channel_tag, now)
+        build_frontmatter(
+            meta, record, transcript, base_tags, channel_tag, now, category, playlists
+        )
     )
     human = HUMAN_TEMPLATE.format(title=meta.title or meta.video_id, cycle=KARPATHY_CYCLE)
     auto = build_auto_block(meta, record, transcript, transcript_window)

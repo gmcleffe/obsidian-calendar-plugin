@@ -6,15 +6,18 @@
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import time
 from datetime import date, datetime
 from pathlib import Path
 from typing import List, Optional, Sequence
 
+from .classify import Classifier, load_assignments, load_rules
 from .ledger import LEDGER_NAME, Ledger
 from .metadata import MetadataResolver, VideoMeta, merge_meta
 from .render import build_filename, build_note, merge_note
+from .playlists import Playlists, discover_playlists_dir, load_playlists
 from .takeout import WatchRecord, aggregate, load_history
 from .transcript import fetch_transcript
 from .util import fmt_duration
@@ -82,6 +85,38 @@ def build_parser() -> argparse.ArgumentParser:
     )
     enrich.add_argument(
         "--sleep", type=float, default=0.4, help="pausa entre requisicoes, em segundos"
+    )
+
+    grouping = parser.add_argument_group("classificacao em subpastas")
+    grouping.add_argument(
+        "--playlists",
+        type=Path,
+        help="pasta `playlists` do Takeout (ou a raiz do Takeout). Cada playlist vira uma subpasta",
+    )
+    grouping.add_argument(
+        "--no-auto-playlists",
+        action="store_true",
+        help="nao procurar a pasta playlists automaticamente ao lado do historico",
+    )
+    grouping.add_argument(
+        "--rules",
+        type=Path,
+        help='JSON {"IA": ["llm", "transformer"], ...} para classificar quem nao esta em playlist',
+    )
+    grouping.add_argument(
+        "--assign-file",
+        type=Path,
+        help='JSON {"<video_id>": "<Pasta>"} com decisoes explicitas; tem prioridade sobre tudo',
+    )
+    grouping.add_argument(
+        "--list-playlists",
+        action="store_true",
+        help="lista as playlists encontradas e sai",
+    )
+    grouping.add_argument(
+        "--list-unclassified",
+        type=Path,
+        help="grava um JSON dos videos sem pasta, para o agente classificar e devolver em --assign-file",
     )
 
     output = parser.add_argument_group("escrita")
@@ -171,6 +206,29 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     log(f"Historico : {history_path}")
     log(f"Destino   : {raw_dir}")
 
+    playlists = _load_playlists(args, history_path, log)
+    if args.list_playlists:
+        if not playlists.names:
+            log("Nenhuma playlist encontrada.")
+            return 0
+        log(f"\n{len(playlists.names)} playlists (viram subpastas):")
+        for name in playlists.names:
+            count = sum(1 for names in playlists.by_video.values() if name in names)
+            log(f"  - {name} ({count} vídeos)")
+        return 0
+
+    try:
+        classifier = Classifier(
+            playlists=playlists,
+            rules=load_rules(args.rules) if args.rules else None,
+            assignments=load_assignments(args.assign_file) if args.assign_file else None,
+        )
+    except (OSError, ValueError) as exc:
+        log(f"erro ao ler as regras de classificacao: {exc}")
+        return 2
+    if classifier.folders():
+        log(f"Subpastas : {', '.join(classifier.folders())}")
+
     try:
         records = aggregate(load_history(history_path))
     except (ValueError, OSError) as exc:
@@ -206,7 +264,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     )
     metas = resolver.resolve([record.video_id for record in todo])
 
-    written, updated, failed, too_short = [], [], [], 0
+    written, updated, failed, moved, unclassified = [], [], [], [], []
+    too_short = 0
     try:
         for index, record in enumerate(todo, start=1):
             meta: VideoMeta = merge_meta(record, metas.get(record.video_id))
@@ -218,10 +277,23 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                     continue
 
             transcript = None
-            if not args.no_transcript and not args.offline:
+            if not args.no_transcript and not args.offline and not args.dry_run:
                 transcript = fetch_transcript(record.video_id, args.transcript_lang)
                 if args.sleep:
                     time.sleep(args.sleep)
+
+            decision = classifier.classify(
+                record.video_id, meta.title, meta.channel, meta.description
+            )
+            if decision.folder is None:
+                unclassified.append(
+                    {
+                        "video_id": record.video_id,
+                        "title": meta.title,
+                        "channel": meta.channel,
+                        "url": record.url,
+                    }
+                )
 
             note = build_note(
                 meta,
@@ -230,23 +302,34 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                 base_tags=args.tag or list(DEFAULT_TAGS),
                 channel_tag=not args.no_channel_tag,
                 transcript_window=args.transcript_window,
+                category=decision.folder,
+                playlists=decision.playlists,
             )
 
             known = ledger.get(record.video_id)
-            target = raw_dir / (known["path"] if known else build_filename(
-                meta, record, args.filename_template
-            ))
-            exists = target.exists()
+            filename = (
+                Path(known["path"]).name
+                if known
+                else build_filename(meta, record, args.filename_template)
+            )
+            relative = Path(decision.folder) / filename if decision.folder else Path(filename)
+            target = raw_dir / relative
+            previous = raw_dir / known["path"] if known else None
+            exists = target.exists() or (previous is not None and previous.exists())
 
+            label = str(relative)
             marker = "~" if exists else "+"
-            log(f"[{index}/{len(todo)}] {marker} {target.name}")
+            log(f"[{index}/{len(todo)}] {marker} {label}")
 
             if args.dry_run:
-                (updated if exists else written).append(target.name)
+                (updated if exists else written).append(label)
                 continue
 
             try:
                 target.parent.mkdir(parents=True, exist_ok=True)
+                if previous and previous.exists() and previous != target:
+                    previous.replace(target)  # reclassificado: move em vez de duplicar
+                    moved.append(f"{known['path']} -> {relative}")
                 if exists and not args.force:
                     content = merge_note(target.read_text(encoding="utf-8"), note)
                 else:
@@ -258,11 +341,9 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                 continue
 
             ledger.record(
-                record.video_id,
-                str(target.relative_to(raw_dir)),
-                has_transcript=bool(transcript),
+                record.video_id, str(relative), has_transcript=bool(transcript)
             )
-            (updated if exists else written).append(target.name)
+            (updated if exists else written).append(label)
     except KeyboardInterrupt:
         log("\nInterrompido — salvando o progresso.")
     finally:
@@ -272,6 +353,10 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     log("")
     log(f"Criadas    : {len(written)}")
     log(f"Atualizadas: {len(updated)}")
+    if moved:
+        log(f"Movidas    : {len(moved)}")
+    if unclassified:
+        log(f"Sem pasta  : {len(unclassified)} (ficaram na raiz)")
     if too_short:
         log(f"Descartadas por duracao: {too_short}")
     if failed:
@@ -281,11 +366,39 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     if args.dry_run:
         log("(dry-run: nenhum arquivo foi escrito)")
 
+    if args.list_unclassified:
+        args.list_unclassified.parent.mkdir(parents=True, exist_ok=True)
+        args.list_unclassified.write_text(
+            json.dumps(unclassified, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
+        log(f"Sem pasta  : lista em {args.list_unclassified}")
+
     if args.report and not args.dry_run:
-        _write_report(args.report, written, updated, failed, resolver.errors)
+        _write_report(args.report, written, updated, failed, resolver.errors, moved)
         log(f"Relatorio  : {args.report}")
 
     return 1 if failed else 0
+
+
+def _load_playlists(args, history_path: Path, log) -> Playlists:
+    directory = None
+    if args.playlists:
+        directory = discover_playlists_dir(args.playlists)
+        if directory is None:
+            log(f"aviso: nenhuma pasta `playlists` em {args.playlists}")
+    elif not args.no_auto_playlists:
+        directory = discover_playlists_dir(history_path.parent.parent)
+
+    if directory is None:
+        return Playlists()
+    try:
+        playlists = load_playlists(directory)
+    except OSError as exc:
+        log(f"aviso: falha ao ler playlists em {directory}: {exc}")
+        return Playlists()
+    if playlists.names:
+        log(f"Playlists : {len(playlists.names)} em {directory}")
+    return playlists
 
 
 def _write_report(
@@ -294,6 +407,7 @@ def _write_report(
     updated: Sequence[str],
     failed: Sequence[str],
     warnings: Sequence[str],
+    moved: Sequence[str] = (),
 ) -> None:
     lines = [
         f"# Execucao youtube-raw — {datetime.now().isoformat(timespec='seconds')}",
@@ -306,6 +420,7 @@ def _write_report(
     for title, items in (
         ("## Criadas", written),
         ("## Atualizadas", updated),
+        ("## Movidas", moved),
         ("## Falhas", failed),
         ("## Avisos", warnings),
     ):

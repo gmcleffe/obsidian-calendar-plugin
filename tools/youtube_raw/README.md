@@ -53,6 +53,27 @@ Rode da raiz do repositório. `--help` lista todas as opções.
 | `--min-duration SEGUNDOS` | descarta clipes curtos (precisa de `--api-key`) |
 | `--limit N` | teto de segurança |
 
+### Subpastas por playlist
+
+O Takeout traz `playlists/*.csv`. O pipeline usa os nomes das playlists como
+subpastas e o pertencimento real como classificação — encontrado sozinho ao
+lado do histórico.
+
+| Flag | Efeito |
+| --- | --- |
+| `--playlists PATH` | aponta a pasta `playlists` manualmente |
+| `--no-auto-playlists` | desliga a busca automática |
+| `--list-playlists` | lista as playlists encontradas e sai |
+| `--rules FILE` | `{"IA": ["llm", "transformer"]}` para quem não está em playlist |
+| `--assign-file FILE` | `{"<video_id>": "<Pasta>"}`, decisões explícitas, vence tudo |
+| `--list-unclassified FILE` | grava os vídeos sem pasta em JSON, para classificar e devolver |
+
+Prioridade: `--assign-file` > playlist > `--rules` > raiz. `Watch later`,
+`Likes` e `Favoritos` são ignoradas — são caixa de entrada, não assunto.
+
+Com `--update`, um vídeo reclassificado tem a nota **movida** para a pasta
+nova (texto preservado), não duplicada.
+
 ### Enriquecimento
 
 | Fonte | Traz | Requisito |

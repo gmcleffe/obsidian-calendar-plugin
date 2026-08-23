@@ -58,13 +58,70 @@ locale e podem sair vazias. Vale reexportar em JSON.
 ```bash
 python3 -m tools.youtube_raw \
   --takeout "<caminho do watch-history.json ou da pasta Takeout>" \
-  --vault "<raiz do vault>" \
+  --vault "<pasta onde as notas vão>" \
+  --raw-dir "<subpasta de saída>" \
   --since 2026-01-01 \
   --dry-run
 ```
 
+O destino final é `<vault>/<raw-dir>/`. Se o usuário quer as notas num
+subdiretório da própria pasta do Takeout, aponte `--vault` para essa pasta e
+use `--raw-dir` como nome do subdiretório.
+
 Rode a partir da raiz deste repositório (o módulo é `tools.youtube_raw`).
 `python3 -m tools.youtube_raw --help` lista tudo.
+
+## Classificação em subpastas
+
+O Takeout traz as playlists do usuário em `playlists/*.csv`. O pipeline lê
+esses arquivos e usa **os nomes das playlists como nomes de subpasta** e o
+**pertencimento real como classificação** — nada de adivinhar quando o dado
+existe. A pasta é encontrada sozinha ao lado do histórico; `--playlists`
+aponta manualmente e `--no-auto-playlists` desliga.
+
+Prioridade de decisão, do mais forte ao mais fraco:
+
+1. `--assign-file` — um JSON `{"<video_id>": "<Pasta>"}`. É por aqui que **você**
+   devolve sua classificação semântica.
+2. Playlist do Takeout.
+3. `--rules` — um JSON `{"IA": ["llm", "transformer"], ...}` casado contra
+   título, canal e descrição, sem acento e sem caixa.
+4. Nada casou → a nota fica na **raiz**, que é o comportamento pedido.
+
+Playlists de sistema (`Watch later`, `Assistir mais tarde`, `Likes`,
+`Favoritos`) são ignoradas: são caixa de entrada, não assunto.
+
+### Como classificar o que sobrou
+
+A maioria dos vídeos assistidos não está em playlist nenhuma. O fluxo de duas
+passadas resolve isso sem enfiar um LLM dentro do pipeline:
+
+```bash
+# 1. veja a taxonomia
+python3 -m tools.youtube_raw --takeout "<...>" --vault "<...>" --list-playlists
+
+# 2. levante os que não têm pasta (sem escrever nada)
+python3 -m tools.youtube_raw --takeout "<...>" --vault "<...>" \
+  --since 2026-01-01 --offline --dry-run \
+  --list-unclassified /tmp/pendentes.json
+```
+
+Leia `/tmp/pendentes.json` (traz `video_id`, `title`, `channel`, `url`),
+classifique cada item **nas playlists que já existem** — não invente categorias
+novas — e escreva `assign.json` no formato `{"<video_id>": "<Pasta>"}`. Deixe
+de fora o que não se encaixa em nenhuma: esses vão para a raiz de propósito.
+
+```bash
+# 3. rode valendo
+python3 -m tools.youtube_raw --takeout "<...>" --vault "<...>" \
+  --since 2026-01-01 --assign-file assign.json
+```
+
+Guarde o `assign.json` junto das notas: ele é o registro da classificação e
+faz a próxima execução reproduzir as mesmas pastas.
+
+Reclassificar depois é seguro — com `--update`, a nota é **movida** para a
+pasta nova, com o texto do usuário intacto, em vez de duplicada.
 
 ## Regras que não se quebram
 
@@ -80,6 +137,8 @@ Rode a partir da raiz deste repositório (o módulo é `tools.youtube_raw`).
   nota. Sem ele, a próxima execução reprocessa tudo.
 - Se o usuário deletou uma nota de propósito, ela continua no ledger e é
   pulada. Para recriá-la: `--video-id <ID> --update`.
+- **Não invente categorias.** As subpastas são as playlists do usuário. Se um
+  vídeo não cabe em nenhuma, ele fica na raiz — foi isso que ele pediu.
 
 ## Enriquecimento opcional
 

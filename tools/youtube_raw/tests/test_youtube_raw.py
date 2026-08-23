@@ -2,15 +2,24 @@
 
 from __future__ import annotations
 
+import contextlib
+import io
+import json
 import tempfile
 import unittest
 from datetime import datetime, timezone
 from pathlib import Path
 
-from tools.youtube_raw import cli, render, takeout, transcript, util
+from tools.youtube_raw import classify, cli, playlists, render, takeout, transcript, util
 from tools.youtube_raw.metadata import VideoMeta, merge_meta
 
 FIXTURES = Path(__file__).parent / "fixtures"
+
+
+def run_quiet(argv):
+    """Roda a CLI engolindo o log, para a saida da suite ficar legivel."""
+    with contextlib.redirect_stdout(io.StringIO()):
+        return cli.main(argv)
 
 
 class TakeoutTests(unittest.TestCase):
@@ -233,7 +242,7 @@ class CliTests(unittest.TestCase):
 
 class EndToEndTests(unittest.TestCase):
     def run_cli(self, vault: Path, *extra):
-        return cli.main(
+        return run_quiet(
             [
                 "--takeout",
                 str(FIXTURES / "watch-history.json"),
@@ -244,16 +253,18 @@ class EndToEndTests(unittest.TestCase):
             ]
         )
 
+    def notes(self, vault: Path):
+        return sorted((vault / "0_RAW").rglob("*.md"))
+
     def test_writes_notes_then_skips_them_on_a_second_run(self):
         with tempfile.TemporaryDirectory() as tmp:
             vault = Path(tmp)
             self.assertEqual(self.run_cli(vault), 0)
-            notes = sorted(p.name for p in (vault / "0_RAW").glob("*.md"))
-            self.assertEqual(len(notes), 2)
+            self.assertEqual(len(self.notes(vault)), 2)
 
-            before = {p: p.read_text() for p in (vault / "0_RAW").glob("*.md")}
+            before = {p: p.read_text() for p in self.notes(vault)}
             self.assertEqual(self.run_cli(vault), 0)
-            after = {p: p.read_text() for p in (vault / "0_RAW").glob("*.md")}
+            after = {p: p.read_text() for p in self.notes(vault)}
             self.assertEqual(before, after)
 
     def test_dry_run_writes_nothing(self):
@@ -267,14 +278,154 @@ class EndToEndTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             vault = Path(tmp)
             self.run_cli(vault, "--limit", "1")
-            self.assertEqual(len(list((vault / "0_RAW").glob("*.md"))), 1)
+            self.assertEqual(len(self.notes(vault)), 1)
 
-            note = next((vault / "0_RAW").glob("*.md"))
+            note = self.notes(vault)[0]
             note.write_text(note.read_text().replace("- [ ] \n", "- [ ] minha tarefa\n"))
             self.run_cli(vault, "--update")
             self.assertIn("minha tarefa", note.read_text())
-            self.assertEqual(len(list((vault / "0_RAW").glob("*.md"))), 2)
+            self.assertEqual(len(self.notes(vault)), 2)
 
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class PlaylistTests(unittest.TestCase):
+    def setUp(self):
+        self.playlists = playlists.load_playlists(FIXTURES / "playlists")
+
+    def test_system_playlists_do_not_become_folders(self):
+        self.assertEqual(self.playlists.names, ["IA", "Investimentos"])
+
+    def test_metadata_preamble_before_the_video_table_is_skipped(self):
+        self.assertEqual(
+            self.playlists.by_video["P2LTAUO1TdA"], ["Investimentos"]
+        )
+
+    def test_discovery_finds_the_playlists_folder_from_the_takeout_root(self):
+        found = playlists.discover_playlists_dir(FIXTURES)
+        self.assertEqual(found, FIXTURES / "playlists")
+
+    def test_discovery_returns_none_when_there_is_nothing_to_find(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            self.assertIsNone(playlists.discover_playlists_dir(Path(tmp)))
+
+
+class ClassifierTests(unittest.TestCase):
+    def setUp(self):
+        self.playlists = playlists.load_playlists(FIXTURES / "playlists")
+
+    def test_playlist_membership_decides_the_folder(self):
+        decision = classify.Classifier(playlists=self.playlists).classify(
+            "kCc8FmEb1nY", "titulo"
+        )
+        self.assertEqual((decision.folder, decision.reason), ("IA", "playlist"))
+
+    def test_explicit_assignment_beats_the_playlist(self):
+        decision = classify.Classifier(
+            playlists=self.playlists, assignments={"kCc8FmEb1nY": "Inovação"}
+        ).classify("kCc8FmEb1nY", "titulo")
+        self.assertEqual((decision.folder, decision.reason), ("Inovação", "assign"))
+        self.assertEqual(decision.playlists, ["IA"])
+
+    def test_keyword_rules_catch_videos_outside_every_playlist(self):
+        decision = classify.Classifier(
+            playlists=self.playlists, rules={"Inovação": ["startup"]}
+        ).classify("naoexiste00", "Como uma STARTUP escala")
+        self.assertEqual((decision.folder, decision.reason), ("Inovação", "rule"))
+
+    def test_rules_ignore_accents_and_case(self):
+        decision = classify.Classifier(rules={"Inovação": ["inovacao"]}).classify(
+            "naoexiste00", "Painel sobre INOVAÇÃO no Brasil"
+        )
+        self.assertEqual(decision.folder, "Inovação")
+
+    def test_no_match_means_root(self):
+        decision = classify.Classifier(playlists=self.playlists).classify(
+            "naoexiste00", "Receita de bolo"
+        )
+        self.assertIsNone(decision.folder)
+        self.assertEqual(decision.reason, "unclassified")
+
+    def test_folder_names_are_filesystem_safe(self):
+        self.assertEqual(classify.sanitize_folder("IA / Machine Learning"), "IA - Machine Learning")
+
+
+class ClassifiedRunTests(unittest.TestCase):
+    def run_cli(self, vault: Path, *extra):
+        return run_quiet(
+            [
+                "--takeout",
+                str(FIXTURES / "watch-history.json"),
+                "--vault",
+                str(vault),
+                "--playlists",
+                str(FIXTURES / "playlists"),
+                "--offline",
+                *extra,
+            ]
+        )
+
+    def test_notes_land_in_the_playlist_folders(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            vault = Path(tmp)
+            self.assertEqual(self.run_cli(vault), 0)
+            written = sorted(
+                str(p.relative_to(vault / "0_RAW")) for p in (vault / "0_RAW").rglob("*.md")
+            )
+            self.assertEqual(
+                written,
+                [
+                    "IA/2026-08-20 Let's build GPT from scratch, in code, spelled out (kCc8FmEb1nY).md",
+                    "Investimentos/2026-08-21 Álgebra linear mudança de base (P2LTAUO1TdA).md",
+                ],
+            )
+
+    def test_category_and_playlists_reach_the_frontmatter(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            vault = Path(tmp)
+            self.run_cli(vault)
+            note = (vault / "0_RAW" / "IA").glob("*.md").__next__().read_text()
+            self.assertIn('category: "IA"', note)
+            self.assertIn('playlists: ["IA"]', note)
+            self.assertIn('"tema/ia"', note)
+
+    def test_unclassified_videos_stay_at_the_root_and_get_listed(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            vault, listing = Path(tmp), Path(tmp) / "pendentes.json"
+            run_quiet(
+                [
+                    "--takeout", str(FIXTURES / "watch-history.json"),
+                    "--vault", str(vault),
+                    "--no-auto-playlists", "--offline",
+                    "--list-unclassified", str(listing),
+                ]
+            )
+            self.assertEqual(len(list((vault / "0_RAW").glob("*.md"))), 2)
+            pending = json.loads(listing.read_text())
+            self.assertEqual(
+                sorted(item["video_id"] for item in pending),
+                ["P2LTAUO1TdA", "kCc8FmEb1nY"],
+            )
+            self.assertTrue(all(item["title"] for item in pending))
+
+    def test_reclassifying_moves_the_note_instead_of_duplicating_it(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            vault = Path(tmp)
+            self.run_cli(vault, "--video-id", "kCc8FmEb1nY")
+            original = next((vault / "0_RAW" / "IA").glob("*.md"))
+            original.write_text(
+                original.read_text().replace("- [ ] \n", "- [ ] meu texto\n")
+            )
+
+            assign = vault / "assign.json"
+            assign.write_text(json.dumps({"kCc8FmEb1nY": "Inovação"}))
+            self.run_cli(vault, "--video-id", "kCc8FmEb1nY", "--assign-file", str(assign), "--update")
+
+            self.assertFalse(list((vault / "0_RAW" / "IA").glob("*.md")))
+            moved = list((vault / "0_RAW" / "Inovação").glob("*.md"))
+            self.assertEqual(len(moved), 1)
+            content = moved[0].read_text()
+            self.assertIn("meu texto", content)
+            self.assertIn('category: "Inovação"', content)
