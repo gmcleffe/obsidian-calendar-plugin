@@ -180,7 +180,10 @@ def cmd_validar(args):
 
         for j, item in enumerate(secao.get("itens") or []):
             iref = "%s.item[%d]" % (ref, j)
-            if not item.get("titulo"):
+            if tipo == "numeros":
+                if not item.get("valor") or not item.get("rotulo"):
+                    erros.append("%s: numero precisa de 'valor' e 'rotulo'" % iref)
+            elif not item.get("titulo"):
                 erros.append("%s: sem titulo" % iref)
 
             if tipo in TIPOS_COM_ITENS_FONTEADOS:
