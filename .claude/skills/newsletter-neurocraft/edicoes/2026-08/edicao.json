@@ -1,0 +1,81 @@
+{
+  "edicao": "2026-08",
+  "janela": { "inicio": "2026-08-01", "fim": "2026-08-31" },
+  "status": "exemplo",
+  "_nota": "Edicao-referencia (golden sample). Montada apenas com fatos publicos verificados, para servir de gabarito de formato. Secoes ausentes sao ausentes de proposito: nao havia material verificado que passasse na regua.",
+  "titulo": "Newsletter Neurocraft — agosto de 2026",
+  "assunto": "A ponte entre o chão de fábrica e a diretoria",
+  "preheader": "Por que a parceria Neurocraft–Datamint muda o caminho do dado operacional até a decisão.",
+  "editorial": "O problema da IA industrial nunca foi o modelo. É o vão entre o sensor que já registra tudo e a diretoria que ainda decide no achismo — dois mundos com donos, orçamentos e vocabulários diferentes.\n\nAgosto trouxe um movimento que ataca exatamente esse vão. Vale mais pelo que revela sobre o mercado do que pelo anúncio em si.",
+  "secoes": [
+    {
+      "tipo": "marca",
+      "marca": "neurocraft",
+      "titulo": "Neurocraft",
+      "itens": [
+        {
+          "titulo": "Parceria com a Datamint cobre as Américas nos dois sentidos",
+          "resumo": "A Datamint passa a ser a parceira de go-to-market da Neurocraft no Brasil, e a Neurocraft faz o mesmo pela Datamint nos Estados Unidos e em outros mercados internacionais. A combinação junta IA industrial e gestão de ativos críticos sobre Google Cloud, do lado da Datamint, com Azure, Fabric, engenharia de dados e IA corporativa, do lado da Neurocraft.",
+          "so_what": "Para quem opera ativo pesado no Brasil e reporta a uma matriz nos EUA, deixa de existir a escolha entre um fornecedor que entende o chão de fábrica e outro que entende o data estate corporativo. É um fornecedor a menos para gerenciar e um ponto de integração a menos para pagar.",
+          "fonte": { "nome": "Neurocraft Data Services (LinkedIn)", "url": "https://www.linkedin.com/posts/neurocraft-data-services-inc_neurocraft-datamint-microsoft-activity-7491619097689067520-8Cug" },
+          "data": "2026-08-07"
+        }
+      ]
+    },
+    {
+      "tipo": "marca",
+      "marca": "datamint",
+      "titulo": "Datamint",
+      "chapeu": "O mesmo movimento, visto do lado brasileiro.",
+      "itens": [
+        {
+          "titulo": "\"Uma ponte de mão dupla nas Américas\"",
+          "resumo": "Hélio Côrtes Vieira Lopes, co-fundador da Datamint, descreveu o acordo como um caminho contínuo da tecnologia operacional no campo até a inteligência corporativa na diretoria — sem as lacunas habituais no meio. A Datamint entra com ontologia de ativos, manutenção preditiva e decisão auditável; a Neurocraft, com plataforma de dados e IA corporativa no ecossistema Microsoft.",
+          "so_what": "A tese aqui é de arquitetura, não de catálogo: o valor não está em somar dois produtos, está em ter uma camada semântica única em que ERP, SCADA e CMMS falam do mesmo ativo. Quem já tentou consolidar essas três fontes sabe quanto custa não ter isso.",
+          "fonte": { "nome": "Hélio Côrtes Vieira Lopes (LinkedIn)", "url": "https://www.linkedin.com/posts/helio-cortes-vieira-lopes_industrialai-digitaltransformation-datamint-activity-7491629952358957056-v0Co" },
+          "data": "2026-08-09"
+        },
+        {
+          "titulo": "A rodada seed de US$ 5 milhões dá o contexto do movimento",
+          "resumo": "Em junho a Datamint levantou US$ 5 milhões (cerca de R$ 25 milhões) em rodada liderada pela Headline, com Opus Investimentos, Valutia e Kittyhawk, destinada a expandir a plataforma, o time de engenharia e a operação comercial dentro e fora do Brasil.",
+          "so_what": "A parceria internacional não é oportunismo de anúncio: é a execução do plano que a rodada financiou dois meses antes. Para o cliente, isso significa um fornecedor com fôlego de caixa para sustentar roadmap — o risco de continuidade, que costuma travar contrato com startup, fica menor.",
+          "fonte": { "nome": "TI INSIDE Online", "url": "https://www.tiinside.com.br/en/15/06/2026/Datamint-raises-R%2425-million-in-seed-round-to-expand-proprietary-AI-platform-for-asset-management./" },
+          "data": "2026-06-15",
+          "contexto": true
+        }
+      ]
+    },
+    {
+      "tipo": "deepdive",
+      "titulo": "Deep dive · O vão entre a planta e a diretoria",
+      "corpo": [
+        "Há uma assimetria que se repete em quase toda operação industrial que já passou por um programa de digitalização. O campo é rico em dado e pobre em contexto: o sensor mede vibração, o SCADA registra a parada, o CMMS guarda a ordem de serviço, e nenhum dos três sabe que estão falando do mesmo compressor. A diretoria é o oposto — tem o contexto do negócio inteiro e recebe o dado já reduzido a um slide mensal, tarde demais para mudar qualquer coisa.",
+        "O reflexo comum é comprar mais sensor e mais dashboard. Raramente resolve, porque o problema não é volume de dado, é ausência de um modelo que diga o que cada coisa significa: o que é um ativo, de que ele depende, qual sinal indica risco, qual procedimento se aplica, quem tem autoridade para agir. Sem esse vocabulário comum, cada integração vira um projeto sob medida, e o custo cresce com o quadrado do número de sistemas conectados.",
+        "É por isso que a camada semântica — ontologia, grafo de conhecimento, escolha o nome — voltou ao centro da conversa depois de anos como assunto acadêmico. Ela é o que permite que uma pergunta feita na diretoria (\"qual o risco de parada não programada nos ativos críticos deste trimestre?\") desça até o dado bruto e volte com uma resposta rastreável. E rastreabilidade deixou de ser refinamento: com o EU AI Act em aplicação escalonada e a exigência crescente de trilha de auditoria em decisão automatizada, a explicação virou requisito, não cortesia.",
+        "O ponto que os anúncios de parceria deste mês tornam visível é econômico, não técnico. Fazer a ponte da tecnologia operacional até a inteligência corporativa exige dois conjuntos de competência que quase nunca convivem na mesma empresa: quem sabe instrumentar um poço não costuma saber governar um lakehouse, e vice-versa. Enquanto essas competências vieram de fornecedores separados, o cliente pagou a integração — em contrato, em prazo e no risco de ninguém ser dono do resultado ponta a ponta.",
+        "Se você lidera uma operação com ativo pesado, a pergunta prática para os próximos noventa dias é simples e desconfortável: quando um equipamento crítico entra em risco, quantas pessoas e quantos sistemas participam entre o primeiro sinal e a ordem de serviço aprovada? Se a resposta passa de três, o problema não é falta de IA. É falta de contexto — e nenhum modelo novo resolve isso."
+      ],
+      "fontes": [
+        { "nome": "Datamint — plataforma e ontologia", "url": "https://datamint.com.br/pt/" },
+        { "nome": "Neurocraft — Industrial & Agentic AI", "url": "https://neurocraft.ai/" }
+      ]
+    }
+  ],
+  "cta": {
+    "texto": "Falar sobre o caminho do dado até a decisão",
+    "url": "https://neurocraft.ai/"
+  },
+  "cortes": [
+    {
+      "marca": "bizmetric",
+      "item": "Reconhecimento Databricks APJ Partner of the Year 2025 e roundtable com líderes na região ASEAN",
+      "motivo": "Sem material verificável com data dentro da janela de agosto/2026. O prêmio é de 2025 e o roundtable não tem data confirmada em fonte primária. Evidência 1 — reprovado pela régua. Reavaliar em setembro."
+    },
+    {
+      "marca": "vexta",
+      "item": "Aliança com a Neurocraft para levar as soluções de O&G ao mercado norte-americano",
+      "motivo": "Anúncio de 02/06/2026, fora da janela, e já coberto na ocasião. Novidade 0 — reprovado. Só volta com fato novo: cliente, resultado de campo ou lançamento."
+    }
+  ],
+  "marcas_avaliadas": ["neurocraft", "bizmetric", "vexta", "datamint"]
+}
