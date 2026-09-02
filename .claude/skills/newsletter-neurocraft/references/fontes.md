@@ -73,6 +73,9 @@ e isso torna dispensável a camada Y que você paga hoje" é.
 - Reguladores setoriais: ANP, ANEEL, EPE (energia); ANA (saneamento); ANS (saúde); ANM (mineração)
 
 **Pesquisa e analistas**
+- **Panorama do Go-to-Market no Brasil 2026** (HubSpot, +700 respondentes) —
+  <https://br.hubspot.com/ofertas/state-of-gtm>. Pesquisa de fornecedor: sempre atribuída, nunca
+  fonte única de tese nossa. As cinco lentes que dela derivam estão em `tese-gtm-brasil.md`.
 - Stanford HAI AI Index · McKinsey State of AI · MIT Sloan Management Review
 - Releases públicos de Gartner e Forrester (o relatório pago não; o release sim)
 - ARC Advisory Group (automação industrial)

@@ -23,7 +23,11 @@ Rodar **inteiro** antes de criar o rascunho. Qualquer item reprovado bloqueia a 
 
 - [ ] Cada seção passou na régua de relevância (≥ 8/12 e Evidência ≥ 2).
 - [ ] Marca sem material relevante ficou **de fora** — e o motivo está em `cortes`.
-- [ ] Cada item de "O que mudou" tem um "e daí?" que fala de custo, risco ou prazo.
+- [ ] Cada item de "O que mudou" tem um "e daí?" que **nomeia uma dor**, não só argumenta economia.
+- [ ] Nenhum item anuncia capacidade sem dizer que contexto a torna útil (lente 1).
+- [ ] Toda frase sobre automação fala em capacidade liberada, não em headcount reduzido (lente 5).
+- [ ] Anúncio de parceria — nosso inclusive — foi lido com a lente 4: assinada não é integrada.
+- [ ] Número do Panorama do GTM Brasil está atribuído à HubSpot, e não é fonte única de tese nossa.
 - [ ] Total entre 900 e 1.400 palavras.
 - [ ] Um único CTA.
 - [ ] Assunto ≤ 60 caracteres e específico. Preheader não repete o assunto.

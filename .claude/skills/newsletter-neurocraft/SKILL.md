@@ -14,7 +14,8 @@ Leia, nesta ordem:
 
 1. `config/marcas.json` — marcas ativas, posicionamento, stack, contas de publicação.
 2. `references/linha-editorial.md` — régua de relevância, estrutura, voz, o que é proibido.
-3. `references/fontes.md` — o que consultar e em que ordem de prioridade.
+3. `references/tese-gtm-brasil.md` — as cinco lentes que filtram candidatos antes da régua.
+4. `references/fontes.md` — o que consultar e em que ordem de prioridade.
 
 Nunca reescreva regra editorial dentro deste arquivo: ela mora nas referências.
 
@@ -68,8 +69,13 @@ o registro de auditoria da edição.
 
 ## Fase 3 — Pontuar e cortar
 
-Aplique a régua de `linha-editorial.md`: quatro eixos de 0 a 3, **corte em ≥ 8/12 com Evidência ≥ 2**.
-Preencha a tabela de `pauta.md` com as notas — não pontue de cabeça, escreva as notas.
+Primeiro as lentes de `tese-gtm-brasil.md`, que são eliminatórias e mais baratas que a régua:
+capacidade anunciada sem o contexto que a torna útil é release, não notícia — reescreva ou corte
+antes de pontuar.
+
+O que sobrou vai para a régua de `linha-editorial.md`: quatro eixos de 0 a 3, **corte em ≥ 8/12
+com Evidência ≥ 2**. Preencha a tabela de `pauta.md` com as notas — não pontue de cabeça,
+escreva as notas.
 
 Depois:
 - Item aprovado → vira item de seção em `edicao.json`.
@@ -112,7 +118,9 @@ Preencha `edicoes/AAAA-MM/edicao.json`. Estrutura:
 
 Regras de escrita:
 - Item fora da janela só entra com `"contexto": true` e um motivo claro para o pano de fundo.
-- `so_what` fala de **custo, risco ou prazo**. "É interessante" não é um "e daí".
+- `so_what` **nomeia uma dor** do leitor. Custo, risco e prazo são como se expressa a relevância,
+  não o teste dela — "reduz custos" não é um e daí. "É interessante" muito menos.
+- Automação se enquadra como capacidade liberada, nunca como headcount reduzido.
 - Ordene as seções pela relevância do mês, não pela ordem do `config`.
 - Alvo de 900 a 1.400 palavras. Um CTA só.
 - Se o texto sair padronizado demais, passe pela skill `humanizer` antes de validar.

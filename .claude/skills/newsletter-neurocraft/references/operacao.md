@@ -76,6 +76,21 @@ Cada edição rende, sem trabalho novo relevante:
 
 Faça isso **depois** do envio. Publicar antes tira do assinante o motivo de abrir o e-mail.
 
+## WhatsApp: canal de reaproveitamento, não de envio
+
+79% dos times brasileiros prospectam por WhatsApp, à frente de e-mail (52%), ligação (37%) e
+LinkedIn (16%) — Panorama do GTM no Brasil 2026, HubSpot. Isso **não** significa disparar a
+newsletter por lá: para C-level, envio mensal não solicitado em WhatsApp queima a relação mais
+rápido do que constrói lista, e a régua de consentimento é mais dura que a do e-mail.
+
+O que significa: o item que mais interessa a cada conta vira **uma mensagem de uma linha, enviada
+individualmente por quem já tem a conversa aberta**, com o link da edição. É o oposto de disparo —
+é o "e daí" usado como abridor de conversa, um a um. Essa é a leitura correta do dado para B2B
+de ticket alto.
+
+Se em algum momento houver lista com opt-in explícito para WhatsApp, trate como canal próprio,
+com formato próprio e frequência menor. Nunca como espelho do e-mail.
+
 ## Primeiros 90 dias
 
 - **Mês 1** — envie mesmo curto. Duas marcas e três itens fortes já servem. O objetivo é

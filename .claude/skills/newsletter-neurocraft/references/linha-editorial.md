@@ -17,9 +17,19 @@ Consequências práticas:
 - Toda sigla técnica ganha meia linha de explicação na primeira aparição, ou sai.
 - Custo, risco e prazo são a moeda. Arquitetura só aparece quando muda um dos três.
 
+## Filtro anterior à régua: as lentes do GTM Brasil
+
+Antes de pontuar, passe o candidato pelas lentes de `tese-gtm-brasil.md`. Elas são
+eliminatórias e mais baratas que a régua:
+
+- **Contexto** — o item explica que contexto faz a tecnologia funcionar, ou só anuncia
+  capacidade? Capacidade sem contexto é release, não notícia. Não pontue: reescreva ou corte.
+- **Relevância** — o item ataca uma dor nomeável do leitor?
+- **Canal real** — a solução encaixa em como o time brasileiro de fato trabalha?
+
 ## Régua de relevância
 
-Cada candidato a item recebe nota **0 a 3** em quatro eixos:
+Cada candidato que passou pelas lentes recebe nota **0 a 3** em quatro eixos:
 
 | Eixo | Pergunta | 0 | 3 |
 |---|---|---|---|
@@ -49,7 +59,8 @@ Só a abertura e o CTA são fixos. Todo o resto é condicional.
 
 1. **Assunto e preheader** — assunto ≤ 60 caracteres, específico. O preheader complementa, não repete.
 2. **Abertura do editor** — 3 a 5 linhas. Uma tese sobre o mês, em primeira pessoa. Não é sumário.
-3. **O que mudou neste mês** — 3 a 5 movimentos do setor. Cada um com um "**e daí?**" explícito.
+3. **O que mudou neste mês** — 3 a 5 movimentos do setor. Cada um com um "**e daí?**" explícito
+   que nomeia a dor do leitor (ver *O que é um "e daí"*, abaixo).
 4. **Blocos por marca** — condicionais. Neurocraft, Bizmetric, Vexta, Datamint, na ordem em que a relevância mandar.
 5. **Deep dive** — um tema por edição, 400 a 600 palavras, com posição assumida. Rotativo.
 6. **Radar regulatório** — condicional. EU AI Act, LGPD/ANPD, ANP, ANEEL, ANS, ISO 42001.
@@ -58,6 +69,18 @@ Só a abertura e o CTA são fixos. Todo o resto é condicional.
 9. **CTA único** — uma ação. Nunca duas.
 
 Alvo total: **900 a 1.400 palavras.** Acima disso, corte — não resuma.
+
+## O que é um "e daí"
+
+O critério #1 de decisão do profissional brasileiro **não é preço nem ROI** — é relevância para
+o problema que ele tem (Panorama do GTM no Brasil 2026, HubSpot). Isso governa todo `so_what`:
+
+- **Nomeie a dor primeiro.** Custo, risco e prazo são como se expressa a relevância, não o teste
+  dela. Um item pode passar sem citar dinheiro, desde que ataque uma dor reconhecível.
+- **Um "e daí" que só argumenta economia genérica e não nomeia a dor não passa.** "Reduz custos"
+  não é um e daí; "elimina a varredura manual de 300 poços por semana" é.
+- **Automação se enquadra como capacidade liberada, nunca como headcount reduzido** — e diga no
+  que o tempo é reinvestido. O que trava a compra é medo de perder controle, não de perder posto.
 
 ## Rotação do deep dive
 
