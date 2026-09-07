@@ -20,3 +20,18 @@ jobs:
 
       - name: Run tests
         run: yarn run test
+
+  youtube-raw:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install optional deps
+        run: pip install -r tools/youtube_raw/requirements.txt
+
+      - name: Run youtube_raw tests
+        run: python3 -m unittest discover -s tools/youtube_raw/tests -t .
