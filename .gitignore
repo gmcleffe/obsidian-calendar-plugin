@@ -4,3 +4,6 @@ data.json
 main.js
 .vscode/
 *.code-workspace
+# Python bytecode das skills
+__pycache__/
+*.pyc
