@@ -11,17 +11,22 @@ Sem dependencias externas: roda com Python 3.8+ puro.
 
 import argparse
 import calendar
+import csv
 import html
 import json
 import re
 import sys
 from datetime import date
 from pathlib import Path
+from urllib.parse import urlsplit, urlunsplit
 
 RAIZ = Path(__file__).resolve().parent.parent
 CONFIG = RAIZ / "config" / "marcas.json"
 TEMPLATE = RAIZ / "assets" / "template-email.html"
 EDICOES = RAIZ / "edicoes"
+RADAR = EDICOES / "radar.csv"
+COLUNAS_RADAR = ["registrado_em", "url", "titulo", "fonte", "marca",
+                 "status", "edicao", "data_item", "motivo"]
 
 TIPOS = {"movimentos", "marca", "deepdive", "radar", "numeros", "agenda"}
 TIPOS_COM_ITENS_FONTEADOS = {"movimentos", "marca", "radar"}
@@ -74,6 +79,137 @@ def contar_palavras(dados):
     return len(re.findall(r"\S+", " ".join(partes)))
 
 
+# -------------------------------------------------------------------- radar
+
+RASTREADORES = {"utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content",
+                "fbclid", "gclid", "mc_cid", "mc_eid", "igshid", "ref", "originalSubdomain"}
+
+
+def normalizar_url(url):
+    """Chave de deduplicacao: sem esquema, sem www, sem rastreador, sem barra final.
+
+    'https://WWW.Exemplo.com/Post/?utm_source=x' e 'http://exemplo.com/Post' viram a
+    mesma chave. O caminho preserva maiusculas — ha servidores que as diferenciam.
+    """
+    partes = urlsplit(str(url).strip())
+    host = partes.netloc.lower().removeprefix("www.")
+    # O LinkedIn serve o mesmo post em subdominio de idioma (es./pt./br.). Regra estreita de
+    # proposito: em outros dominios o subdominio costuma ser conteudo distinto de verdade
+    # (br.hubspot.com nao e www.hubspot.com), e colapsar tudo geraria falso "ja visto".
+    if host.endswith("linkedin.com"):
+        host = "linkedin.com"
+    caminho = partes.path.rstrip("/")
+    query = "&".join(sorted(
+        p for p in partes.query.split("&")
+        if p and p.split("=")[0] not in RASTREADORES))
+    return urlunsplit(("", host, caminho, query, "")).lstrip("/")
+
+
+def carregar_radar():
+    """Ultimo registro de cada url, indexado pela chave normalizada."""
+    if not RADAR.exists():
+        return {}
+    with RADAR.open(encoding="utf-8", newline="") as f:
+        return {normalizar_url(linha["url"]): linha
+                for linha in csv.DictReader(f) if linha.get("url")}
+
+
+def gravar_radar(novas):
+    RADAR.parent.mkdir(parents=True, exist_ok=True)
+    existia = RADAR.exists()
+    with RADAR.open("a", encoding="utf-8", newline="") as f:
+        escritor = csv.DictWriter(f, fieldnames=COLUNAS_RADAR)
+        if not existia:
+            escritor.writeheader()
+        for linha in novas:
+            escritor.writerow(linha)
+
+
+def _registro(url, titulo, fonte, marca, status, edicao, data_item, motivo):
+    return {"registrado_em": date.today().isoformat(), "url": url, "titulo": titulo,
+            "fonte": fonte, "marca": marca, "status": status, "edicao": edicao,
+            "data_item": data_item, "motivo": motivo}
+
+
+def cmd_radar_sync(args):
+    """Deriva o radar de uma edicao: itens publicados e cortes com url."""
+    dados, _ = ler_edicao(args.pasta)
+    rotulo = dados.get("edicao", "")
+    conhecidas = carregar_radar()
+    novas, ja_tinha = [], 0
+
+    def juntar(url, titulo, fonte, marca, status, data_item, motivo):
+        nonlocal ja_tinha
+        chave = normalizar_url(url)
+        if chave in conhecidas or any(normalizar_url(n["url"]) == chave for n in novas):
+            ja_tinha += 1
+            return
+        novas.append(_registro(url, titulo, fonte, marca, status, rotulo, data_item, motivo))
+
+    for secao in dados.get("secoes", []):
+        marca = secao.get("marca", "")
+        for item in secao.get("itens") or []:
+            url = (item.get("fonte") or {}).get("url")
+            if url:
+                juntar(url, item.get("titulo") or item.get("rotulo", ""),
+                       (item.get("fonte") or {}).get("nome", ""), marca,
+                       "publicado", item.get("data", ""), "")
+        for fonte in secao.get("fontes") or []:
+            if fonte.get("url"):
+                juntar(fonte["url"], secao.get("titulo", ""), fonte.get("nome", ""),
+                       marca, "publicado", "", "")
+
+    sem_url = 0
+    for corte in dados.get("cortes") or []:
+        if corte.get("url"):
+            juntar(corte["url"], corte.get("item", ""), "", corte.get("marca", ""),
+                   "cortado", "", corte.get("motivo", ""))
+        else:
+            sem_url += 1
+
+    gravar_radar(novas)
+    print("radar: %d novo(s), %d ja registrado(s) — %s" % (len(novas), ja_tinha, RADAR))
+    if sem_url:
+        print("AVISO  %d corte(s) sem 'url' ficaram de fora do radar; sem url nao ha "
+              "deduplicacao e o item volta a ser avaliado no mes que vem" % sem_url)
+    return 0
+
+
+def cmd_radar_check(args):
+    """Diz o que ja foi visto. Rodar ANTES de apurar."""
+    conhecidas = carregar_radar()
+    novos = 0
+    for url in args.urls:
+        linha = conhecidas.get(normalizar_url(url))
+        if linha:
+            print("JA VISTO  %s\n          %s · %s%s%s" % (
+                url, linha["status"], linha["registrado_em"],
+                " · edicao %s" % linha["edicao"] if linha["edicao"] else "",
+                "\n          motivo: %s" % linha["motivo"] if linha["motivo"] else ""))
+        else:
+            novos += 1
+            print("NOVO      %s" % url)
+    print("---\n%d novo(s), %d ja visto(s)" % (novos, len(args.urls) - novos))
+    return 0
+
+
+def cmd_radar_list(args):
+    conhecidas = carregar_radar()
+    linhas = sorted(conhecidas.values(), key=lambda x: x["registrado_em"], reverse=True)
+    if args.status:
+        linhas = [x for x in linhas if x["status"] == args.status]
+    if args.marca:
+        linhas = [x for x in linhas if x["marca"] == args.marca]
+    if args.desde:
+        linhas = [x for x in linhas if x["registrado_em"] >= args.desde]
+    for x in linhas[:args.limite]:
+        print("%s  %-9s %-11s %s" % (x["registrado_em"], x["status"],
+                                     x["marca"] or "-", x["titulo"][:70]))
+        print("%22s%s" % ("", x["url"]))
+    print("---\n%d registro(s)" % len(linhas))
+    return 0
+
+
 # --------------------------------------------------------------------- nova
 
 def cmd_nova(args):
@@ -84,6 +220,9 @@ def cmd_nova(args):
     cfg = carregar_config()
     pasta = EDICOES / rotulo
     if pasta.exists() and not args.forcar:
+        if args.se_preciso:
+            print("edicao %s ja aberta: %s" % (rotulo, pasta))
+            return 0
         sys.exit("erro: %s ja existe (use --forcar para sobrescrever o esqueleto)" % pasta)
     pasta.mkdir(parents=True, exist_ok=True)
 
@@ -224,8 +363,14 @@ def cmd_validar(args):
     if not PALAVRAS_MIN <= palavras <= PALAVRAS_MAX:
         avisos.append("edicao com %d palavras (alvo %d-%d)" % (palavras, PALAVRAS_MIN, PALAVRAS_MAX))
 
+    cortes = dados.get("cortes") or []
+    sem_url = [c.get("item", "?") for c in cortes if not c.get("url")]
+    if sem_url:
+        avisos.append("corte(s) sem 'url', que ficam fora do radar e voltam a ser avaliados "
+                      "no mes que vem: %s" % "; ".join(x[:60] for x in sem_url))
+
     citadas = {s.get("marca") for s in secoes if s.get("tipo") == "marca"}
-    justificadas = {c.get("marca") for c in (dados.get("cortes") or [])}
+    justificadas = {c.get("marca") for c in cortes}
     for marca in sorted(ativas - citadas - justificadas):
         avisos.append("marca %r nao aparece na edicao nem em 'cortes' — registre o motivo do silencio" % marca)
 
@@ -445,7 +590,27 @@ def main():
     p = sub.add_parser("nova", help="cria a pasta da edicao")
     p.add_argument("mes", nargs="?", help="AAAA-MM (padrao: mes anterior)")
     p.add_argument("--forcar", action="store_true")
+    p.add_argument("--se-preciso", action="store_true", dest="se_preciso",
+                   help="nao falha se a edicao ja existe (para o radar semanal)")
     p.set_defaults(func=cmd_nova)
+
+    p = sub.add_parser("radar", help="memoria entre edicoes (deduplicacao)")
+    rsub = p.add_subparsers(dest="acao", required=True)
+
+    r = rsub.add_parser("check", help="o que ja foi visto — rodar ANTES de apurar")
+    r.add_argument("urls", nargs="+")
+    r.set_defaults(func=cmd_radar_check)
+
+    r = rsub.add_parser("sync", help="registra itens e cortes de uma edicao no radar")
+    r.add_argument("pasta")
+    r.set_defaults(func=cmd_radar_sync)
+
+    r = rsub.add_parser("list", help="lista o radar")
+    r.add_argument("--status", choices=["publicado", "cortado", "pendente"])
+    r.add_argument("--marca")
+    r.add_argument("--desde", help="AAAA-MM-DD")
+    r.add_argument("--limite", type=int, default=40)
+    r.set_defaults(func=cmd_radar_list)
 
     p = sub.add_parser("validar", help="valida edicao.json")
     p.add_argument("pasta")

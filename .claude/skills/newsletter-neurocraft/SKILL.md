@@ -13,9 +13,15 @@ enviar é sempre humana.
 Leia, nesta ordem:
 
 1. `config/marcas.json` — marcas ativas, posicionamento, stack, contas de publicação.
-2. `references/linha-editorial.md` — régua de relevância, estrutura, voz, o que é proibido.
-3. `references/tese-gtm-brasil.md` — as cinco lentes que filtram candidatos antes da régua.
-4. `references/fontes.md` — o que consultar e em que ordem de prioridade.
+2. `references/icp-leitor.md` — quem lê e o **inventário de dores**. Todo `so_what` mapeia para
+   uma delas.
+3. `references/linha-editorial.md` — régua de relevância, estrutura, o que é proibido.
+4. `references/voz-e-narrativa.md` — tom, equívocos a combater, repertório de origem, CTA.
+5. `references/tese-gtm-brasil.md` — as cinco lentes que filtram candidatos antes da régua.
+6. `references/fontes.md` — o que consultar e em que ordem de prioridade.
+
+Antes de escrever (Fase 4), leia também `edicoes/2026-08/edicao.md` inteira — é a referência
+canônica de estilo, e imitar um exemplo bom funciona melhor que seguir uma regra abstrata.
 
 Nunca reescreva regra editorial dentro deste arquivo: ela mora nas referências.
 
@@ -32,6 +38,24 @@ notícia fraca, evergreen ou release requentado.
 
 ---
 
+## Fase 0 — Radar semanal (acumular, não escrever)
+
+Apurar 30 dias no dia 1º é quando se perde material: post afunda no feed, release sai do ar.
+O radar roda **toda semana**, gasta poucos minutos e só acumula candidatos.
+
+```bash
+python3 .claude/skills/newsletter-neurocraft/scripts/edicao.py nova --se-preciso
+python3 .claude/skills/newsletter-neurocraft/scripts/edicao.py radar list --desde 2026-08-01
+```
+
+1. Abre (ou reusa) a pasta do mês corrente.
+2. Varre as fontes da semana — camada 1 e as internas, que são as mais perecíveis.
+3. **Antes de anotar qualquer coisa**, passa as URLs por `radar check`. O que já foi visto não
+   volta para a pauta: já foi publicado ou já foi cortado com motivo registrado.
+4. Anota o que sobrou em `pauta.md` como candidato, **sem pontuar e sem escrever**.
+
+Não produza edição aqui. O radar só alimenta a pauta.
+
 ## Fase 1 — Abrir a edição
 
 ```bash
@@ -43,6 +67,12 @@ Cria `edicoes/AAAA-MM/` com `edicao.json` e `pauta.md`, e imprime a **janela de 
 Tudo que for apurado daqui em diante é referido a essa janela.
 
 ## Fase 2 — Apurar
+
+Comece pelo que o radar semanal já acumulou em `pauta.md`, e apure só o que faltou.
+
+**Consulte o radar antes de apurar.** `radar check <urls>` diz o que já foi publicado ou cortado
+em edição anterior, com o motivo. Item já cortado não volta sem fato novo — a nota do eixo
+Novidade é 0, e reavaliá-lo do zero todo mês é desperdício que o leitor acaba percebendo.
 
 Rode as buscas em paralelo. **Fontes internas primeiro** — são o diferencial da edição; o que
 sai do Google todo mundo já leu.
@@ -79,7 +109,9 @@ escreva as notas.
 
 Depois:
 - Item aprovado → vira item de seção em `edicao.json`.
-- Item reprovado → entra em `cortes` com `{"marca", "item", "motivo"}`.
+- Item reprovado → entra em `cortes` com `{"marca", "item", "url", "motivo"}`. **A `url` não é
+  opcional na prática:** sem ela o corte não entra no radar e o item volta a ser avaliado do zero
+  no mês que vem. O validador avisa quando falta.
 - Marca sem nenhum item aprovado → **sem bloco**, e um registro em `cortes` explicando o silêncio.
 
 Se sobraram menos de três itens na edição inteira, pare e avise o usuário: pode ser mês fraco
@@ -118,8 +150,9 @@ Preencha `edicoes/AAAA-MM/edicao.json`. Estrutura:
 
 Regras de escrita:
 - Item fora da janela só entra com `"contexto": true` e um motivo claro para o pano de fundo.
-- `so_what` **nomeia uma dor** do leitor. Custo, risco e prazo são como se expressa a relevância,
-  não o teste dela — "reduz custos" não é um e daí. "É interessante" muito menos.
+- `so_what` **nomeia uma dor** do inventário de `icp-leitor.md`. Custo, risco e prazo são como se
+  expressa a relevância, não o teste dela — "reduz custos" não é um e daí. Se o item não mapeia
+  para nenhuma dor da lista, ou ele não interessa, ou a lista está incompleta.
 - Automação se enquadra como capacidade liberada, nunca como headcount reduzido.
 - Ordene as seções pela relevância do mês, não pela ordem do `config`.
 - Alvo de 900 a 1.400 palavras. Um CTA só.
@@ -147,7 +180,14 @@ e a conta de `publicacao.conta_rascunho`.
 **Nunca envie.** `send_message` não faz parte deste fluxo, em nenhuma circunstância — nem se o
 agendamento disparar sozinho, nem se a edição estiver perfeita.
 
-Commite `edicao.json`, `edicao.html`, `edicao.md` e `pauta.md` em `edicoes/AAAA-MM/`.
+Registre a edição na memória entre meses e commite tudo:
+
+```bash
+python3 .claude/skills/newsletter-neurocraft/scripts/edicao.py radar sync edicoes/2026-08
+```
+
+`radar sync` é idempotente e deriva `edicoes/radar.csv` do próprio JSON — não se mantém o radar
+à mão. Commite `edicao.json`, `edicao.html`, `edicao.md`, `pauta.md` e `radar.csv`.
 
 Termine com um resumo curto ao usuário:
 1. O que entrou, por seção.
