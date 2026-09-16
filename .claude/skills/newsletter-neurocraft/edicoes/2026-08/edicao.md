@@ -17,11 +17,11 @@ A 36ª edição do Febraban Tech aconteceu de 24 a 26 de agosto no Distrito Anhe
 
 _Fonte: [Portal Febraban](https://portal.febraban.org.br/noticia/4489/pt-br/) · 24/08/2026_
 
-### A Venezuela foi a Houston pedir tecnologia, não só capital
+### Venezuela apresentou em Houston seu plano de reconstrução energética
 
 Em 19 de agosto, o Venezuela Energy Week Houston Showcase reuniu 600 executivos e investidores no The Post Oak Hotel. A ministra de Hidrocarbonetos, Paula Henao, e Jovanny Martínez, vice-presidente executivo da PDVSA, apresentaram a base de recursos do país e a necessidade de capital, tecnologia, serviços, infraestrutura e formação de mão de obra — preparando a Venezuela Energy Week de fevereiro de 2027, em Caracas.
 
-**E daí:** Reconstruir um parque de ativos com histórico documental fragmentado é exatamente o problema que ontologia de ativos e IA de subsuperfície resolvem — e a lista apresentada em Houston põe tecnologia antes de infraestrutura. Antes da avaliação técnica, porém, a pergunta é jurídica: sanções e compliance vão ao jurídico antes do memorando de entendimento, não depois.
+**E daí:** O dado que interessa a quem acompanha o setor é a ordem da lista apresentada em Houston: tecnologia vem antes de infraestrutura. Qualquer leitura além disso esbarra no mesmo ponto — o regime de sanções aplicável segue em aberto, e essa é uma questão jurídica, não técnica.
 
 _Fonte: [Oil & Gas Journal](https://www.ogj.com/general-interest/economics-markets/news/55399249/venezuela-pitches-oil-gas-investment-opportunities-at-houston-showcase) · 19/08/2026_
 
@@ -116,11 +116,11 @@ _Fonte: [Datamint — decisão auditável](https://datamint.com.br/pt/)_
 
 ## Números do mês
 
+- **7** — CEOs dos maiores bancos do país no painel “Agentes inteligentes, liderança humana”
+
+_Fonte: [Portal Febraban](https://portal.febraban.org.br/noticia/4489/pt-br/)_
+
 - **600** — executivos e investidores no showcase da Venezuela em Houston, em 19 de agosto
-
-_Fonte: [Oil & Gas Journal](https://www.ogj.com/general-interest/economics-markets/news/55399249/venezuela-pitches-oil-gas-investment-opportunities-at-houston-showcase)_
-
-- **303 bi** — barris de reservas provadas de petróleo na Venezuela (OGJ/EIA)
 
 _Fonte: [Oil & Gas Journal](https://www.ogj.com/general-interest/economics-markets/news/55399249/venezuela-pitches-oil-gas-investment-opportunities-at-houston-showcase)_
 
@@ -131,7 +131,7 @@ _Fonte: [TI INSIDE Online](https://www.tiinside.com.br/en/15/06/2026/Datamint-ra
 
 ## Na agenda
 
-### Venezuela Energy Week
+### ROG.e 2026 (ex-Rio Oil & Gas)
 
 
 ---
@@ -148,3 +148,5 @@ _Fonte: [TI INSIDE Online](https://www.tiinside.com.br/en/15/06/2026/Datamint-ra
 - **bizmetric** — Publicado em 12/02/2026, muito fora da janela. Reprovado.
 - **vexta** — Anúncio de 02/06/2026, fora da janela e já coberto na ocasião. Novidade 0 — reprovado. Retomado apenas de forma indireta no item do Industrial Intelligence Ecosystem, que é de agosto.
 - **Post de Marcos Almeida no LinkedIn sobre o evento da Venezuela em Houston** — Item pedido pelo usuário. Não foi possível localizar a URL do post nesta apuração; o evento entrou pela fonte primária (Oil & Gas Journal, 19/08), que é mais forte. Se o post existir, vale adicionar como fonte secundária antes do envio.
+- **Número '303 bilhões de barris de reservas provadas da Venezuela' no bloco Números do mês** — Revisão de Marcos de Almeida (16/09): manter Venezuela estritamente informativa. O número é verdadeiro e confirmado na fonte, mas dimensionar a reserva ao lado de um item sobre busca de tecnologia lê como avaliação de oportunidade comercial. Substituído pelos 7 CEOs do painel da Febraban.
+- **Venezuela Energy Week (22 a 25/02/2027, Caracas) no bloco Na agenda** — Revisão de Marcos de Almeida (16/09): item em 'Na agenda' funciona como recomendação de comparecimento. Com sanções e compliance em aberto, sai. O evento permanece citado como fato no corpo da notícia.

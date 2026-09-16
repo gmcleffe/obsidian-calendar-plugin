@@ -25,9 +25,9 @@
           "data": "2026-08-24"
         },
         {
-          "titulo": "A Venezuela foi a Houston pedir tecnologia, não só capital",
+          "titulo": "Venezuela apresentou em Houston seu plano de reconstrução energética",
           "resumo": "Em 19 de agosto, o Venezuela Energy Week Houston Showcase reuniu 600 executivos e investidores no The Post Oak Hotel. A ministra de Hidrocarbonetos, Paula Henao, e Jovanny Martínez, vice-presidente executivo da PDVSA, apresentaram a base de recursos do país e a necessidade de capital, tecnologia, serviços, infraestrutura e formação de mão de obra — preparando a Venezuela Energy Week de fevereiro de 2027, em Caracas.",
-          "so_what": "Reconstruir um parque de ativos com histórico documental fragmentado é exatamente o problema que ontologia de ativos e IA de subsuperfície resolvem — e a lista apresentada em Houston põe tecnologia antes de infraestrutura. Antes da avaliação técnica, porém, a pergunta é jurídica: sanções e compliance vão ao jurídico antes do memorando de entendimento, não depois.",
+          "so_what": "O dado que interessa a quem acompanha o setor é a ordem da lista apresentada em Houston: tecnologia vem antes de infraestrutura. Qualquer leitura além disso esbarra no mesmo ponto — o regime de sanções aplicável segue em aberto, e essa é uma questão jurídica, não técnica.",
           "fonte": {
             "nome": "Oil & Gas Journal",
             "url": "https://www.ogj.com/general-interest/economics-markets/news/55399249/venezuela-pitches-oil-gas-investment-opportunities-at-houston-showcase"
@@ -167,16 +167,16 @@
       "titulo": "Números do mês",
       "itens": [
         {
-          "valor": "600",
-          "rotulo": "executivos e investidores no showcase da Venezuela em Houston, em 19 de agosto",
+          "valor": "7",
+          "rotulo": "CEOs dos maiores bancos do país no painel “Agentes inteligentes, liderança humana”",
           "fonte": {
-            "nome": "Oil & Gas Journal",
-            "url": "https://www.ogj.com/general-interest/economics-markets/news/55399249/venezuela-pitches-oil-gas-investment-opportunities-at-houston-showcase"
+            "nome": "Portal Febraban",
+            "url": "https://portal.febraban.org.br/noticia/4489/pt-br/"
           }
         },
         {
-          "valor": "303 bi",
-          "rotulo": "barris de reservas provadas de petróleo na Venezuela (OGJ/EIA)",
+          "valor": "600",
+          "rotulo": "executivos e investidores no showcase da Venezuela em Houston, em 19 de agosto",
           "fonte": {
             "nome": "Oil & Gas Journal",
             "url": "https://www.ogj.com/general-interest/economics-markets/news/55399249/venezuela-pitches-oil-gas-investment-opportunities-at-houston-showcase"
@@ -197,10 +197,10 @@
       "titulo": "Na agenda",
       "itens": [
         {
-          "titulo": "Venezuela Energy Week",
-          "quando": "22 a 25 de fevereiro de 2027",
-          "onde": "Caracas",
-          "url": "https://www.ogj.com/general-interest/economics-markets/news/55399249/venezuela-pitches-oil-gas-investment-opportunities-at-houston-showcase"
+          "titulo": "ROG.e 2026 (ex-Rio Oil & Gas)",
+          "quando": "21 a 24 de setembro",
+          "onde": "Riocentro, Rio de Janeiro",
+          "url": "https://roge.energy/"
         }
       ]
     }
@@ -243,6 +243,16 @@
     {
       "item": "Post de Marcos Almeida no LinkedIn sobre o evento da Venezuela em Houston",
       "motivo": "Item pedido pelo usuário. Não foi possível localizar a URL do post nesta apuração; o evento entrou pela fonte primária (Oil & Gas Journal, 19/08), que é mais forte. Se o post existir, vale adicionar como fonte secundária antes do envio."
+    },
+    {
+      "item": "Número '303 bilhões de barris de reservas provadas da Venezuela' no bloco Números do mês",
+      "url": "https://www.ogj.com/general-interest/economics-markets/news/55399249/venezuela-pitches-oil-gas-investment-opportunities-at-houston-showcase",
+      "motivo": "Revisão de Marcos de Almeida (16/09): manter Venezuela estritamente informativa. O número é verdadeiro e confirmado na fonte, mas dimensionar a reserva ao lado de um item sobre busca de tecnologia lê como avaliação de oportunidade comercial. Substituído pelos 7 CEOs do painel da Febraban."
+    },
+    {
+      "item": "Venezuela Energy Week (22 a 25/02/2027, Caracas) no bloco Na agenda",
+      "url": "https://www.ogj.com/general-interest/economics-markets/news/55399249/venezuela-pitches-oil-gas-investment-opportunities-at-houston-showcase",
+      "motivo": "Revisão de Marcos de Almeida (16/09): item em 'Na agenda' funciona como recomendação de comparecimento. Com sanções e compliance em aberto, sai. O evento permanece citado como fato no corpo da notícia."
     }
   ],
   "marcas_avaliadas": [

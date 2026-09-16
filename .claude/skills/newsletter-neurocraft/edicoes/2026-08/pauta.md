@@ -52,3 +52,41 @@ item 2 e provavelmente rende mais numa conversa direta do que numa newsletter.
 Nenhuma. O connector do Gmail está autorizado apenas para `gmcleffe@gmail.com`; a conta
 `Guilherme.Cleffe@neurocraft.ai` não está conectada, e Notion, Drive e Apollo não foram
 consultados nesta execução. Toda a apuração é de fonte pública verificável.
+
+---
+
+## Revisão de Marcos de Almeida — 16/09/2026
+
+Edição enviada a ele em 15/09 para aprovação. Aprovada com dois pedidos, ambos atendidos.
+
+**Aprovou:** a tese central, a conexão Febraban–Venezuela–lançamentos, e as três perguntas do
+deep dive ("o melhor trecho — posiciona a Neurocraft como referência, não como fornecedor
+vendendo piloto").
+
+**Pedido 1 — Venezuela e PDVSA estritamente informativas, sem sugestão de intenção comercial.**
+Sanções e compliance em aberto. Alterações:
+- Título: "A Venezuela foi a Houston pedir tecnologia, não só capital" → "Venezuela apresentou
+  em Houston seu plano de reconstrução energética". O verbo "pedir" enquadrava o país como
+  comprador e nós como fornecedor implícito.
+- "E daí": removida a frase que apontava nossa própria oferta como a solução ("exatamente o
+  problema que ontologia de ativos e IA de subsuperfície resolvem") e a menção a "memorando de
+  entendimento", que pressupunha negociação em curso. O texto agora observa a ordem de
+  prioridades apresentada e registra o regime de sanções como questão jurídica em aberto.
+- Números do mês: removido "303 bi barris de reservas provadas". Verdadeiro e conferido, mas
+  dimensionar reserva ao lado de um item sobre busca de tecnologia lê como avaliação de
+  oportunidade. Substituído pelos 7 CEOs do painel da Febraban.
+- Na agenda: removida a Venezuela Energy Week de Caracas (fev/2027). Listar em "agenda"
+  funciona como recomendação de comparecimento. Substituída pela ROG.e 2026.
+- O evento de Houston permanece coberto como fato, com fonte primária. O que saiu foi o vetor
+  comercial, não a informação.
+
+**Pedido 2 — reconfirmar fontes e números do bloco "Números do mês" nos links originais.**
+Reconferidos na fonte em 16/09/2026, literalmente:
+| Número | Fonte | Trecho conferido |
+|---|---|---|
+| 7 CEOs | Portal Febraban, 21/08 | "os líderes dos sete maiores bancos do país" + painel "Agentes inteligentes, liderança humana" |
+| 600 | Oil & Gas Journal, 19/08 | "brought together 600 energy executives, investors, and industry leaders" |
+| US$ 5M | TI INSIDE, 15/06 | "raised US$5 million (approximately R$25 million) in a seed round led by Headline" |
+
+**Ponto de governança em aberto:** Marcos pediu para ser avisado da **lista de destinatários e
+da data de disparo** antes do envio. Nenhum disparo deve ocorrer sem isso.
