@@ -111,3 +111,15 @@ o calendário regulatório. As três perguntas ao fornecedor, que Marcos apontou
 trecho, ficaram intactas.
 
 Edição caiu de 1.395 para 968 palavras.
+
+## Venezuela removida por completo — 30/09/2026
+
+Em 16/09 Marcos pediu tom estritamente informativo sobre Venezuela e PDVSA, com sanções e
+compliance em aberto. Reescrevemos e o risco caiu, mas não zerou: o assunto continuava na edição.
+Guilherme decidiu em 30/09 tirar o bloco inteiro, mais o número de 600 participantes.
+
+Venezuela e PDVSA entram na lista de **Temas vetados** de `linha-editorial.md`, com trava própria
+no checklist. Não é esquecimento — é decisão revisável quando a questão fechar.
+
+A edição ficou com 865 palavras, abaixo do alvo de 900. É consequência de três cortes de escopo
+seguidos, não de apuração fraca. Preferimos curta e liberada a completa e travada.

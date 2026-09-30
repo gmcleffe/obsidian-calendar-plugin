@@ -1,7 +1,9 @@
 # Newsletter Neurocraft — agosto de 2026
 
 **Assunto:** Agosto votou: agente com humano no comando  
-**Preheader:** Febraban Tech e o showcase da Venezuela em Houston: a mesma exigência aparecendo em setores que não conversam entre si.
+**Preheader:** Ainda em tempo: a edição de agosto, e por que a supervisão humana virou requisito de compra.
+
+Esta edição de agosto sai no último dia de setembro. Ainda em tempo — e o tema não envelheceu, o que diz mais sobre o tema do que sobre o nosso calendário.
 
 Em agosto, o setor mais regulado do país colocou a supervisão humana no título do seu maior evento de tecnologia. A Febraban escolheu "Agentes Inteligentes, liderança humana" como tema e pôs os CEOs dos sete maiores bancos no mesmo painel para discutir exatamente isso.
 
@@ -16,14 +18,6 @@ A 36ª edição do Febraban Tech aconteceu de 24 a 26 de agosto no Distrito Anhe
 **E daí:** Quando o setor mais regulado e mais avesso a risco do país coloca "liderança humana" no tema — e não na letra miúda — ele está sinalizando o requisito de compra que vai descer para toda a cadeia de fornecedores. Se o seu roadmap de IA para 2027 ainda promete autonomia sem trilha de aprovação, ele nasceu velho.
 
 _Fonte: [Portal Febraban](https://portal.febraban.org.br/noticia/4489/pt-br/) · 24/08/2026_
-
-### Venezuela apresentou em Houston seu plano de reconstrução energética
-
-Em 19 de agosto, o Venezuela Energy Week Houston Showcase reuniu 600 executivos e investidores no The Post Oak Hotel. A ministra de Hidrocarbonetos, Paula Henao, e Jovanny Martínez, vice-presidente executivo da PDVSA, apresentaram a base de recursos do país e a necessidade de capital, tecnologia, serviços, infraestrutura e formação de mão de obra — preparando a Venezuela Energy Week de fevereiro de 2027, em Caracas.
-
-**E daí:** O dado que interessa a quem acompanha o setor é a ordem da lista apresentada em Houston: tecnologia vem antes de infraestrutura. Qualquer leitura além disso esbarra no mesmo ponto — o regime de sanções aplicável segue em aberto, e essa é uma questão jurídica, não técnica.
-
-_Fonte: [Oil & Gas Journal](https://www.ogj.com/general-interest/economics-markets/news/55399249/venezuela-pitches-oil-gas-investment-opportunities-at-houston-showcase) · 19/08/2026_
 
 
 ## Datamint
@@ -77,10 +71,6 @@ _Fonte: [Datamint — decisão auditável](https://datamint.com.br/pt/)_
 
 _Fonte: [Portal Febraban](https://portal.febraban.org.br/noticia/4489/pt-br/)_
 
-- **600** — executivos e investidores no showcase da Venezuela em Houston, em 19 de agosto
-
-_Fonte: [Oil & Gas Journal](https://www.ogj.com/general-interest/economics-markets/news/55399249/venezuela-pitches-oil-gas-investment-opportunities-at-houston-showcase)_
-
 - **US$ 5M** — rodada seed da Datamint, liderada pela Headline, para expandir plataforma e operação
 
 _Fonte: [TI INSIDE Online](https://www.tiinside.com.br/en/15/06/2026/Datamint-raises-R%2425-million-in-seed-round-to-expand-proprietary-AI-platform-for-asset-management./)_
@@ -105,3 +95,4 @@ _Fonte: [TI INSIDE Online](https://www.tiinside.com.br/en/15/06/2026/Datamint-ra
 - **neurocraft** — Decisão de Guilherme Cleffe (30/09): publicar em momento apropriado. Nova preferência permanente: só material público e não sensível. Observação: ambos foram anunciados publicamente no LinkedIn em 17 e 19/08 — a restrição é de timing e ênfase, não de sigilo.
 - **vexta** — Decisão de Guilherme Cleffe (30/09): publicar em momento apropriado. Mesma observação: os dois posts são públicos no LinkedIn da Vexta (18 e 23/08).
 - **ROG.e 2026 no bloco Na agenda** — O evento ocorreu de 21 a 24/09 e a edição só sai agora. Anunciar como futuro um evento já realizado, para um público em que parte esteve presente, data a edição. Bloco removido por não haver item futuro verificado.
+- **Bloco inteiro sobre o Venezuela Energy Week Houston Showcase, e o número de 600 participantes em Números do mês** — Decisão de Guilherme Cleffe (30/09), aplicando o pedido de Marcos de Almeida de 16/09. Reescrever para tom informativo reduziu o risco mas não o eliminou: enquanto sanções e compliance estiverem em aberto, a leitura mais segura é não ter o assunto na edição. Venezuela e PDVSA viram tema vetado por preferência permanente até liberação expressa.

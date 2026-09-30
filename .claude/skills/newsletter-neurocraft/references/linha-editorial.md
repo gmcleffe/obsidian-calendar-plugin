@@ -105,6 +105,17 @@ Proibido em qualquer edição:
 - Conclusão que não conclui ("resta acompanhar os desdobramentos").
 - Emoji no corpo. No assunto, no máximo um, e só se houver motivo.
 
+## Temas vetados
+
+Lista curta e datada. Só sai daqui com liberação expressa de quem vetou.
+
+| Tema | Desde | Quem | Regra |
+|---|---|---|---|
+| **Venezuela e PDVSA** | 30/09/2026 | Marcos de Almeida (16/09), aplicado por Guilherme (30/09) | **Não entra na edição**, em nenhum enquadramento. Sanções e compliance em aberto. Primeiro tentamos tom estritamente informativo; a conclusão foi que reescrever reduz o risco mas não o elimina — enquanto a questão estiver aberta, o assunto fica fora. |
+
+Tema vetado não é tema esquecido: registre o candidato em `cortes` com o motivo, para que a
+decisão seja revisável quando a situação mudar.
+
 ## Somente material público — preferência permanente
 
 > Definida por Guilherme Cleffe em 30/09/2026. Vale até ele dizer o contrário.

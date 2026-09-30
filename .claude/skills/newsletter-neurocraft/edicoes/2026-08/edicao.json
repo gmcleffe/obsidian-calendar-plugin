@@ -7,8 +7,8 @@
   "status": "rascunho",
   "titulo": "Newsletter Neurocraft — agosto de 2026",
   "assunto": "Agosto votou: agente com humano no comando",
-  "preheader": "Febraban Tech e o showcase da Venezuela em Houston: a mesma exigência aparecendo em setores que não conversam entre si.",
-  "editorial": "Em agosto, o setor mais regulado do país colocou a supervisão humana no título do seu maior evento de tecnologia. A Febraban escolheu \"Agentes Inteligentes, liderança humana\" como tema e pôs os CEOs dos sete maiores bancos no mesmo painel para discutir exatamente isso.\n\nNão é retórica de palco. É a forma como um setor que responde a auditoria anuncia o que passará a exigir de fornecedor — e essa exigência desce a cadeia inteira, muito além dos bancos.",
+  "preheader": "Ainda em tempo: a edição de agosto, e por que a supervisão humana virou requisito de compra.",
+  "editorial": "Esta edição de agosto sai no último dia de setembro. Ainda em tempo — e o tema não envelheceu, o que diz mais sobre o tema do que sobre o nosso calendário.\n\nEm agosto, o setor mais regulado do país colocou a supervisão humana no título do seu maior evento de tecnologia. A Febraban escolheu \"Agentes Inteligentes, liderança humana\" como tema e pôs os CEOs dos sete maiores bancos no mesmo painel para discutir exatamente isso.\n\nNão é retórica de palco. É a forma como um setor que responde a auditoria anuncia o que passará a exigir de fornecedor — e essa exigência desce a cadeia inteira, muito além dos bancos.",
   "secoes": [
     {
       "tipo": "movimentos",
@@ -23,16 +23,6 @@
             "url": "https://portal.febraban.org.br/noticia/4489/pt-br/"
           },
           "data": "2026-08-24"
-        },
-        {
-          "titulo": "Venezuela apresentou em Houston seu plano de reconstrução energética",
-          "resumo": "Em 19 de agosto, o Venezuela Energy Week Houston Showcase reuniu 600 executivos e investidores no The Post Oak Hotel. A ministra de Hidrocarbonetos, Paula Henao, e Jovanny Martínez, vice-presidente executivo da PDVSA, apresentaram a base de recursos do país e a necessidade de capital, tecnologia, serviços, infraestrutura e formação de mão de obra — preparando a Venezuela Energy Week de fevereiro de 2027, em Caracas.",
-          "so_what": "O dado que interessa a quem acompanha o setor é a ordem da lista apresentada em Houston: tecnologia vem antes de infraestrutura. Qualquer leitura além disso esbarra no mesmo ponto — o regime de sanções aplicável segue em aberto, e essa é uma questão jurídica, não técnica.",
-          "fonte": {
-            "nome": "Oil & Gas Journal",
-            "url": "https://www.ogj.com/general-interest/economics-markets/news/55399249/venezuela-pitches-oil-gas-investment-opportunities-at-houston-showcase"
-          },
-          "data": "2026-08-19"
         }
       ]
     },
@@ -115,14 +105,6 @@
           }
         },
         {
-          "valor": "600",
-          "rotulo": "executivos e investidores no showcase da Venezuela em Houston, em 19 de agosto",
-          "fonte": {
-            "nome": "Oil & Gas Journal",
-            "url": "https://www.ogj.com/general-interest/economics-markets/news/55399249/venezuela-pitches-oil-gas-investment-opportunities-at-houston-showcase"
-          }
-        },
-        {
           "valor": "US$ 5M",
           "rotulo": "rodada seed da Datamint, liderada pela Headline, para expandir plataforma e operação",
           "fonte": {
@@ -198,6 +180,11 @@
       "item": "ROG.e 2026 no bloco Na agenda",
       "url": "https://roge.energy/",
       "motivo": "O evento ocorreu de 21 a 24/09 e a edição só sai agora. Anunciar como futuro um evento já realizado, para um público em que parte esteve presente, data a edição. Bloco removido por não haver item futuro verificado."
+    },
+    {
+      "item": "Bloco inteiro sobre o Venezuela Energy Week Houston Showcase, e o número de 600 participantes em Números do mês",
+      "url": "https://www.ogj.com/general-interest/economics-markets/news/55399249/venezuela-pitches-oil-gas-investment-opportunities-at-houston-showcase",
+      "motivo": "Decisão de Guilherme Cleffe (30/09), aplicando o pedido de Marcos de Almeida de 16/09. Reescrever para tom informativo reduziu o risco mas não o eliminou: enquanto sanções e compliance estiverem em aberto, a leitura mais segura é não ter o assunto na edição. Venezuela e PDVSA viram tema vetado por preferência permanente até liberação expressa."
     }
   ],
   "marcas_avaliadas": [

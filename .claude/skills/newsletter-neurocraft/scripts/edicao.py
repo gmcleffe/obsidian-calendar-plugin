@@ -464,12 +464,14 @@ def render_secao(secao):
         return "".join(saida)
 
     if tipo == "numeros":
+        itens = secao.get("itens") or []
+        largura = "%d%%" % (100 // max(len(itens), 1))
         celulas = []
-        for item in secao.get("itens") or []:
+        for item in itens:
             fonte = item.get("fonte") or {}
             rodape = link(fonte["url"], fonte.get("nome", "fonte"), "#6b7688") if fonte.get("url") else ""
             celulas.append(
-                '<td width="33%%" valign="top" style="padding:0 8px;">'
+                '<td width="%s" valign="top" style="padding:0 8px;">' % largura +
                 '<p style="margin:0;font:700 26px/1.15 -apple-system,BlinkMacSystemFont,'
                 '\'Segoe UI\',Arial,sans-serif;color:#0b6bcb;">%s</p>'
                 '<p style="margin:4px 0 0 0;font:400 14px/1.45 -apple-system,BlinkMacSystemFont,'
