@@ -90,3 +90,24 @@ Reconferidos na fonte em 16/09/2026, literalmente:
 
 **Ponto de governança em aberto:** Marcos pediu para ser avisado da **lista de destinatários e
 da data de disparo** antes do envio. Nenhum disparo deve ocorrer sem isso.
+
+---
+
+## Corte de escopo — 30/09/2026
+
+Guilherme definiu preferência permanente: **só material público e não sensível**. Gravada em
+`linha-editorial.md` e no checklist. Aplicada a esta edição antes do disparo.
+
+Saíram: bloco Neurocraft (NeuroEarthIQ™ e NeuroMineIQ™), bloco Vexta (ProdEng IQ e o drone em
+Santa Cruz), e as menções a ambos no editorial e no deep dive. Também saiu o bloco Na agenda —
+a ROG.e já tinha ocorrido (21–24/09) e a edição só sai agora.
+
+**Observação registrada:** os quatro itens removidos são públicos, anunciados no LinkedIn entre
+17 e 23/08. A restrição, portanto, é de timing e ênfase, não de sigilo.
+
+Consequência editorial: a tese de convergência perdeu duas das três pernas originais. O editorial
+e o segundo parágrafo do deep dive foram reescritos em torno do que sobrou — Febraban, Datamint e
+o calendário regulatório. As três perguntas ao fornecedor, que Marcos apontou como o melhor
+trecho, ficaram intactas.
+
+Edição caiu de 1.395 para 968 palavras.

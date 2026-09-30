@@ -7,8 +7,8 @@
   "status": "rascunho",
   "titulo": "Newsletter Neurocraft — agosto de 2026",
   "assunto": "Agosto votou: agente com humano no comando",
-  "preheader": "Febraban Tech, Venezuela em Houston e três lançamentos — a mesma tese aparecendo em setores que não conversam entre si.",
-  "editorial": "Em agosto, três coisas sem relação entre si disseram a mesma frase. A Febraban escolheu \"Agentes Inteligentes, liderança humana\" como tema do maior evento de tecnologia bancária do país. A Neurocraft lançou uma plataforma agêntica de subsuperfície cujo primeiro atributo anunciado é a supervisão humana. E o CEO da Vexta escreveu que a chave no upstream não está em substituir o engenheiro.\n\nBanco em São Paulo, campo maduro na Patagônia, sísmica em Houston. Nenhum falou com o outro, e todos chegaram à mesma conclusão — que muda o que você deveria exigir do seu fornecedor.",
+  "preheader": "Febraban Tech e o showcase da Venezuela em Houston: a mesma exigência aparecendo em setores que não conversam entre si.",
+  "editorial": "Em agosto, o setor mais regulado do país colocou a supervisão humana no título do seu maior evento de tecnologia. A Febraban escolheu \"Agentes Inteligentes, liderança humana\" como tema e pôs os CEOs dos sete maiores bancos no mesmo painel para discutir exatamente isso.\n\nNão é retórica de palco. É a forma como um setor que responde a auditoria anuncia o que passará a exigir de fornecedor — e essa exigência desce a cadeia inteira, muito além dos bancos.",
   "secoes": [
     {
       "tipo": "movimentos",
@@ -33,62 +33,6 @@
             "url": "https://www.ogj.com/general-interest/economics-markets/news/55399249/venezuela-pitches-oil-gas-investment-opportunities-at-houston-showcase"
           },
           "data": "2026-08-19"
-        }
-      ]
-    },
-    {
-      "tipo": "marca",
-      "marca": "neurocraft",
-      "titulo": "Neurocraft",
-      "chapeu": "Duas verticais lançadas na mesma semana.",
-      "itens": [
-        {
-          "titulo": "NeuroEarthIQ™: agentes de subsuperfície sob supervisão humana",
-          "resumo": "Plataforma agêntica de inteligência de subsuperfície que orquestra agentes especializados em geologia, geofísica, petrofísica, mud logging, caracterização de reservatório e perfuração sob um plano de controle governado, unificando sísmica, perfis de poço e relatórios geológicos. Construída sobre Azure, Fabric, Azure AI, Databricks, Power BI e Purview, com a RockNRG no domínio de geociências.",
-          "so_what": "O argumento explícito é preservação de conhecimento: em uma indústria que está aposentando trinta anos de julgamento técnico por ano, a alternativa a codificar esse julgamento é perdê-lo. Isso desloca a conversa de redução de headcount para retenção de expertise — e muda quem, dentro do cliente, patrocina o projeto.",
-          "fonte": {
-            "nome": "Neurocraft Data Services (LinkedIn)",
-            "url": "https://www.linkedin.com/posts/neurocraft-data-services-inc_neuroearthiq-neurocraftai-agenticai-activity-7495830716673380352-kVk9"
-          },
-          "data": "2026-08-19"
-        },
-        {
-          "titulo": "NeuroMineIQ™ leva a mesma arquitetura para minerais críticos",
-          "resumo": "Lançada em 17 de agosto junto com uma parceria com a RockNRG Consulting, combinando IA, geociência, sensoriamento remoto e expertise em minerais críticos.",
-          "so_what": "Dois lançamentos em três dias sobre o mesmo plano de controle indicam plataforma, não projeto sob medida — e a segunda vertical custa uma fração da primeira.",
-          "fonte": {
-            "nome": "Marcos Almeida (LinkedIn)",
-            "url": "https://www.linkedin.com/posts/marcos-almeida-94147610_neuromineiq-neurocraftai-rocknrg-activity-7495105929072336896-kdEr"
-          },
-          "data": "2026-08-17"
-        }
-      ]
-    },
-    {
-      "tipo": "marca",
-      "marca": "vexta",
-      "titulo": "Vexta",
-      "chapeu": "Gestão por exceção, aplicada duas vezes no mesmo mês.",
-      "itens": [
-        {
-          "titulo": "ProdEng IQ troca a varredura manual por ranking diário de decisões",
-          "resumo": "Em campos maduros, revisar centenas de poços à mão para achar os três ou quatro que precisam de intervenção é busca ineficiente. O ProdEng IQ analisa continuamente toda a infraestrutura e entrega um ranking diário priorizado por impacto financeiro, com machine learning informado por física que lê cartas dinamométricas para detectar golpe de fluido, interferência de gás e excesso de torque. Diego Leiguarda, CEO e fundador, descreve o objetivo como ajudar o engenheiro a ver rápido o que precisa de atenção, não decidir por ele.",
-          "so_what": "A métrica que importa aqui não é a acurácia do modelo, é quantas visitas de campo deixaram de acontecer. Priorização por impacto financeiro é a única forma de a manutenção preditiva aparecer no orçamento como economia, e não como mais uma licença de software.",
-          "fonte": {
-            "nome": "Vexta (LinkedIn)",
-            "url": "https://es.linkedin.com/posts/vexta-ai_oilandgas-productionengineering-upstream-activity-7495479622067781634--LsJ"
-          },
-          "data": "2026-08-18"
-        },
-        {
-          "titulo": "Detecção automática de derrame em Santa Cruz",
-          "resumo": "Em 23 de agosto a Vexta relatou um caso de campo: percurso inteligente com drone detectou automaticamente um derrame em uma operação em Santa Cruz; o operador verificou o evento e enviou a equipe para conter o poço.",
-          "so_what": "É o mesmo princípio do ProdEng IQ aplicado a acesso físico — mandar gente ao campo só quando há motivo. Em ativo disperso ou de acesso perigoso, esse é o argumento de segurança que costuma destravar orçamento mais rápido que o argumento de produtividade.",
-          "fonte": {
-            "nome": "Vexta (LinkedIn)",
-            "url": "https://www.linkedin.com/posts/vexta-ai_activity-7497311484696461312-GNR5"
-          },
-          "data": "2026-08-23"
         }
       ]
     },
@@ -142,7 +86,7 @@
       "titulo": "Deep dive · A supervisão humana virou requisito de compra",
       "corpo": [
         "Por dois anos, \"human in the loop\" foi a ressalva que se colocava no fim do slide para acalmar o jurídico. Agosto sugere que a ressalva virou especificação.",
-        "Repare em quem disse. A Febraban, do setor menos tolerante a indisponibilidade do país, pôs \"liderança humana\" no tema. A Neurocraft anunciou o NeuroEarthIQ™ listando supervisão de especialistas e IA explicável antes de qualquer promessa de automação. A Vexta, que vende detecção automática, publicou que o sistema não decide pelo engenheiro. A Datamint construiu a tese inteira sobre trilha de auditoria. Quatro mercados, nenhum incentivo para combinarem discurso.",
+        "Repare em quem está dizendo. A Febraban, de um setor que não tolera indisponibilidade nem decisão sem responsável, pôs \"liderança humana\" no tema do evento e no título do painel dos sete maiores bancos. A Datamint, que vende automação de decisão sobre ativo crítico, construiu a tese inteira sobre trilha de auditoria e decisão explicável. E o regulador chegou ao mesmo lugar por outro caminho. Três origens distintas, nenhum incentivo para combinarem discurso.",
         "A explicação mais simples é econômica. Autonomia total é fácil de demonstrar e difícil de contratar: ninguém assina embaixo de um sistema que abre ordem de serviço em ativo crítico sem que alguém responda pela decisão. Em ambiente regulado, o gargalo nunca foi a capacidade do modelo — foi a atribuição de responsabilidade. Enquanto essa pergunta não tem resposta, o piloto não vira produção. Some a isso o EU AI Act em aplicação escalonada e o ISO/IEC 42001 entrando nos processos de compra: rastreabilidade virou condição de participação, não diferencial.",
         "Para quem compra, isso simplifica a avaliação. Três perguntas separam plataforma governada de demonstração bonita. Primeira: quando o sistema recomenda uma intervenção, consigo reconstruir por que — quais dados, qual regra, qual modelo — seis meses depois, para um auditor? Segunda: quem aprova o quê é configurável por criticidade do ativo, ou a autonomia é um botão liga-desliga? Terceira: quando o especialista discorda da recomendação, o desacordo fica registrado e volta para o sistema, ou some?",
         "Fornecedor que responde as três com naturalidade já pensou no problema. Fornecedor que trata as três como requisito de fase dois está vendendo piloto — e piloto é o que a sua organização já tem de sobra."
@@ -151,10 +95,6 @@
         {
           "nome": "Portal Febraban — programação do Febraban Tech 2026",
           "url": "https://portal.febraban.org.br/noticia/4484/pt-br/"
-        },
-        {
-          "nome": "Neurocraft — NeuroEarthIQ™",
-          "url": "https://www.linkedin.com/posts/neurocraft-data-services-inc_neuroearthiq-neurocraftai-agenticai-activity-7495830716673380352-kVk9"
         },
         {
           "nome": "Datamint — decisão auditável",
@@ -189,18 +129,6 @@
             "nome": "TI INSIDE Online",
             "url": "https://www.tiinside.com.br/en/15/06/2026/Datamint-raises-R%2425-million-in-seed-round-to-expand-proprietary-AI-platform-for-asset-management./"
           }
-        }
-      ]
-    },
-    {
-      "tipo": "agenda",
-      "titulo": "Na agenda",
-      "itens": [
-        {
-          "titulo": "ROG.e 2026 (ex-Rio Oil & Gas)",
-          "quando": "21 a 24 de setembro",
-          "onde": "Riocentro, Rio de Janeiro",
-          "url": "https://roge.energy/"
         }
       ]
     }
@@ -253,6 +181,23 @@
       "item": "Venezuela Energy Week (22 a 25/02/2027, Caracas) no bloco Na agenda",
       "url": "https://www.ogj.com/general-interest/economics-markets/news/55399249/venezuela-pitches-oil-gas-investment-opportunities-at-houston-showcase",
       "motivo": "Revisão de Marcos de Almeida (16/09): item em 'Na agenda' funciona como recomendação de comparecimento. Com sanções e compliance em aberto, sai. O evento permanece citado como fato no corpo da notícia."
+    },
+    {
+      "marca": "neurocraft",
+      "item": "Bloco inteiro: lançamentos do NeuroEarthIQ™ e do NeuroMineIQ™, mais as menções no editorial e no deep dive",
+      "url": "https://www.linkedin.com/posts/neurocraft-data-services-inc_neuroearthiq-neurocraftai-agenticai-activity-7495830716673380352-kVk9",
+      "motivo": "Decisão de Guilherme Cleffe (30/09): publicar em momento apropriado. Nova preferência permanente: só material público e não sensível. Observação: ambos foram anunciados publicamente no LinkedIn em 17 e 19/08 — a restrição é de timing e ênfase, não de sigilo."
+    },
+    {
+      "marca": "vexta",
+      "item": "Bloco inteiro: ProdEng IQ e a detecção de derrame por drone em Santa Cruz, mais a menção ao CEO da Vexta no editorial",
+      "url": "https://es.linkedin.com/posts/vexta-ai_oilandgas-productionengineering-upstream-activity-7495479622067781634--LsJ",
+      "motivo": "Decisão de Guilherme Cleffe (30/09): publicar em momento apropriado. Mesma observação: os dois posts são públicos no LinkedIn da Vexta (18 e 23/08)."
+    },
+    {
+      "item": "ROG.e 2026 no bloco Na agenda",
+      "url": "https://roge.energy/",
+      "motivo": "O evento ocorreu de 21 a 24/09 e a edição só sai agora. Anunciar como futuro um evento já realizado, para um público em que parte esteve presente, data a edição. Bloco removido por não haver item futuro verificado."
     }
   ],
   "marcas_avaliadas": [

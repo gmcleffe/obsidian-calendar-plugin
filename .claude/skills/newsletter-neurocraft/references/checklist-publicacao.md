@@ -15,6 +15,8 @@ Rodar **inteiro** antes de criar o rascunho. Qualquer item reprovado bloqueia a 
 
 - [ ] Nenhum nome de cliente sem autorização escrita registrada na pauta.
 - [ ] Nenhum dado sob NDA, número de contrato, receita ou volume de dados de cliente.
+- [ ] **Todo item tem fonte pública verificável** (preferência permanente de 30/09: só material público).
+- [ ] Nenhum lançamento ou anúncio próprio sem liberação explícita para esta edição.
 - [ ] Nenhuma conta em pipeline aberto identificada nominalmente.
 - [ ] Sinais de CRM e de vagas aparecem apenas agregados.
 - [ ] Nada extraído de e-mail pessoal.

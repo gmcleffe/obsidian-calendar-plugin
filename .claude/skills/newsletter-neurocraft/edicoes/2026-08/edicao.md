@@ -1,11 +1,11 @@
 # Newsletter Neurocraft — agosto de 2026
 
 **Assunto:** Agosto votou: agente com humano no comando  
-**Preheader:** Febraban Tech, Venezuela em Houston e três lançamentos — a mesma tese aparecendo em setores que não conversam entre si.
+**Preheader:** Febraban Tech e o showcase da Venezuela em Houston: a mesma exigência aparecendo em setores que não conversam entre si.
 
-Em agosto, três coisas sem relação entre si disseram a mesma frase. A Febraban escolheu "Agentes Inteligentes, liderança humana" como tema do maior evento de tecnologia bancária do país. A Neurocraft lançou uma plataforma agêntica de subsuperfície cujo primeiro atributo anunciado é a supervisão humana. E o CEO da Vexta escreveu que a chave no upstream não está em substituir o engenheiro.
+Em agosto, o setor mais regulado do país colocou a supervisão humana no título do seu maior evento de tecnologia. A Febraban escolheu "Agentes Inteligentes, liderança humana" como tema e pôs os CEOs dos sete maiores bancos no mesmo painel para discutir exatamente isso.
 
-Banco em São Paulo, campo maduro na Patagônia, sísmica em Houston. Nenhum falou com o outro, e todos chegaram à mesma conclusão — que muda o que você deveria exigir do seu fornecedor.
+Não é retórica de palco. É a forma como um setor que responde a auditoria anuncia o que passará a exigir de fornecedor — e essa exigência desce a cadeia inteira, muito além dos bancos.
 
 ## O que mudou em agosto
 
@@ -24,48 +24,6 @@ Em 19 de agosto, o Venezuela Energy Week Houston Showcase reuniu 600 executivos 
 **E daí:** O dado que interessa a quem acompanha o setor é a ordem da lista apresentada em Houston: tecnologia vem antes de infraestrutura. Qualquer leitura além disso esbarra no mesmo ponto — o regime de sanções aplicável segue em aberto, e essa é uma questão jurídica, não técnica.
 
 _Fonte: [Oil & Gas Journal](https://www.ogj.com/general-interest/economics-markets/news/55399249/venezuela-pitches-oil-gas-investment-opportunities-at-houston-showcase) · 19/08/2026_
-
-
-## Neurocraft
-
-_Duas verticais lançadas na mesma semana._
-
-### NeuroEarthIQ™: agentes de subsuperfície sob supervisão humana
-
-Plataforma agêntica de inteligência de subsuperfície que orquestra agentes especializados em geologia, geofísica, petrofísica, mud logging, caracterização de reservatório e perfuração sob um plano de controle governado, unificando sísmica, perfis de poço e relatórios geológicos. Construída sobre Azure, Fabric, Azure AI, Databricks, Power BI e Purview, com a RockNRG no domínio de geociências.
-
-**E daí:** O argumento explícito é preservação de conhecimento: em uma indústria que está aposentando trinta anos de julgamento técnico por ano, a alternativa a codificar esse julgamento é perdê-lo. Isso desloca a conversa de redução de headcount para retenção de expertise — e muda quem, dentro do cliente, patrocina o projeto.
-
-_Fonte: [Neurocraft Data Services (LinkedIn)](https://www.linkedin.com/posts/neurocraft-data-services-inc_neuroearthiq-neurocraftai-agenticai-activity-7495830716673380352-kVk9) · 19/08/2026_
-
-### NeuroMineIQ™ leva a mesma arquitetura para minerais críticos
-
-Lançada em 17 de agosto junto com uma parceria com a RockNRG Consulting, combinando IA, geociência, sensoriamento remoto e expertise em minerais críticos.
-
-**E daí:** Dois lançamentos em três dias sobre o mesmo plano de controle indicam plataforma, não projeto sob medida — e a segunda vertical custa uma fração da primeira.
-
-_Fonte: [Marcos Almeida (LinkedIn)](https://www.linkedin.com/posts/marcos-almeida-94147610_neuromineiq-neurocraftai-rocknrg-activity-7495105929072336896-kdEr) · 17/08/2026_
-
-
-## Vexta
-
-_Gestão por exceção, aplicada duas vezes no mesmo mês._
-
-### ProdEng IQ troca a varredura manual por ranking diário de decisões
-
-Em campos maduros, revisar centenas de poços à mão para achar os três ou quatro que precisam de intervenção é busca ineficiente. O ProdEng IQ analisa continuamente toda a infraestrutura e entrega um ranking diário priorizado por impacto financeiro, com machine learning informado por física que lê cartas dinamométricas para detectar golpe de fluido, interferência de gás e excesso de torque. Diego Leiguarda, CEO e fundador, descreve o objetivo como ajudar o engenheiro a ver rápido o que precisa de atenção, não decidir por ele.
-
-**E daí:** A métrica que importa aqui não é a acurácia do modelo, é quantas visitas de campo deixaram de acontecer. Priorização por impacto financeiro é a única forma de a manutenção preditiva aparecer no orçamento como economia, e não como mais uma licença de software.
-
-_Fonte: [Vexta (LinkedIn)](https://es.linkedin.com/posts/vexta-ai_oilandgas-productionengineering-upstream-activity-7495479622067781634--LsJ) · 18/08/2026_
-
-### Detecção automática de derrame em Santa Cruz
-
-Em 23 de agosto a Vexta relatou um caso de campo: percurso inteligente com drone detectou automaticamente um derrame em uma operação em Santa Cruz; o operador verificou o evento e enviou a equipe para conter o poço.
-
-**E daí:** É o mesmo princípio do ProdEng IQ aplicado a acesso físico — mandar gente ao campo só quando há motivo. Em ativo disperso ou de acesso perigoso, esse é o argumento de segurança que costuma destravar orçamento mais rápido que o argumento de produtividade.
-
-_Fonte: [Vexta (LinkedIn)](https://www.linkedin.com/posts/vexta-ai_activity-7497311484696461312-GNR5) · 23/08/2026_
 
 
 ## Datamint
@@ -102,7 +60,7 @@ _Fonte: [Bizmetric (LinkedIn)](https://www.linkedin.com/posts/bizmetric_bizevent
 
 Por dois anos, "human in the loop" foi a ressalva que se colocava no fim do slide para acalmar o jurídico. Agosto sugere que a ressalva virou especificação.
 
-Repare em quem disse. A Febraban, do setor menos tolerante a indisponibilidade do país, pôs "liderança humana" no tema. A Neurocraft anunciou o NeuroEarthIQ™ listando supervisão de especialistas e IA explicável antes de qualquer promessa de automação. A Vexta, que vende detecção automática, publicou que o sistema não decide pelo engenheiro. A Datamint construiu a tese inteira sobre trilha de auditoria. Quatro mercados, nenhum incentivo para combinarem discurso.
+Repare em quem está dizendo. A Febraban, de um setor que não tolera indisponibilidade nem decisão sem responsável, pôs "liderança humana" no tema do evento e no título do painel dos sete maiores bancos. A Datamint, que vende automação de decisão sobre ativo crítico, construiu a tese inteira sobre trilha de auditoria e decisão explicável. E o regulador chegou ao mesmo lugar por outro caminho. Três origens distintas, nenhum incentivo para combinarem discurso.
 
 A explicação mais simples é econômica. Autonomia total é fácil de demonstrar e difícil de contratar: ninguém assina embaixo de um sistema que abre ordem de serviço em ativo crítico sem que alguém responda pela decisão. Em ambiente regulado, o gargalo nunca foi a capacidade do modelo — foi a atribuição de responsabilidade. Enquanto essa pergunta não tem resposta, o piloto não vira produção. Some a isso o EU AI Act em aplicação escalonada e o ISO/IEC 42001 entrando nos processos de compra: rastreabilidade virou condição de participação, não diferencial.
 
@@ -111,7 +69,6 @@ Para quem compra, isso simplifica a avaliação. Três perguntas separam platafo
 Fornecedor que responde as três com naturalidade já pensou no problema. Fornecedor que trata as três como requisito de fase dois está vendendo piloto — e piloto é o que a sua organização já tem de sobra.
 
 _Fonte: [Portal Febraban — programação do Febraban Tech 2026](https://portal.febraban.org.br/noticia/4484/pt-br/)_
-_Fonte: [Neurocraft — NeuroEarthIQ™](https://www.linkedin.com/posts/neurocraft-data-services-inc_neuroearthiq-neurocraftai-agenticai-activity-7495830716673380352-kVk9)_
 _Fonte: [Datamint — decisão auditável](https://datamint.com.br/pt/)_
 
 ## Números do mês
@@ -127,11 +84,6 @@ _Fonte: [Oil & Gas Journal](https://www.ogj.com/general-interest/economics-marke
 - **US$ 5M** — rodada seed da Datamint, liderada pela Headline, para expandir plataforma e operação
 
 _Fonte: [TI INSIDE Online](https://www.tiinside.com.br/en/15/06/2026/Datamint-raises-R%2425-million-in-seed-round-to-expand-proprietary-AI-platform-for-asset-management./)_
-
-
-## Na agenda
-
-### ROG.e 2026 (ex-Rio Oil & Gas)
 
 
 ---
@@ -150,3 +102,6 @@ _Fonte: [TI INSIDE Online](https://www.tiinside.com.br/en/15/06/2026/Datamint-ra
 - **Post de Marcos Almeida no LinkedIn sobre o evento da Venezuela em Houston** — Item pedido pelo usuário. Não foi possível localizar a URL do post nesta apuração; o evento entrou pela fonte primária (Oil & Gas Journal, 19/08), que é mais forte. Se o post existir, vale adicionar como fonte secundária antes do envio.
 - **Número '303 bilhões de barris de reservas provadas da Venezuela' no bloco Números do mês** — Revisão de Marcos de Almeida (16/09): manter Venezuela estritamente informativa. O número é verdadeiro e confirmado na fonte, mas dimensionar a reserva ao lado de um item sobre busca de tecnologia lê como avaliação de oportunidade comercial. Substituído pelos 7 CEOs do painel da Febraban.
 - **Venezuela Energy Week (22 a 25/02/2027, Caracas) no bloco Na agenda** — Revisão de Marcos de Almeida (16/09): item em 'Na agenda' funciona como recomendação de comparecimento. Com sanções e compliance em aberto, sai. O evento permanece citado como fato no corpo da notícia.
+- **neurocraft** — Decisão de Guilherme Cleffe (30/09): publicar em momento apropriado. Nova preferência permanente: só material público e não sensível. Observação: ambos foram anunciados publicamente no LinkedIn em 17 e 19/08 — a restrição é de timing e ênfase, não de sigilo.
+- **vexta** — Decisão de Guilherme Cleffe (30/09): publicar em momento apropriado. Mesma observação: os dois posts são públicos no LinkedIn da Vexta (18 e 23/08).
+- **ROG.e 2026 no bloco Na agenda** — O evento ocorreu de 21 a 24/09 e a edição só sai agora. Anunciar como futuro um evento já realizado, para um público em que parte esteve presente, data a edição. Bloco removido por não haver item futuro verificado.

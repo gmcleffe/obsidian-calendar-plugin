@@ -105,6 +105,24 @@ Proibido em qualquer edição:
 - Conclusão que não conclui ("resta acompanhar os desdobramentos").
 - Emoji no corpo. No assunto, no máximo um, e só se houver motivo.
 
+## Somente material público — preferência permanente
+
+> Definida por Guilherme Cleffe em 30/09/2026. Vale até ele dizer o contrário.
+
+A edição publica **apenas informação pública e não sensível**. Nada interno ou confidencial entra,
+mesmo quando o conteúdo seria bom e mesmo quando não há impedimento jurídico.
+
+Na prática:
+
+- **Fonte pública verificável ou não entra.** Se o único caminho para a informação é Gmail, Notion,
+  Drive ou CRM, ela não é publicável — vira insumo de contexto, nunca item da edição.
+- **Anúncio de produto e lançamento próprio depende de liberação explícita**, mesmo já publicado
+  em canal público. A empresa controla o momento da amplificação, não só o do anúncio.
+- **Na dúvida, fora.** Registre em `cortes` com o motivo e siga. Custa uma edição mais curta;
+  o inverso custa a relação.
+- Se um item cortado por esta regra já for público, **diga isso no resumo ao usuário** — ele pode
+  estar decidindo por timing achando que decide por sigilo. São coisas diferentes.
+
 ## Conflito de interesse e sigilo
 
 - Nome de cliente só com autorização escrita registrada na pauta.
