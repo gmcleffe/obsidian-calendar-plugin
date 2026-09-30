@@ -123,3 +123,42 @@ no checklist. Não é esquecimento — é decisão revisável quando a questão 
 
 A edição ficou com 865 palavras, abaixo do alvo de 900. É consequência de três cortes de escopo
 seguidos, não de apuração fraca. Preferimos curta e liberada a completa e travada.
+
+## Lote 1 — rascunho no Outlook pessoal (30/09/2026)
+
+**Rascunho criado, não enviado.** Aguarda revisão do Guilherme e o aviso ao Marcos.
+
+- Variante de conteúdo: `edicao-outlook.html` (rodapé com motivo de recebimento verdadeiro,
+  sem os marcadores `%%unsubscribe_url%%` / `%%preferences_url%%`, que o Apollo não substitui
+  fora de uma sequência).
+- Corpo efetivamente usado no rascunho: redução em HTML simples da variante acima — o connector
+  do Outlook rejeita o template (ver *Limite do connector Outlook* em `references/operacao.md`).
+- Destinatários: 19 em **Cco**, Guilherme em Para. Extraídos da pasta *Itens Enviados*,
+  excluída a campanha `"Café na ROG.e? — dado de campo virando decisão"`.
+
+### Por que 19 e não 50
+
+A premissa de que "inbox + enviados = pessoas próximas" não se sustentou. Das 468 mensagens
+enviadas paginadas, **~85% são a campanha fria da ROG.e**, ~10% são interno e aceite de convite,
+e ~5% é correspondência real. O teto é estrutural, não de paginação: a lista de próximos que
+existe na caixa tem esse tamanho.
+
+### Excluídos, com motivo
+
+| Contato | Motivo |
+|---|---|
+| `sushkevich.p@jv-technoton.com` | Mensagem anterior voltou — domínio rejeitou |
+| `julien@reversecontactai.com` | Pediu para sair da lista |
+| `ben@benai.co` | Newsletter que o Guilherme assina, não contato comercial |
+| `calendar-invite@lu.ma` | Remetente automático |
+| `@neurocraft.ai` | Interno |
+| Datamint | Instrução do Guilherme (30/09) |
+
+`Gabinete@desenvolvimento.rj.gov.br` é caixa geral de gabinete e `Sukma.Wijoyo@bizmetric.com` /
+`amit.mittal@bizmetric.com` são parceiros que aparecem citados na edição. Ficaram no rascunho
+para o Guilherme decidir — tirar da linha de Cco é mais barato do que reconstruir a lista.
+
+### Pendência bloqueante
+
+Marcos pediu, no e-mail de 16/09: *"Me avise a lista de destinatários e a data que pretende
+disparar."* **Isso ainda não foi feito.** Nada sai antes.

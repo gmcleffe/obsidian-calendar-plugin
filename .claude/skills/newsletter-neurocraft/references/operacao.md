@@ -101,3 +101,23 @@ com formato próprio e frequência menor. Nunca como espelho do e-mail.
 
 Depois do terceiro ciclo, revise `linha-editorial.md` com o que a prática mostrou. A régua
 inicial é um chute educado; os dados dos três primeiros meses valem mais que ela.
+
+## Limite do connector Outlook (descoberto em 30/09/2026)
+
+`outlook_create_draft` **rejeita** o HTML de e-mail que o `render` produz. A allowlist de saída
+aceita apenas `p, br, a[href|name|target], b/strong, i/em, ul/ol/li, h1-h6,
+table/thead/tbody/tr/th/td, code, pre, hr, div, strike` — **nenhum atributo além de `href`**.
+Ficam de fora: `<!DOCTYPE>`, `<html>/<head>/<body>`, `<meta>`, `<span>`, `style=`, `class=`,
+`id=`, imagens e comentários. A rejeição é explícita (erro `html_sanitize_rejected`), não
+silenciosa — o rascunho não é criado pela metade.
+
+Consequência prática, quando o envio for pelo Outlook pessoal:
+
+| Caminho | O que preserva | Quando usar |
+|---|---|---|
+| **Rascunho via connector** | Texto, hierarquia, links, listas. Perde template, cores, largura fixa e preheader. | Lote pequeno e pessoal, onde o remetente é uma pessoa e não a marca. O visual "e-mail escrito à mão" até ajuda. |
+| **Colar o HTML renderizado no Outlook** | Tudo. | Quando o template importa. Exige ação manual do Guilherme. |
+| **Ferramenta de disparo (Apollo etc.)** | Tudo. | Lote grande, com descadastro funcionando. |
+
+Não tente contornar a allowlist. Gere a redução em HTML simples a partir do `edicao.json`
+e registre na pauta qual variante foi para cada lote.
