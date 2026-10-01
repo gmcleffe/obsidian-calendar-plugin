@@ -136,14 +136,28 @@ def cmd_radar_sync(args):
     dados, _ = ler_edicao(args.pasta)
     rotulo = dados.get("edicao", "")
     conhecidas = carregar_radar()
-    novas, ja_tinha = [], 0
+    novas, ja_tinha, corrigidas, vistas = [], 0, 0, set()
 
     def juntar(url, titulo, fonte, marca, status, data_item, motivo):
-        nonlocal ja_tinha
+        nonlocal ja_tinha, corrigidas
         chave = normalizar_url(url)
-        if chave in conhecidas or any(normalizar_url(n["url"]) == chave for n in novas):
+        # Uma url por rodada: a mesma fonte pode sustentar varios cortes com motivos
+        # diferentes, e vale o primeiro. Sem isso o sync alterna entre eles a cada vez.
+        if chave in vistas:
             ja_tinha += 1
             return
+        vistas.add(chave)
+        conhecida = conhecidas.get(chave)
+        # Registro de outra edicao e historia: nao se reescreve. Da mesma edicao, a
+        # pauta pode ter mudado depois do primeiro sync (item publicado que acabou
+        # cortado na revisao). O radar e so-acrescimo e a ultima linha vale, entao a
+        # correcao entra como linha nova.
+        if conhecida and (conhecida["edicao"] != rotulo
+                          or (conhecida["status"], conhecida["motivo"]) == (status, motivo)):
+            ja_tinha += 1
+            return
+        if conhecida:
+            corrigidas += 1
         novas.append(_registro(url, titulo, fonte, marca, status, rotulo, data_item, motivo))
 
     for secao in dados.get("secoes", []):
@@ -168,7 +182,15 @@ def cmd_radar_sync(args):
             sem_url += 1
 
     gravar_radar(novas)
-    print("radar: %d novo(s), %d ja registrado(s) — %s" % (len(novas), ja_tinha, RADAR))
+    print("radar: %d novo(s), %d corrigido(s), %d ja registrado(s) — %s"
+          % (len(novas) - corrigidas, corrigidas, ja_tinha, RADAR))
+    orfaos = [linha for chave, linha in conhecidas.items()
+              if linha["edicao"] == rotulo and chave not in vistas]
+    if orfaos:
+        print("AVISO  %d registro(s) desta edicao no radar nao aparecem mais na edicao, nem "
+              "publicados nem em cortes — registre o corte com a url:" % len(orfaos))
+        for linha in orfaos:
+            print("       %s · %s" % (linha["status"], linha["url"]))
     if sem_url:
         print("AVISO  %d corte(s) sem 'url' ficaram de fora do radar; sem url nao ha "
               "deduplicacao e o item volta a ser avaliado no mes que vem" % sem_url)
