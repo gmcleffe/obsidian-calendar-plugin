@@ -1,0 +1,83 @@
+{
+  "_comentario": "Registro das marcas cobertas pela newsletter. Editar aqui e nao no SKILL.md. 'ativa: false' remove a marca da curadoria sem apagar o historico.",
+  "publicacao": {
+    "remetente_nome": "Neurocraft",
+    "remetente_email": "Guilherme.Cleffe@neurocraft.ai",
+    "conta_rascunho": "gmcleffe@gmail.com",
+    "idioma": "pt-BR",
+    "publico": "C-level e lideres de dados/operacoes (CEO, COO, CIO, CDO, VP Eng.)",
+    "cadencia": "mensal",
+    "dia_alvo_envio": 5,
+    "fuso": "America/Sao_Paulo"
+  },
+  "marcas": [
+    {
+      "id": "neurocraft",
+      "nome": "Neurocraft Data Services",
+      "ativa": true,
+      "papel": "marca-mae; anfitria da newsletter",
+      "sede": "Houston, TX (EUA)",
+      "fundacao": 2023,
+      "posicionamento": "Industrial AI e Agentic AI alinhada a Microsoft: Azure, Fabric e Azure AI Foundry, com governanca e Well-Architected.",
+      "setores": ["energia e oil & gas", "manufatura", "saude", "AEC", "setor publico"],
+      "stack": ["Microsoft Azure", "Microsoft Fabric", "Azure AI Foundry", "Databricks", "Snowflake", "Oracle"],
+      "fontes": [
+        {"tipo": "site", "url": "https://neurocraft.ai/"},
+        {"tipo": "linkedin", "url": "https://www.linkedin.com/company/neurocraft-data-services-inc"}
+      ]
+    },
+    {
+      "id": "bizmetric",
+      "nome": "Bizmetric",
+      "ativa": true,
+      "papel": "parceiro estrategico de dados e analytics",
+      "sede": "Sugar Land, TX (EUA); Pune (India); Houston",
+      "fundacao": 2011,
+      "posicionamento": "Intelligent Enterprise: lakehouse, migracao e governanca de dados e IA em escala global.",
+      "setores": ["BFSI", "manufatura", "life sciences", "energia"],
+      "stack": ["Databricks", "Microsoft Fabric", "Snowflake", "Power BI", "Qlik", "Oracle", "SAP", "D365"],
+      "temas_proprios": ["lakehouse", "migracao Oracle/SAP para Databricks e Fabric", "governanca de IA e EU AI Act", "Genie e Agent Bricks"],
+      "fontes": [
+        {"tipo": "site", "url": "https://www.bizmetric.ai/"},
+        {"tipo": "blog", "url": "https://www.bizmetric.com/"},
+        {"tipo": "linkedin", "url": "https://www.linkedin.com/company/bizmetric"}
+      ]
+    },
+    {
+      "id": "vexta",
+      "nome": "Vexta",
+      "ativa": true,
+      "papel": "parceiro de IA industrial para oil & gas na America Latina",
+      "sede": "America Latina",
+      "fundacao": 2025,
+      "posicionamento": "Data Physics: modelos fisicos combinados com machine learning para maximizar a rentabilidade de ativos criticos em O&G.",
+      "setores": ["oil & gas", "energia", "mineracao"],
+      "temas_proprios": ["eficiencia de injecao e conectividade poco-injetor", "visao computacional com drone-in-a-box e imagem termica", "manutencao baseada em condicao", "engenharia de producao e falha de elevacao artificial"],
+      "fontes": [
+        {"tipo": "site", "url": "https://vexta.lat/en/"},
+        {"tipo": "linkedin", "url": "https://www.linkedin.com/company/vexta-ai"}
+      ],
+      "desambiguacao": "NAO confundir com 'Vexta Cloud' (Kuwait), 'Vexta Ltd' nem 'VextaCFO'. A marca coberta aqui e a vexta.lat / linkedin.com/company/vexta-ai, parceira da Neurocraft em O&G."
+    },
+    {
+      "id": "datamint",
+      "nome": "Datamint",
+      "ativa": true,
+      "papel": "parceiro go-to-market no Brasil; Neurocraft e o GTM da Datamint nos EUA",
+      "sede": "Rio de Janeiro (BR)",
+      "fundacao": 2021,
+      "posicionamento": "IA para gestao de ativos criticos: ontologia e grafo de conhecimento sobre ERP, SCADA e CMMS, com decisao explicavel e auditavel.",
+      "setores": ["oil & gas", "energia", "saneamento", "industria de base"],
+      "stack": ["Google Cloud", "Nvidia", "Neo4j", "Redis"],
+      "temas_proprios": ["ontologia de ativos", "manutencao preditiva e priorizacao", "inspecao visual", "governanca de decisao e trilha de auditoria"],
+      "fontes": [
+        {"tipo": "site", "url": "https://datamint.com.br/pt/"},
+        {"tipo": "linkedin", "url": "https://www.linkedin.com/company/datamint"}
+      ]
+    }
+  ],
+  "ecossistema_parceiros": [
+    "Microsoft", "Databricks", "Snowflake", "Cognite", "Oracle", "Nvidia",
+    "Maxari Energy Solutions", "RockNRG Consulting", "Long View Systems", "HGACBuy Cooperative Purchasing"
+  ]
+}
