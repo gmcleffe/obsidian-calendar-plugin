@@ -22,20 +22,23 @@ from urllib.parse import urlsplit, urlunsplit
 
 RAIZ = Path(__file__).resolve().parent.parent
 CONFIG = RAIZ / "config" / "marcas.json"
+VETOS = RAIZ / "config" / "vetos.json"
 TEMPLATE = RAIZ / "assets" / "template-email.html"
 EDICOES = RAIZ / "edicoes"
 RADAR = EDICOES / "radar.csv"
 COLUNAS_RADAR = ["registrado_em", "url", "titulo", "fonte", "marca",
                  "status", "edicao", "data_item", "motivo"]
 
-TIPOS = {"movimentos", "marca", "deepdive", "radar", "numeros", "agenda"}
+TIPOS = {"mapa", "movimentos", "marca", "deepdive", "radar", "numeros", "agenda"}
 TIPOS_COM_ITENS_FONTEADOS = {"movimentos", "marca", "radar"}
 MESES = ["janeiro", "fevereiro", "marco", "abril", "maio", "junho", "julho",
          "agosto", "setembro", "outubro", "novembro", "dezembro"]
 MESES_EXIBICAO = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho",
                   "agosto", "setembro", "outubro", "novembro", "dezembro"]
 LIMITE_ASSUNTO = 60
-PALAVRAS_MIN, PALAVRAS_MAX = 900, 1400
+# Formato curto e visual, preferencia de Guilherme Cleffe em 08/10/2026 (era 900-1400).
+PALAVRAS_MIN, PALAVRAS_MAX = 600, 1000
+DEEPDIVE_MIN, DEEPDIVE_MAX = 150, 450
 LIMITE_HTML_BYTES = 100 * 1024
 
 
@@ -73,10 +76,37 @@ def contar_palavras(dados):
     for secao in dados.get("secoes", []):
         partes.append(secao.get("titulo", ""))
         partes.extend(secao.get("corpo", []))
+        partes.append(secao.get("centro", ""))
+        for ramo in secao.get("ramos", []):
+            partes.append(ramo.get("titulo", ""))
+            partes.extend(ramo.get("pontos", []))
         for item in secao.get("itens", []):
             for chave in ("titulo", "resumo", "so_what", "rotulo", "quando", "onde"):
                 partes.append(str(item.get(chave, "")))
     return len(re.findall(r"\S+", " ".join(partes)))
+
+
+def carregar_vetos():
+    if not VETOS.exists():
+        return []
+    return json.loads(VETOS.read_text(encoding="utf-8")).get("termos", [])
+
+
+def textos_publicos(dados):
+    """Tudo o que o leitor pode ver: o JSON inteiro menos o que fica na casa."""
+    internos = {"cortes", "marcas_avaliadas", "status", "janela", "edicao"}
+
+    def andar(no):
+        if isinstance(no, dict):
+            for chave, valor in no.items():
+                if chave not in internos:
+                    yield from andar(valor)
+        elif isinstance(no, list):
+            for valor in no:
+                yield from andar(valor)
+        elif isinstance(no, str):
+            yield no
+    return list(andar(dados))
 
 
 # -------------------------------------------------------------------- radar
@@ -336,8 +366,26 @@ def cmd_validar(args):
             if not corpo:
                 erros.append("%s: deepdive sem corpo" % ref)
             palavras = len(re.findall(r"\S+", " ".join(corpo)))
-            if corpo and not 250 <= palavras <= 800:
-                avisos.append("%s: deepdive com %d palavras (alvo 400-600)" % (ref, palavras))
+            if corpo and not DEEPDIVE_MIN <= palavras <= DEEPDIVE_MAX:
+                avisos.append("%s: deepdive com %d palavras (alvo %d-%d)"
+                              % (ref, palavras, DEEPDIVE_MIN, DEEPDIVE_MAX))
+
+        if tipo == "mapa":
+            # O mapa resume a edicao; nao traz fato proprio, entao nao leva fonte.
+            # Cada ponto precisa estar sustentado por um item fonteado mais abaixo.
+            ramos = secao.get("ramos") or []
+            if not secao.get("centro"):
+                erros.append("%s: mapa sem 'centro'" % ref)
+            if not 2 <= len(ramos) <= 4:
+                erros.append("%s: mapa com %d ramos (use 2 a 4)" % (ref, len(ramos)))
+            for k, ramo in enumerate(ramos):
+                pontos = ramo.get("pontos") or []
+                if not ramo.get("titulo") or not 1 <= len(pontos) <= 4:
+                    erros.append("%s.ramo[%d]: precisa de 'titulo' e de 1 a 4 'pontos'" % (ref, k))
+                for ponto in pontos:
+                    if len(ponto) > 90:
+                        avisos.append("%s.ramo[%d]: ponto com %d caracteres — mapa pede frase curta"
+                                      % (ref, k, len(ponto)))
 
         for j, item in enumerate(secao.get("itens") or []):
             iref = "%s.item[%d]" % (ref, j)
@@ -390,6 +438,14 @@ def cmd_validar(args):
     if sem_url:
         avisos.append("corte(s) sem 'url', que ficam fora do radar e voltam a ser avaliados "
                       "no mes que vem: %s" % "; ".join(x[:60] for x in sem_url))
+
+    # Veto vale para edicao em producao. Edicao ja enviada e registro historico.
+    if dados.get("status") != "enviada":
+        publico = "\n".join(textos_publicos(dados))
+        for veto in carregar_vetos():
+            if re.search(r"(?i)\b%s\b" % re.escape(veto["termo"]), publico):
+                erros.append("termo vetado na edicao: %r (desde %s, %s: %s)" % (
+                    veto["termo"], veto.get("desde", "?"), veto.get("quem", "?"), veto.get("motivo", "")))
 
     citadas = {s.get("marca") for s in secoes if s.get("tipo") == "marca"}
     justificadas = {c.get("marca") for c in cortes}
@@ -470,9 +526,45 @@ def _data_br(iso):
         return str(iso)
 
 
+FONTE_SANS = "-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif"
+
+
+def render_mapa(secao):
+    """Mapa mental em tabela: no central e ramos em grade de duas colunas."""
+    ramos = secao.get("ramos") or []
+    celulas = []
+    for ramo in ramos:
+        pontos = "".join(
+            '<p style="margin:0 0 5px 0;font:400 13px/1.45 %s;color:#2b3440;">'
+            '<span style="color:#0b6bcb;">&#9656;</span>&nbsp;%s</p>' % (FONTE_SANS, e(p))
+            for p in ramo.get("pontos") or [])
+        celulas.append(
+            '<td width="50%%" valign="top" style="padding:6px;">'
+            '<div style="background:#f6f8fb;border-top:3px solid #0b6bcb;border-radius:4px;padding:10px 12px;">'
+            '<p style="margin:0 0 7px 0;font:700 12px/1.3 %s;letter-spacing:.06em;text-transform:uppercase;'
+            'color:#0f1b2b;">%s</p>%s</div></td>' % (FONTE_SANS, e(ramo.get("titulo", "")), pontos))
+    linhas = "".join("<tr>%s</tr>" % "".join(celulas[i:i + 2] +
+                                             (['<td width="50%"></td>'] if len(celulas[i:i + 2]) == 1 else []))
+                     for i in range(0, len(celulas), 2))
+    return (
+        '<tr><td style="padding:0 26px 6px 26px;">'
+        '<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0">'
+        '<tr><td align="center" style="padding:0 6px;">'
+        '<div style="background:#0f1b2b;border-radius:6px;padding:14px 18px;">'
+        '<p style="margin:0;font:600 16px/1.4 %s;color:#ffffff;">%s</p></div>'
+        '<div style="width:2px;height:12px;background:#c9d3e0;line-height:12px;font-size:1px;">&nbsp;</div>'
+        '</td></tr></table>'
+        '<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0">%s</table>'
+        '</td></tr>' % (FONTE_SANS, e(secao.get("centro", "")), linhas))
+
+
 def render_secao(secao):
     tipo = secao.get("tipo")
     saida = [bloco_titulo(secao.get("titulo", ""))]
+
+    if tipo == "mapa":
+        saida.append(render_mapa(secao))
+        return "".join(saida)
 
     if tipo == "deepdive":
         for paragrafo in secao.get("corpo") or []:
@@ -535,6 +627,12 @@ def render_markdown(dados, cfg):
             linhas += ["_%s_" % secao["chapeu"], ""]
         for paragrafo in secao.get("corpo") or []:
             linhas += [paragrafo, ""]
+        if secao.get("tipo") == "mapa":
+            linhas += ["**%s**" % secao.get("centro", ""), ""]
+            for ramo in secao.get("ramos") or []:
+                linhas.append("- **%s**" % ramo.get("titulo", ""))
+                linhas += ["  - %s" % p for p in ramo.get("pontos") or []]
+            linhas.append("")
         for item in secao.get("itens") or []:
             if secao.get("tipo") == "numeros":
                 linhas.append("- **%s** — %s" % (item.get("valor", ""), item.get("rotulo", "")))

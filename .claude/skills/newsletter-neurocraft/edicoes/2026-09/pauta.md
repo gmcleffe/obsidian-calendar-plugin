@@ -63,3 +63,34 @@ Fabric IQ e aos modelos semânticos do Power BI, não das ontologias em si.
 - Envio de agosto voltou para `gustavo.cachina@seacrestpetroleo.com` (01/10). Tirar da lista.
 - Assunto de agosto foi trocado no envio para "...humano no \"loop\"". Registrado aqui para que a
   métrica de abertura seja lida contra o assunto certo.
+
+## Revisão de 08/10/2026 — pedido de Guilherme Cleffe
+
+1. **Tom formal, sem humor** ("por enquanto"). Saiu "Setembro sai no primeiro dia de outubro. Desta
+   vez, sem precisar pedir desculpa ao calendário." Editorial reduzido a duas linhas.
+2. **Curto, visual, mapa mental.** Novo tipo de seção `mapa`: nó central com a tese e quatro ramos
+   (ROG.e, Plataformas, Operadoras, Regulação). Alvo da edição passou de 900–1.400 para 600–1.000
+   palavras; a edição foi de 1.339 para 999.
+3. **Sem o nome da Datamint.** Bloco removido, menções retiradas do editorial e do deep dive. O item
+   (régua 10/12) foi para `cortes` e volta a ser elegível com a liberação. O veto agora é mecânico:
+   `config/vetos.json`, checado pelo validador.
+4. **Mais ROG.e, via notícias.** De um item para cinco, cada um com fonte própria:
+
+| # | Item | Fonte | I | P | N | E | Total |
+|---|------|-------|---|---|---|---|-------|
+| R1 | Balanço: 83 mil visitantes, 250 de 1.208 em transformação digital, prêmio Petrobras | Brasil Energia, 25/09 | 2 | 3 | 3 | 3 | 11 |
+| R2 | SAPIENS BOT (92%, −81% tempo, especialista decide na divergência); Cortex com rastreio | One Energy News, 25/09 | 3 | 3 | 3 | 2 | 11 |
+| R3 | Eficiência: Santos > 90%, Mero > 96%, +70 mil b/d no 2T26 | eixos, 22/09 | 2 | 2 | 3 | 2 | 9 |
+| R4 | Campos maduros: declínio de 19% para 7% (Brava) | IBP, 21/09 | 2 | 2 | 3 | 3 | 10 |
+| R5 | ANP: regulação "não está dada"; NAVE 2ª edição com PD&I | ANP, 25/09 | 2 | 2 | 3 | 3 | 10 |
+
+Cortados na apuração da ROG.e: MODEC (ROI de 25x, dado da própria empresa — mesmo critério da
+TRACKFY), painel da Accenture (post pessoal com estudo do fornecedor), topsides −50% da Petrobras
+(distante de dados), Firjan–Fiepa e memorando Moçambique–Petrobras (fora do escopo), Shell com
+R$ 12,5 bi (fonte secundária, 02/10).
+
+**Atribuição a conferir:** os números do SAPIENS BOT são do time do projeto e os do Cortex, da ANP,
+ambos relatados pela One Energy News. Não achei a apresentação original.
+
+**Correção de template:** a tabela de 600 px fixos não encolhia no celular (afetava as edições
+anteriores). Passou a ser fluida: 100% com teto de 600 px.

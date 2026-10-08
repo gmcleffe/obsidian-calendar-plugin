@@ -5,61 +5,128 @@
     "fim": "2026-09-30"
   },
   "status": "rascunho",
-  "assunto": "O modelo virou commodity. E o contexto, é de quem?",
-  "preheader": "Microsoft, Petrobras e Datamint apontaram para o mesmo gargalo em setembro. Falta saber quem guarda a resposta.",
-  "editorial": "Setembro sai no primeiro dia de outubro. Desta vez, sem precisar pedir desculpa ao calendário.\n\nO mês teve uma coincidência mais útil do que qualquer lançamento. Num painel em São Paulo, o CIO da Petrobras disse que a inteligência da empresa mora nos seus 1.800 sistemas legados. Em Barcelona, a Microsoft abriu os anúncios da FabCon dizendo que, com modelos cada vez mais disponíveis, o que diferencia uma empresa é o conhecimento que só ela tem. No Rio, a Datamint escreveu que é a fronteira do que o sistema pode fazer, mais que a sofisticação do modelo, que torna a autonomia aceitável.\n\nSe o gargalo é o contexto, a pergunta de compra muda de lugar. Deixa de ser qual modelo usar e passa a ser onde fica escrito o que a sua operação sabe — e quem consegue levar isso embora.",
+  "assunto": "Setembro em mapa: ROG.e, Fabric IQ e o contexto como ativo",
+  "preheader": "Os casos de IA apresentados na ROG.e, o lançamento da Microsoft em Barcelona e as perguntas que ficam para quem compra.",
+  "editorial": "Em setembro, operadoras, plataformas e reguladores convergiram em um ponto: o diferencial da IA industrial está no contexto operacional — dados, definições e conhecimento acumulado.\n\nO mapa resume o mês; as seções seguintes trazem detalhes e fontes.",
   "secoes": [
     {
+      "tipo": "mapa",
+      "titulo": "O mês em um mapa",
+      "centro": "O contexto operacional passou a ser o ativo da IA industrial",
+      "ramos": [
+        {
+          "titulo": "ROG.e 2026",
+          "pontos": [
+            "83 mil visitantes; 250 de 1.208 trabalhos em transformação digital",
+            "Petrobras: IA classifica perdas de produção com 92% de acurácia",
+            "Quando os modelos divergem, o especialista decide"
+          ]
+        },
+        {
+          "titulo": "Plataformas",
+          "pontos": [
+            "Fabric IQ no Copilot, sem custo adicional de tokens",
+            "IQ sharing aceita ontologias em RDF, padrão aberto",
+            "Agente de dados atua nos limites definidos pelo engenheiro"
+          ]
+        },
+        {
+          "titulo": "Operadoras",
+          "pontos": [
+            "Petrobras: mais de 70 agentes de IA e 1.800 sistemas legados",
+            "Eficiência somou cerca de 70 mil b/d à Petrobras no 2º trimestre",
+            "Campos maduros: declínio caiu de 19% para 7%"
+          ]
+        },
+        {
+          "titulo": "Regulação",
+          "pontos": [
+            "ANP: \"não podemos achar que nossa regulação está dada\"",
+            "NAVE, 2ª edição: recursos de PD&I conectados a startups",
+            "AI Act: alto risco do Anexo III passa a 02/12/2027"
+          ]
+        }
+      ]
+    },
+    {
       "tipo": "movimentos",
-      "titulo": "O que mudou em setembro",
+      "titulo": "ROG.e 2026 · Rio de Janeiro, 21 a 24/09",
       "itens": [
         {
-          "titulo": "A Microsoft levou o modelo semântico para dentro do Copilot",
-          "resumo": "Na FabCon de Barcelona, em 28 de setembro, a Microsoft liberou o Fabric IQ no Copilot Chat e no Cowork, sem custo adicional de tokens. O Fabric IQ é a camada que junta os dados do OneLake, as métricas dos modelos semânticos do Power BI e o contexto operacional de ontologias. Entraram em preview o IQ sharing, para compartilhar dados e contexto governados com clientes e parceiros, e um agente de engenharia de dados que executa migrações dentro de limites definidos pelo engenheiro.",
-          "so_what": "Para quem já tem Power BI, a definição de métrica que ninguém via — o que conta como \"disponibilidade\", quando uma parada é \"não programada\" — passa a decidir a resposta que o Copilot dá à diretoria. Se essa definição muda de um relatório para outro, agora isso aparece na frente de todo mundo. O trabalho de semântica, que raramente aparece em apresentação para a diretoria, virou o que sustenta o resto.",
-          "fonte": {
-            "nome": "Microsoft Azure Blog (Arun Ulag)",
-            "url": "https://azure.microsoft.com/en-us/blog/fabcon-and-sqlcon-2026-in-barcelona-building-the-data-foundation-for-microsoft-copilot-and-agents/"
-          },
-          "data": "2026-09-28"
-        },
-        {
-          "titulo": "Petrobras: mais de 70 agentes rodando, e a inteligência mora no legado",
-          "resumo": "Em painel promovido pela Deloitte em São Paulo, o CIO da Petrobras, Cassiano Ebert, disse que a companhia roda mais de 70 agentes de IA ao longo da cadeia e convive com 1.800 sistemas legados — e que é esse legado que abriga a inteligência da empresa. O caminho passou pelo Petronemo, assistente construído internamente, de forma soberana, sobre 30 anos de dados, com profissionais seniores participando do ajuste do modelo.",
-          "so_what": "A frase desmonta o argumento de quem trata o sistema antigo como passivo a desligar. Ali está o julgamento técnico de décadas, e quem o produziu está perto de se aposentar. A Petrobras chamou os seniores para dentro do ajuste do modelo enquanto eles ainda estão lá para isso. A pergunta para a sua operação é quanto tempo essa janela ainda tem.",
-          "fonte": {
-            "nome": "TI INSIDE Online",
-            "url": "https://tiinside.com.br/02/09/2026/pessoas-processos-e-dados-sao-cruciais-para-sucesso-da-ia-afirma-cio-da-petrobras/"
-          },
-          "data": "2026-09-02"
-        },
-        {
-          "titulo": "Na ROG.e, um em cada cinco trabalhos foi de transformação digital",
-          "resumo": "A ROG.e fechou em 24 de setembro com 83 mil visitantes e 924 trabalhos técnicos apresentados. Dos 1.208 submetidos, segundo o IBP, 250 eram do eixo de Transformação Digital e Inovação, o segundo maior do congresso. O prêmio do eixo foi para Yuri Leal da Silva e Ian Fiori, da Petrobras, por otimização de plataformas offshore a partir de monitoramento de dados.",
-          "so_what": "Volume de paper não é adoção: 250 estudos não dizem quantos viraram rotina de operação. O prêmio indica o critério que a própria engenharia está usando — ganho em plataforma que já produz, medido sobre dado de monitoramento. É um bom filtro para a pilha de pilotos do orçamento de 2027: o que melhora um ativo em operação passa na frente do que depende de sensor novo.",
+          "titulo": "Balanço: transformação digital foi o segundo maior eixo técnico",
+          "resumo": "A ROG.e fechou com 83 mil visitantes e 924 trabalhos técnicos apresentados. Dos 1.208 submetidos, 250 eram de Transformação Digital e Inovação. O prêmio do eixo foi para a Petrobras, por otimização de plataformas offshore a partir de monitoramento de dados.",
+          "so_what": "O volume mostra onde está a produção técnica do setor; o prêmio, o critério de valor: ganho mensurável em ativo que já opera.",
           "fonte": {
             "nome": "Brasil Energia",
             "url": "https://brasilenergia.com.br/brasilenergia/rio-oil-gas-energy-2026/roge-2026-83-mil-visitantes-e-projecao-de-r-100-bi-em-contratos"
+          },
+          "data": "2026-09-25"
+        },
+        {
+          "titulo": "IA em operação: casos com número e especialista na decisão final",
+          "resumo": "A Petrobras apresentou o SAPIENS BOT, que classifica cerca de 6.900 eventos de perda de produção por ano: no Espírito Santo, 92% de acurácia e 81% menos tempo por evento. Quando os dois modelos divergem, o especialista decide. Segundo a ANP, o Cortex integra mais de 15 sistemas de construção de poços e cita o documento de origem.",
+          "so_what": "O sistema propõe, o especialista arbitra e a resposta aponta a fonte: é o padrão que torna a automação auditável em ativo crítico.",
+          "fonte": {
+            "nome": "One Energy News",
+            "url": "https://oneenergynews.com/noticia/from-wells-to-fpsos-where-ai-is-entering-offshore-operations"
+          },
+          "data": "2026-09-25"
+        },
+        {
+          "titulo": "Eficiência operacional entrou na conta da produção",
+          "resumo": "Segundo a diretora de E&P da Petrobras, Sylvia Anjos, a Bacia de Santos opera acima de 90% de eficiência e Mero acima de 96%. No 2º trimestre de 2026, o ganho de eficiência somou cerca de 70 mil barris por dia ante 2025.",
+          "so_what": "Com acumulações menores que não pagam um FPSO de US$ 4 bilhões, o barril incremental vem de operar melhor o que já existe — e isso depende de dado de operação.",
+          "fonte": {
+            "nome": "eixos",
+            "url": "https://eixos.com.br/petroleo-e-gas/petroleiras-apostam-em-tecnologia-para-acelerar-novos-projetos-e-extrair-mais-oleo-de-campos-maduros/"
+          },
+          "data": "2026-09-22"
+        },
+        {
+          "titulo": "Independentes: campos maduros desaceleraram o declínio",
+          "resumo": "Segundo a Brava Energia, o declínio dos campos maduros caiu de 19% (2020–2022) para 7% (2022–2024), com a entrada de independentes e incentivos à produção incremental.",
+          "so_what": "Estender a vida de ativo antigo exige regra estável e conhecimento de engenharia acumulado em décadas, boa parte ainda fora de sistema.",
+          "fonte": {
+            "nome": "IBP",
+            "url": "https://www.ibp.org.br/hub-de-conhecimento/noticias/liderancas-globais-apontam-brasil-como-polo-de-estabilidade-atratividade-e-eficiencia-energetica-frente-as-incertezas-geopoliticas/"
+          },
+          "data": "2026-09-21"
+        },
+        {
+          "titulo": "ANP: regulação em disputa por investimento e PD&I para startups",
+          "resumo": "O diretor-geral da ANP, Artur Watt, afirmou que, na competição por investimentos, a regulação não pode ser considerada \"dada\". A agência lançou na ROG.e a 2ª edição do NAVE, que conecta startups a desafios do setor com recursos da cláusula de PD&I.",
+          "so_what": "A cláusula de PD&I é recurso já comprometido nos contratos de E&P; o NAVE amplia o caminho para aplicá-la em dados e IA.",
+          "fonte": {
+            "nome": "ANP (comunicado de 25/09)",
+            "url": "https://www.publicnow.com/view/55E41682828B326684260E49F3C80CB524AC6F54"
           },
           "data": "2026-09-25"
         }
       ]
     },
     {
-      "tipo": "marca",
-      "marca": "datamint",
-      "titulo": "Datamint",
-      "chapeu": "Parceira de go-to-market da Neurocraft no Brasil",
+      "tipo": "movimentos",
+      "titulo": "Plataformas e operadoras",
       "itens": [
         {
-          "titulo": "A autonomia que não pode mudar a própria regra",
-          "resumo": "Em publicação de 15 de setembro, a Datamint descreveu como o Asset 360 trabalha. Primeiro reconstrói o estado do ativo, juntando sensores, projetos, ordens de serviço e histórico numa leitura única, com cada dado rastreável até a origem. Depois organiza o contexto, propõe o curso de ação e executa apenas o que foi previamente autorizado. Segundo a empresa, o sistema não tem autoridade para alterar as próprias regras, e é essa fronteira, mais que o modelo, que torna a autonomia aceitável.",
-          "so_what": "É uma resposta concreta à pergunta que deixamos em agosto, sobre quem aprova o quê. A autonomia vira contrato: o que foi homologado executa, o resto espera alguém. Leve a pergunta ao seu fornecedor atual — o sistema consegue alterar a regra que o autoriza? Se a resposta for \"depende da configuração\", peça para ver quem configura e onde isso fica registrado.",
+          "titulo": "Microsoft leva o modelo semântico para dentro do Copilot",
+          "resumo": "Na FabCon de Barcelona, a Microsoft disponibilizou o Fabric IQ no Copilot Chat e no Cowork, sem custo adicional de tokens. A camada reúne OneLake, modelos semânticos do Power BI e ontologias. Em preview, o IQ sharing permite compartilhar esse contexto com parceiros.",
+          "so_what": "A definição de métrica — o que conta como disponibilidade, o que é parada não programada — passa a determinar a resposta que o Copilot entrega à diretoria.",
           "fonte": {
-            "nome": "Datamint (LinkedIn)",
-            "url": "https://pt.linkedin.com/posts/datamint_datamint-ai-for-industrial-asset-management-activity-7505609165323812864-W___"
+            "nome": "Microsoft Azure Blog",
+            "url": "https://azure.microsoft.com/en-us/blog/fabcon-and-sqlcon-2026-in-barcelona-building-the-data-foundation-for-microsoft-copilot-and-agents/"
           },
-          "data": "2026-09-15"
+          "data": "2026-09-28"
+        },
+        {
+          "titulo": "Petrobras: mais de 70 agentes de IA e 1.800 sistemas legados",
+          "resumo": "Em painel da Deloitte, o CIO da Petrobras, Cassiano Ebert, afirmou que a companhia roda mais de 70 agentes de IA e que o legado de 1.800 sistemas abriga a inteligência da empresa. O assistente Petronemo foi treinado sobre 30 anos de dados, com profissionais seniores no ajuste do modelo.",
+          "so_what": "O conhecimento de décadas está nos sistemas antigos e em quem os opera. A captura precisa acontecer enquanto essas pessoas estão na empresa.",
+          "fonte": {
+            "nome": "TI INSIDE Online",
+            "url": "https://tiinside.com.br/02/09/2026/pessoas-processos-e-dados-sao-cruciais-para-sucesso-da-ia-afirma-cio-da-petrobras/"
+          },
+          "data": "2026-09-02"
         }
       ]
     },
@@ -67,25 +134,22 @@
       "tipo": "deepdive",
       "titulo": "Deep dive · De quem é o contexto?",
       "corpo": [
-        "Durante dois anos, a pergunta de compra em IA foi qual modelo usar. Setembro tirou o valor dela. O próprio texto da Microsoft promete um ciclo de aprendizado que não deixa a organização dependente de um único provedor de modelo — um jeito educado de dizer que o modelo deixou de ser onde se ganha.",
-        "Repare no que se deslocou. A dependência do modelo diminui; cresce a dependência de quem guarda o significado do dado. O modelo semântico do Power BI, a ontologia do Fabric IQ, a Genie Ontology da Databricks, o modelo semântico de ativos da Datamint: cada plataforma está construindo o lugar onde passa a morar a definição do que é um ativo, uma falha, uma parada. É ali que décadas de conhecimento da sua operação vão ser escritas. Quem escreve no formato do fornecedor costuma descobrir o custo na hora de sair.",
-        "Há sinal bom. O IQ sharing da Microsoft aceita ontologias em RDF, padrão aberto do W3C — o tipo de compromisso que facilita levar o contexto embora. A mesma página informa que o suporte nativo, no IQ sharing, às ontologias do próprio Fabric IQ e aos modelos semânticos do Power BI ainda está no roadmap. Escrevemos isso trabalhando sobre a pilha da Microsoft: o retrato é de um mercado em que a portabilidade do significado ainda está sendo decidida, plataforma por plataforma, e quem decide cedo decide no contrato.",
-        "O CIO da Petrobras deu o outro lado do argumento. Se a inteligência mora em 1.800 sistemas legados, a primeira tarefa é tirá-la de lá sem perder nada no caminho. Migrar esse contexto para uma camada nova, num formato que só a camada nova lê, é trocar um cadeado velho por um novo.",
-        "Três perguntas separam contexto seu de contexto alugado. Primeira: onde fica escrita a definição dos meus ativos, e em que formato? Se for proprietário, peça o caminho de exportação por escrito. Segunda: se eu trocar de plataforma em três anos, a ontologia vai junto — com as relações e o histórico de mudanças — ou só as tabelas? Terceira: quem pode alterar uma definição, e essa alteração fica registrada como decisão, com autor e data?",
-        "E uma pergunta que não é para o fornecedor. Se o engenheiro que sabe por que aquela bomba é tratada como crítica sair amanhã, essa razão está escrita em algum lugar além da cabeça dele?"
+        "Setembro mostrou o mesmo padrão em três frentes: os casos de IA da Petrobras na ROG.e se apoiam em regras e sistemas da própria empresa; a Microsoft lançou uma camada para levar definições de negócio ao Copilot; e o CIO da Petrobras situou a inteligência da companhia nos sistemas legados.",
+        "Se o contexto é o ativo, a questão central é onde ele fica registrado e em que formato. O IQ sharing aceita ontologias em RDF, padrão aberto; o suporte nativo às ontologias do próprio Fabric IQ ainda está no roadmap. A portabilidade do significado está sendo definida agora.",
+        "Três perguntas para o fornecedor:",
+        "1. Onde fica registrada a definição dos meus ativos, e em que formato?",
+        "2. Ao trocar de plataforma, a ontologia migra com relações e histórico, ou só as tabelas?",
+        "3. Quem pode alterar uma definição, e a alteração fica registrada com autor e data?",
+        "E uma pergunta interna: o critério que define um equipamento como crítico está documentado, ou depende de quem o conhece?"
       ],
       "fontes": [
-        {
-          "nome": "Microsoft — New Microsoft data innovations unlock what only your business knows",
-          "url": "https://blogs.microsoft.com/blog/2026/09/28/new-microsoft-data-innovations-unlock-what-only-your-business-knows/"
-        },
         {
           "nome": "Microsoft Azure Blog — IQ sharing e ontologias RDF",
           "url": "https://azure.microsoft.com/en-us/blog/fabcon-and-sqlcon-2026-in-barcelona-building-the-data-foundation-for-microsoft-copilot-and-agents/"
         },
         {
-          "nome": "Databricks — Genie Ontology (parceria com a Microsoft, 23/07)",
-          "url": "https://www.databricks.com/company/newsroom/press-releases/databricks-and-microsoft-expand-partnership-help-enterprises-bring"
+          "nome": "One Energy News — IA na ROG.e",
+          "url": "https://oneenergynews.com/noticia/from-wells-to-fpsos-where-ai-is-entering-offshore-operations"
         },
         {
           "nome": "TI INSIDE Online — CIO da Petrobras",
@@ -98,9 +162,9 @@
       "titulo": "Radar regulatório",
       "itens": [
         {
-          "titulo": "A UE adiou o prazo do alto risco, não a obrigação",
-          "resumo": "O Digital Omnibus (Regulamento UE 2026/1744) entrou em vigor em 27 de julho e empurrou as obrigações dos sistemas de alto risco do Anexo III do AI Act — lista que inclui infraestrutura crítica — para 2 de dezembro de 2027. Os sistemas embutidos em produtos já regulados, do Anexo I, ficaram para 2 de agosto de 2028. As regras de transparência do Artigo 50 valem desde 2 de agosto de 2026.",
-          "so_what": "Para quem opera infraestrutura crítica com cliente ou matriz na Europa, são 16 meses a mais para a avaliação de conformidade, e nenhum de pausa: a classificação não mudou, e o que for de alto risco em 2027 já é de alto risco no projeto de hoje. Contrato que cita \"a data aplicável do AI Act\" passou a apontar para o calendário novo — vale reler o que foi assinado entre maio e julho.",
+          "titulo": "AI Act: prazo do alto risco adiado, obrigação mantida",
+          "resumo": "O Digital Omnibus (Regulamento UE 2026/1744), em vigor desde 27/07, adiou para 02/12/2027 as obrigações de alto risco do Anexo III do AI Act, que inclui infraestrutura crítica. O Anexo I passa a 02/08/2028.",
+          "so_what": "O prazo mudou; a classificação, não. O que será alto risco em 2027 já é alto risco no projeto atual.",
           "fonte": {
             "nome": "Comissão Europeia — AI Act Service Desk",
             "url": "https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act"
@@ -112,11 +176,27 @@
     },
     {
       "tipo": "numeros",
-      "titulo": "Número do mês",
+      "titulo": "Números do mês",
       "itens": [
         {
-          "valor": "70 mil b/d",
-          "rotulo": "o que ganhos de eficiência operacional acrescentaram, aproximadamente, à produção da Petrobras no 2º trimestre de 2026, ante o mesmo período de 2025",
+          "valor": "250 de 1.208",
+          "rotulo": "trabalhos da ROG.e 2026 no eixo de Transformação Digital e Inovação",
+          "fonte": {
+            "nome": "IBP",
+            "url": "https://www.ibp.org.br/hub-de-conhecimento/noticias/roge-2026-registra-recorde-de-trabalhos-tecnicos-e-amplia-a-participacao-da-comunidade-especializada/"
+          }
+        },
+        {
+          "valor": "92%",
+          "rotulo": "acurácia relatada pela Petrobras na classificação de perdas de produção com IA (ES)",
+          "fonte": {
+            "nome": "One Energy News",
+            "url": "https://oneenergynews.com/noticia/from-wells-to-fpsos-where-ai-is-entering-offshore-operations"
+          }
+        },
+        {
+          "valor": "~70 mil b/d",
+          "rotulo": "ganho de eficiência operacional da Petrobras no 2º trimestre de 2026",
           "fonte": {
             "nome": "eixos",
             "url": "https://eixos.com.br/petroleo-e-gas/petroleiras-apostam-em-tecnologia-para-acelerar-novos-projetos-e-extrair-mais-oleo-de-campos-maduros/"
@@ -130,6 +210,24 @@
     "url": "https://neurocraft.ai/"
   },
   "cortes": [
+    {
+      "marca": "datamint",
+      "item": "A autonomia que não pode mudar a própria regra (Asset 360, publicação de 15/09)",
+      "url": "https://pt.linkedin.com/posts/datamint_datamint-ai-for-industrial-asset-management-activity-7505609165323812864-W___",
+      "motivo": "Preferência de Guilherme Cleffe (08/10/2026): não mencionar a Datamint por enquanto. Aprovado na régua (10/12) na primeira versão desta edição; volta a ser elegível com a liberação."
+    },
+    {
+      "marca": "datamint",
+      "item": "Entrevista de Túlio Ribeiro, sócio e CEO da Datamint, no Real Deal Makers",
+      "url": "https://pt.linkedin.com/posts/arnaldorocha_seguimos-com-o-real-deal-makers-entrevistando-activity-7505730639627841536-kUVG",
+      "motivo": "Post de terceiro no LinkedIn (fonte vetada) e sem fato novo. Desde 08/10, também sob o veto de nome."
+    },
+    {
+      "marca": "datamint",
+      "item": "Agentes sobre ISO 14224 para estoque MRO, com reduções de 15% a 40% de capital imobilizado em pilotos",
+      "url": "https://pt.linkedin.com/posts/datamint_inteligenciaartificial-supplychain-industria4-activity-7486480850445000704-CrzE",
+      "motivo": "Fora da janela (24/07) e Evidência 1. Desde 08/10, também sob o veto de nome."
+    },
     {
       "marca": "neurocraft",
       "item": "Sem publicação própria em setembro nos canais públicos da Neurocraft. A marca aparece só como anfitriã e na ressalva do deep dive.",
@@ -157,18 +255,6 @@
       "item": "Patrocínio do Data + AI World Tour em Singapura e Sydney (16/09), com Oracle→Databricks, Lakebase e Genie",
       "url": "https://www.linkedin.com/posts/bizmetric_dataaiworldtour-databricks-bizmetric-activity-7507799155986104320-CMja",
       "motivo": "Presença em evento, sem fato novo para o leitor. Mesma lente do item acima."
-    },
-    {
-      "marca": "datamint",
-      "item": "Entrevista de Túlio Ribeiro, sócio e CEO da Datamint, no Real Deal Makers",
-      "url": "https://pt.linkedin.com/posts/arnaldorocha_seguimos-com-o-real-deal-makers-entrevistando-activity-7505730639627841536-kUVG",
-      "motivo": "Post de terceiro no LinkedIn (fonte vetada) e sem fato novo: retoma a rodada de junho, já coberta em agosto."
-    },
-    {
-      "marca": "datamint",
-      "item": "Agentes sobre ISO 14224 para estoque MRO, com reduções de 15% a 40% de capital imobilizado em pilotos",
-      "url": "https://pt.linkedin.com/posts/datamint_inteligenciaartificial-supplychain-industria4-activity-7486480850445000704-CrzE",
-      "motivo": "Publicado em 24/07, fora da janela. O número é de pilotos, sem cliente nem base divulgados: Evidência 1. Bom tema para deep dive de economia da decisão se houver caso documentado."
     },
     {
       "item": "Databricks Data + AI World Tour São Paulo (16/09), com cerca de 4.000 líderes de dados e IA",
@@ -199,6 +285,45 @@
       "item": "Presidente da Petrobras na ROG.e: exploração ativa e refino para até 100% do diesel nacional",
       "url": "https://www.ibp.org.br/hub-de-conhecimento/noticias/presidente-da-petrobras-defende-exploracao-ativa-e-preve-atendimento-de-100-do-mercado-nacional-de-diesel/",
       "motivo": "Fora do escopo da newsletter (Proximidade 0): estratégia de E&P e refino, sem dado nem decisão."
+    },
+    {
+      "item": "Petrobras reduz em mais de 50% o peso de topsides em novos FPSOs; Shell trata o Brasil como pilar de resiliência",
+      "url": "https://www.ibp.org.br/hub-de-conhecimento/noticias/gigantes-do-setor-e-produtores-independentes-aceleram-projetos-no-brasil-com-simplificacao-integracao-de-descobertas-e-previsibilidade-regulatoria/",
+      "motivo": "Relevante para engenharia e capital, distante de dados e IA (Proximidade 1). Cortado pelo formato curto."
+    },
+    {
+      "item": "MODEC: plataforma Lighthouse com frota acima de 98% de disponibilidade e retorno de até 25 vezes",
+      "motivo": "Números da própria empresa sobre a própria plataforma, sem base divulgada (Evidência 1). Mesmo critério aplicado à TRACKFY. Fonte: One Energy News, já usada em item publicado."
+    },
+    {
+      "item": "Painel da Accenture na ROG.e (capex -20%, 65% do orçamento de IA em engenharia de dados)",
+      "url": "https://pt.linkedin.com/posts/ebouer_ia-roge2026-digitaltwins-activity-7508446909984837632-vr_p",
+      "motivo": "Post pessoal de painelista citando estudo do próprio fornecedor (fonte vetada)."
+    },
+    {
+      "item": "Firjan e Fiepa firmam parceria para mapear fornecedores na Margem Equatorial",
+      "url": "https://poconeonline.com/firjan-marca-presenca-na-abertura-da-rog-e-2026-e-firma-parceria-tecnica-com-a-fiepa/",
+      "motivo": "Fora do escopo (cadeia de fornecedores regional, sem dado ou IA)."
+    },
+    {
+      "item": "Moçambique (ENH) e Petrobras assinam memorando de E&P na abertura da ROG.e",
+      "url": "https://tnsustentavel.eco.br/noticia/abertura-da-roge-2026-destaca-transicao-energetica-justa-diversidade-e-cooperacao-internacional-1/",
+      "motivo": "Fora do escopo (Proximidade 0)."
+    },
+    {
+      "item": "Shell: R$ 12,5 bi investidos em 2025 e apetite por novos ativos no Brasil",
+      "url": "https://estadodoacre.com.br/2026/10/ceo-global-da-shell-coloca-brasil-entre-mercados-estrategicos-e-sinaliza-novos-investimentos-apos-avanco-no-pre-sal-e-entrada-em-tupinamba/",
+      "motivo": "Fonte secundária, publicada fora da janela (02/10), e fora do escopo de dados e IA."
+    },
+    {
+      "item": "Post oficial da Microsoft na FabCon: ciclo de aprendizado sem dependência de um único provedor de modelo",
+      "url": "https://blogs.microsoft.com/blog/2026/09/28/new-microsoft-data-innovations-unlock-what-only-your-business-knows/",
+      "motivo": "Fonte do deep dive na versão longa; saiu na versão curta de 08/10. O fato que importava está no post do Azure Blog, que segue na edição."
+    },
+    {
+      "item": "Databricks: Genie Ontology na parceria com a Microsoft (23/07)",
+      "url": "https://www.databricks.com/company/newsroom/press-releases/databricks-and-microsoft-expand-partnership-help-enterprises-bring",
+      "motivo": "Fonte do deep dive na versão longa; saiu na versão curta de 08/10. Fora da janela; útil se a Databricks tratar portabilidade de ontologia."
     }
   ],
   "marcas_avaliadas": [

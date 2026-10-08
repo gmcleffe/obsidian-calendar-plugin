@@ -58,17 +58,32 @@ memória editorial — e evita que o mesmo item seja reavaliado do zero no mês 
 Só a abertura e o CTA são fixos. Todo o resto é condicional.
 
 1. **Assunto e preheader** — assunto ≤ 60 caracteres, específico. O preheader complementa, não repete.
-2. **Abertura do editor** — 3 a 5 linhas. Uma tese sobre o mês, em primeira pessoa. Não é sumário.
+2. **Abertura do editor** — 2 a 3 linhas, tom formal. A tese do mês e como ler a edição.
+2a. **Mapa do mês** — um nó central com a tese e 2 a 4 ramos de frases curtas. Resume a edição;
+   não traz fato que não esteja fonteado mais abaixo.
 3. **O que mudou neste mês** — 3 a 5 movimentos do setor. Cada um com um "**e daí?**" explícito
    que nomeia a dor do leitor (ver *O que é um "e daí"*, abaixo).
 4. **Blocos por marca** — condicionais. Neurocraft, Bizmetric, Vexta, Datamint, na ordem em que a relevância mandar.
-5. **Deep dive** — um tema por edição, 400 a 600 palavras, com posição assumida. Rotativo.
+5. **Deep dive** — um tema por edição, 200 a 400 palavras, com posição assumida. Rotativo.
+   Perguntas para o fornecedor em linhas numeradas, não em parágrafo.
 6. **Radar regulatório** — condicional. EU AI Act, LGPD/ANPD, ANP, ANEEL, ANS, ISO 42001.
 7. **Números do mês** — 1 a 3 métricas, cada uma com fonte.
 8. **Agenda** — condicional. Eventos e webinars dos próximos 60 dias.
 9. **CTA único** — uma ação. Nunca duas.
 
-Alvo total: **900 a 1.400 palavras.** Acima disso, corte — não resuma.
+Alvo total: **600 a 1.000 palavras.** Acima disso, corte — não resuma.
+
+## Tom e formato — preferência de 08/10/2026
+
+> Definida por Guilherme Cleffe em 08/10/2026, "por enquanto". Vale até ele dizer o contrário.
+
+- **Formal e objetivo.** Sem humor, sem piada com o calendário, sem ironia. A edição de agosto
+  abriu com "ainda em tempo"; esse registro está suspenso.
+- **Curto e visual.** Resumo de item em 2 a 3 frases; "e daí" em 1 a 2. O mapa do mês carrega a
+  leitura rápida; as seções servem a quem quer o detalhe.
+- **Cobertura de evento por notícias.** Quando o mês tiver um grande evento do setor (ROG.e, OTC,
+  Febraban Tech), cubra o que aconteceu por meio da imprensa e dos comunicados oficiais — vários
+  itens curtos, cada um com fonte — em vez de um único item genérico sobre o evento.
 
 ## O que é um "e daí"
 
@@ -107,10 +122,13 @@ Proibido em qualquer edição:
 
 ## Temas vetados
 
-Lista curta e datada. Só sai daqui com liberação expressa de quem vetou.
+Lista curta e datada. Só sai daqui com liberação expressa de quem vetou. A versão que o validador
+aplica mecanicamente está em `config/vetos.json` — ao vetar ou liberar, atualize os dois.
 
 | Tema | Desde | Quem | Regra |
 |---|---|---|---|
+| **Datamint (nome)** | 08/10/2026 | Guilherme Cleffe | **Não mencionar o nome** em nenhuma seção, fonte ou link, por enquanto. Item cujo único lastro é a Datamint sai da edição. |
+| **NeuroEarthIQ, NeuroMineIQ e Vexta** | 30/09/2026 | Guilherme Cleffe | Aguardam o momento apropriado de publicação. Públicos no LinkedIn: restrição de timing, não de sigilo. |
 | **Venezuela e PDVSA** | 30/09/2026 | Marcos de Almeida (16/09), aplicado por Guilherme (30/09) | **Não entra na edição**, em nenhum enquadramento. Sanções e compliance em aberto. Primeiro tentamos tom estritamente informativo; a conclusão foi que reescrever reduz o risco mas não o elimina — enquanto a questão estiver aberta, o assunto fica fora. |
 
 Tema vetado não é tema esquecido: registre o candidato em `cortes` com o motivo, para que a

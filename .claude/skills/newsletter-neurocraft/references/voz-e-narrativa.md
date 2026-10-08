@@ -5,6 +5,9 @@ autoridade quando o texto precisa dela.
 
 ## Os três atributos de tom
 
+> **Por enquanto (08/10/2026): tom formal e objetivo, sem humor.** Ver *Tom e formato* em
+> `linha-editorial.md`. Os atributos abaixo continuam valendo dentro desse registro.
+
 **Específica.** O oposto de promocional não é neutro, é concreto. "Reduz custos de manutenção"
 é promocional. "Trezentos poços revisados à mão para achar os três que importam" é específico —
 e o leitor reconhece a própria operação nele.
@@ -93,8 +96,9 @@ agosto, "rodar as três perguntas no seu fornecedor atual".
 
 ## Referência canônica de estilo
 
-**`edicoes/2026-08/`** é a edição de referência. Ao escrever, leia `edicao.md` inteira antes de
-começar: comprimento de frase, densidade de número, como o "E daí" é construído e onde o texto
+**`edicoes/2026-09/`** é a edição de referência desde 08/10/2026 (formato curto, formal, com mapa
+mental). `edicoes/2026-08/` segue útil para o "E daí" e o deep dive. Ao escrever, leia `edicao.md`
+inteira antes de começar: comprimento de frase, densidade de número, como o "E daí" é construído e onde o texto
 admite incerteza. Quando uma edição melhor existir, troque o ponteiro aqui.
 
 ## Perguntas abertas para o Guilherme

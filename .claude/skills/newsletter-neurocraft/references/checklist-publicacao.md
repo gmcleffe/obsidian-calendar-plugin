@@ -31,7 +31,8 @@ Rodar **inteiro** antes de criar o rascunho. Qualquer item reprovado bloqueia a 
 - [ ] Toda frase sobre automação fala em capacidade liberada, não em headcount reduzido (lente 5).
 - [ ] Anúncio de parceria — nosso inclusive — foi lido com a lente 4: assinada não é integrada.
 - [ ] Número do Panorama do GTM Brasil está atribuído à HubSpot, e não é fonte única de tese nossa.
-- [ ] Total entre 900 e 1.400 palavras.
+- [ ] Total entre 600 e 1.000 palavras. Tom formal, sem humor (preferência de 08/10).
+- [ ] Todo ponto do mapa está sustentado por um item fonteado da edição.
 - [ ] Um único CTA.
 - [ ] Assunto ≤ 60 caracteres e específico. Preheader não repete o assunto.
 

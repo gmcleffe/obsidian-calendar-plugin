@@ -1,87 +1,138 @@
 # Newsletter Neurocraft — setembro de 2026
 
-**Assunto:** O modelo virou commodity. E o contexto, é de quem?  
-**Preheader:** Microsoft, Petrobras e Datamint apontaram para o mesmo gargalo em setembro. Falta saber quem guarda a resposta.
+**Assunto:** Setembro em mapa: ROG.e, Fabric IQ e o contexto como ativo  
+**Preheader:** Os casos de IA apresentados na ROG.e, o lançamento da Microsoft em Barcelona e as perguntas que ficam para quem compra.
 
-Setembro sai no primeiro dia de outubro. Desta vez, sem precisar pedir desculpa ao calendário.
+Em setembro, operadoras, plataformas e reguladores convergiram em um ponto: o diferencial da IA industrial está no contexto operacional — dados, definições e conhecimento acumulado.
 
-O mês teve uma coincidência mais útil do que qualquer lançamento. Num painel em São Paulo, o CIO da Petrobras disse que a inteligência da empresa mora nos seus 1.800 sistemas legados. Em Barcelona, a Microsoft abriu os anúncios da FabCon dizendo que, com modelos cada vez mais disponíveis, o que diferencia uma empresa é o conhecimento que só ela tem. No Rio, a Datamint escreveu que é a fronteira do que o sistema pode fazer, mais que a sofisticação do modelo, que torna a autonomia aceitável.
+O mapa resume o mês; as seções seguintes trazem detalhes e fontes.
 
-Se o gargalo é o contexto, a pergunta de compra muda de lugar. Deixa de ser qual modelo usar e passa a ser onde fica escrito o que a sua operação sabe — e quem consegue levar isso embora.
+## O mês em um mapa
 
-## O que mudou em setembro
+**O contexto operacional passou a ser o ativo da IA industrial**
 
-### A Microsoft levou o modelo semântico para dentro do Copilot
+- **ROG.e 2026**
+  - 83 mil visitantes; 250 de 1.208 trabalhos em transformação digital
+  - Petrobras: IA classifica perdas de produção com 92% de acurácia
+  - Quando os modelos divergem, o especialista decide
+- **Plataformas**
+  - Fabric IQ no Copilot, sem custo adicional de tokens
+  - IQ sharing aceita ontologias em RDF, padrão aberto
+  - Agente de dados atua nos limites definidos pelo engenheiro
+- **Operadoras**
+  - Petrobras: mais de 70 agentes de IA e 1.800 sistemas legados
+  - Eficiência somou cerca de 70 mil b/d à Petrobras no 2º trimestre
+  - Campos maduros: declínio caiu de 19% para 7%
+- **Regulação**
+  - ANP: "não podemos achar que nossa regulação está dada"
+  - NAVE, 2ª edição: recursos de PD&I conectados a startups
+  - AI Act: alto risco do Anexo III passa a 02/12/2027
 
-Na FabCon de Barcelona, em 28 de setembro, a Microsoft liberou o Fabric IQ no Copilot Chat e no Cowork, sem custo adicional de tokens. O Fabric IQ é a camada que junta os dados do OneLake, as métricas dos modelos semânticos do Power BI e o contexto operacional de ontologias. Entraram em preview o IQ sharing, para compartilhar dados e contexto governados com clientes e parceiros, e um agente de engenharia de dados que executa migrações dentro de limites definidos pelo engenheiro.
 
-**E daí:** Para quem já tem Power BI, a definição de métrica que ninguém via — o que conta como "disponibilidade", quando uma parada é "não programada" — passa a decidir a resposta que o Copilot dá à diretoria. Se essa definição muda de um relatório para outro, agora isso aparece na frente de todo mundo. O trabalho de semântica, que raramente aparece em apresentação para a diretoria, virou o que sustenta o resto.
+## ROG.e 2026 · Rio de Janeiro, 21 a 24/09
 
-_Fonte: [Microsoft Azure Blog (Arun Ulag)](https://azure.microsoft.com/en-us/blog/fabcon-and-sqlcon-2026-in-barcelona-building-the-data-foundation-for-microsoft-copilot-and-agents/) · 28/09/2026_
+### Balanço: transformação digital foi o segundo maior eixo técnico
 
-### Petrobras: mais de 70 agentes rodando, e a inteligência mora no legado
+A ROG.e fechou com 83 mil visitantes e 924 trabalhos técnicos apresentados. Dos 1.208 submetidos, 250 eram de Transformação Digital e Inovação. O prêmio do eixo foi para a Petrobras, por otimização de plataformas offshore a partir de monitoramento de dados.
 
-Em painel promovido pela Deloitte em São Paulo, o CIO da Petrobras, Cassiano Ebert, disse que a companhia roda mais de 70 agentes de IA ao longo da cadeia e convive com 1.800 sistemas legados — e que é esse legado que abriga a inteligência da empresa. O caminho passou pelo Petronemo, assistente construído internamente, de forma soberana, sobre 30 anos de dados, com profissionais seniores participando do ajuste do modelo.
-
-**E daí:** A frase desmonta o argumento de quem trata o sistema antigo como passivo a desligar. Ali está o julgamento técnico de décadas, e quem o produziu está perto de se aposentar. A Petrobras chamou os seniores para dentro do ajuste do modelo enquanto eles ainda estão lá para isso. A pergunta para a sua operação é quanto tempo essa janela ainda tem.
-
-_Fonte: [TI INSIDE Online](https://tiinside.com.br/02/09/2026/pessoas-processos-e-dados-sao-cruciais-para-sucesso-da-ia-afirma-cio-da-petrobras/) · 02/09/2026_
-
-### Na ROG.e, um em cada cinco trabalhos foi de transformação digital
-
-A ROG.e fechou em 24 de setembro com 83 mil visitantes e 924 trabalhos técnicos apresentados. Dos 1.208 submetidos, segundo o IBP, 250 eram do eixo de Transformação Digital e Inovação, o segundo maior do congresso. O prêmio do eixo foi para Yuri Leal da Silva e Ian Fiori, da Petrobras, por otimização de plataformas offshore a partir de monitoramento de dados.
-
-**E daí:** Volume de paper não é adoção: 250 estudos não dizem quantos viraram rotina de operação. O prêmio indica o critério que a própria engenharia está usando — ganho em plataforma que já produz, medido sobre dado de monitoramento. É um bom filtro para a pilha de pilotos do orçamento de 2027: o que melhora um ativo em operação passa na frente do que depende de sensor novo.
+**E daí:** O volume mostra onde está a produção técnica do setor; o prêmio, o critério de valor: ganho mensurável em ativo que já opera.
 
 _Fonte: [Brasil Energia](https://brasilenergia.com.br/brasilenergia/rio-oil-gas-energy-2026/roge-2026-83-mil-visitantes-e-projecao-de-r-100-bi-em-contratos) · 25/09/2026_
 
+### IA em operação: casos com número e especialista na decisão final
 
-## Datamint
+A Petrobras apresentou o SAPIENS BOT, que classifica cerca de 6.900 eventos de perda de produção por ano: no Espírito Santo, 92% de acurácia e 81% menos tempo por evento. Quando os dois modelos divergem, o especialista decide. Segundo a ANP, o Cortex integra mais de 15 sistemas de construção de poços e cita o documento de origem.
 
-_Parceira de go-to-market da Neurocraft no Brasil_
+**E daí:** O sistema propõe, o especialista arbitra e a resposta aponta a fonte: é o padrão que torna a automação auditável em ativo crítico.
 
-### A autonomia que não pode mudar a própria regra
+_Fonte: [One Energy News](https://oneenergynews.com/noticia/from-wells-to-fpsos-where-ai-is-entering-offshore-operations) · 25/09/2026_
 
-Em publicação de 15 de setembro, a Datamint descreveu como o Asset 360 trabalha. Primeiro reconstrói o estado do ativo, juntando sensores, projetos, ordens de serviço e histórico numa leitura única, com cada dado rastreável até a origem. Depois organiza o contexto, propõe o curso de ação e executa apenas o que foi previamente autorizado. Segundo a empresa, o sistema não tem autoridade para alterar as próprias regras, e é essa fronteira, mais que o modelo, que torna a autonomia aceitável.
+### Eficiência operacional entrou na conta da produção
 
-**E daí:** É uma resposta concreta à pergunta que deixamos em agosto, sobre quem aprova o quê. A autonomia vira contrato: o que foi homologado executa, o resto espera alguém. Leve a pergunta ao seu fornecedor atual — o sistema consegue alterar a regra que o autoriza? Se a resposta for "depende da configuração", peça para ver quem configura e onde isso fica registrado.
+Segundo a diretora de E&P da Petrobras, Sylvia Anjos, a Bacia de Santos opera acima de 90% de eficiência e Mero acima de 96%. No 2º trimestre de 2026, o ganho de eficiência somou cerca de 70 mil barris por dia ante 2025.
 
-_Fonte: [Datamint (LinkedIn)](https://pt.linkedin.com/posts/datamint_datamint-ai-for-industrial-asset-management-activity-7505609165323812864-W___) · 15/09/2026_
+**E daí:** Com acumulações menores que não pagam um FPSO de US$ 4 bilhões, o barril incremental vem de operar melhor o que já existe — e isso depende de dado de operação.
+
+_Fonte: [eixos](https://eixos.com.br/petroleo-e-gas/petroleiras-apostam-em-tecnologia-para-acelerar-novos-projetos-e-extrair-mais-oleo-de-campos-maduros/) · 22/09/2026_
+
+### Independentes: campos maduros desaceleraram o declínio
+
+Segundo a Brava Energia, o declínio dos campos maduros caiu de 19% (2020–2022) para 7% (2022–2024), com a entrada de independentes e incentivos à produção incremental.
+
+**E daí:** Estender a vida de ativo antigo exige regra estável e conhecimento de engenharia acumulado em décadas, boa parte ainda fora de sistema.
+
+_Fonte: [IBP](https://www.ibp.org.br/hub-de-conhecimento/noticias/liderancas-globais-apontam-brasil-como-polo-de-estabilidade-atratividade-e-eficiencia-energetica-frente-as-incertezas-geopoliticas/) · 21/09/2026_
+
+### ANP: regulação em disputa por investimento e PD&I para startups
+
+O diretor-geral da ANP, Artur Watt, afirmou que, na competição por investimentos, a regulação não pode ser considerada "dada". A agência lançou na ROG.e a 2ª edição do NAVE, que conecta startups a desafios do setor com recursos da cláusula de PD&I.
+
+**E daí:** A cláusula de PD&I é recurso já comprometido nos contratos de E&P; o NAVE amplia o caminho para aplicá-la em dados e IA.
+
+_Fonte: [ANP (comunicado de 25/09)](https://www.publicnow.com/view/55E41682828B326684260E49F3C80CB524AC6F54) · 25/09/2026_
+
+
+## Plataformas e operadoras
+
+### Microsoft leva o modelo semântico para dentro do Copilot
+
+Na FabCon de Barcelona, a Microsoft disponibilizou o Fabric IQ no Copilot Chat e no Cowork, sem custo adicional de tokens. A camada reúne OneLake, modelos semânticos do Power BI e ontologias. Em preview, o IQ sharing permite compartilhar esse contexto com parceiros.
+
+**E daí:** A definição de métrica — o que conta como disponibilidade, o que é parada não programada — passa a determinar a resposta que o Copilot entrega à diretoria.
+
+_Fonte: [Microsoft Azure Blog](https://azure.microsoft.com/en-us/blog/fabcon-and-sqlcon-2026-in-barcelona-building-the-data-foundation-for-microsoft-copilot-and-agents/) · 28/09/2026_
+
+### Petrobras: mais de 70 agentes de IA e 1.800 sistemas legados
+
+Em painel da Deloitte, o CIO da Petrobras, Cassiano Ebert, afirmou que a companhia roda mais de 70 agentes de IA e que o legado de 1.800 sistemas abriga a inteligência da empresa. O assistente Petronemo foi treinado sobre 30 anos de dados, com profissionais seniores no ajuste do modelo.
+
+**E daí:** O conhecimento de décadas está nos sistemas antigos e em quem os opera. A captura precisa acontecer enquanto essas pessoas estão na empresa.
+
+_Fonte: [TI INSIDE Online](https://tiinside.com.br/02/09/2026/pessoas-processos-e-dados-sao-cruciais-para-sucesso-da-ia-afirma-cio-da-petrobras/) · 02/09/2026_
 
 
 ## Deep dive · De quem é o contexto?
 
-Durante dois anos, a pergunta de compra em IA foi qual modelo usar. Setembro tirou o valor dela. O próprio texto da Microsoft promete um ciclo de aprendizado que não deixa a organização dependente de um único provedor de modelo — um jeito educado de dizer que o modelo deixou de ser onde se ganha.
+Setembro mostrou o mesmo padrão em três frentes: os casos de IA da Petrobras na ROG.e se apoiam em regras e sistemas da própria empresa; a Microsoft lançou uma camada para levar definições de negócio ao Copilot; e o CIO da Petrobras situou a inteligência da companhia nos sistemas legados.
 
-Repare no que se deslocou. A dependência do modelo diminui; cresce a dependência de quem guarda o significado do dado. O modelo semântico do Power BI, a ontologia do Fabric IQ, a Genie Ontology da Databricks, o modelo semântico de ativos da Datamint: cada plataforma está construindo o lugar onde passa a morar a definição do que é um ativo, uma falha, uma parada. É ali que décadas de conhecimento da sua operação vão ser escritas. Quem escreve no formato do fornecedor costuma descobrir o custo na hora de sair.
+Se o contexto é o ativo, a questão central é onde ele fica registrado e em que formato. O IQ sharing aceita ontologias em RDF, padrão aberto; o suporte nativo às ontologias do próprio Fabric IQ ainda está no roadmap. A portabilidade do significado está sendo definida agora.
 
-Há sinal bom. O IQ sharing da Microsoft aceita ontologias em RDF, padrão aberto do W3C — o tipo de compromisso que facilita levar o contexto embora. A mesma página informa que o suporte nativo, no IQ sharing, às ontologias do próprio Fabric IQ e aos modelos semânticos do Power BI ainda está no roadmap. Escrevemos isso trabalhando sobre a pilha da Microsoft: o retrato é de um mercado em que a portabilidade do significado ainda está sendo decidida, plataforma por plataforma, e quem decide cedo decide no contrato.
+Três perguntas para o fornecedor:
 
-O CIO da Petrobras deu o outro lado do argumento. Se a inteligência mora em 1.800 sistemas legados, a primeira tarefa é tirá-la de lá sem perder nada no caminho. Migrar esse contexto para uma camada nova, num formato que só a camada nova lê, é trocar um cadeado velho por um novo.
+1. Onde fica registrada a definição dos meus ativos, e em que formato?
 
-Três perguntas separam contexto seu de contexto alugado. Primeira: onde fica escrita a definição dos meus ativos, e em que formato? Se for proprietário, peça o caminho de exportação por escrito. Segunda: se eu trocar de plataforma em três anos, a ontologia vai junto — com as relações e o histórico de mudanças — ou só as tabelas? Terceira: quem pode alterar uma definição, e essa alteração fica registrada como decisão, com autor e data?
+2. Ao trocar de plataforma, a ontologia migra com relações e histórico, ou só as tabelas?
 
-E uma pergunta que não é para o fornecedor. Se o engenheiro que sabe por que aquela bomba é tratada como crítica sair amanhã, essa razão está escrita em algum lugar além da cabeça dele?
+3. Quem pode alterar uma definição, e a alteração fica registrada com autor e data?
 
-_Fonte: [Microsoft — New Microsoft data innovations unlock what only your business knows](https://blogs.microsoft.com/blog/2026/09/28/new-microsoft-data-innovations-unlock-what-only-your-business-knows/)_
+E uma pergunta interna: o critério que define um equipamento como crítico está documentado, ou depende de quem o conhece?
+
 _Fonte: [Microsoft Azure Blog — IQ sharing e ontologias RDF](https://azure.microsoft.com/en-us/blog/fabcon-and-sqlcon-2026-in-barcelona-building-the-data-foundation-for-microsoft-copilot-and-agents/)_
-_Fonte: [Databricks — Genie Ontology (parceria com a Microsoft, 23/07)](https://www.databricks.com/company/newsroom/press-releases/databricks-and-microsoft-expand-partnership-help-enterprises-bring)_
+_Fonte: [One Energy News — IA na ROG.e](https://oneenergynews.com/noticia/from-wells-to-fpsos-where-ai-is-entering-offshore-operations)_
 _Fonte: [TI INSIDE Online — CIO da Petrobras](https://tiinside.com.br/02/09/2026/pessoas-processos-e-dados-sao-cruciais-para-sucesso-da-ia-afirma-cio-da-petrobras/)_
 
 ## Radar regulatório
 
-### A UE adiou o prazo do alto risco, não a obrigação
+### AI Act: prazo do alto risco adiado, obrigação mantida
 
-O Digital Omnibus (Regulamento UE 2026/1744) entrou em vigor em 27 de julho e empurrou as obrigações dos sistemas de alto risco do Anexo III do AI Act — lista que inclui infraestrutura crítica — para 2 de dezembro de 2027. Os sistemas embutidos em produtos já regulados, do Anexo I, ficaram para 2 de agosto de 2028. As regras de transparência do Artigo 50 valem desde 2 de agosto de 2026.
+O Digital Omnibus (Regulamento UE 2026/1744), em vigor desde 27/07, adiou para 02/12/2027 as obrigações de alto risco do Anexo III do AI Act, que inclui infraestrutura crítica. O Anexo I passa a 02/08/2028.
 
-**E daí:** Para quem opera infraestrutura crítica com cliente ou matriz na Europa, são 16 meses a mais para a avaliação de conformidade, e nenhum de pausa: a classificação não mudou, e o que for de alto risco em 2027 já é de alto risco no projeto de hoje. Contrato que cita "a data aplicável do AI Act" passou a apontar para o calendário novo — vale reler o que foi assinado entre maio e julho.
+**E daí:** O prazo mudou; a classificação, não. O que será alto risco em 2027 já é alto risco no projeto atual.
 
 _Fonte: [Comissão Europeia — AI Act Service Desk](https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act) · 27/07/2026_
 
 
-## Número do mês
+## Números do mês
 
-- **70 mil b/d** — o que ganhos de eficiência operacional acrescentaram, aproximadamente, à produção da Petrobras no 2º trimestre de 2026, ante o mesmo período de 2025
+- **250 de 1.208** — trabalhos da ROG.e 2026 no eixo de Transformação Digital e Inovação
+
+_Fonte: [IBP](https://www.ibp.org.br/hub-de-conhecimento/noticias/roge-2026-registra-recorde-de-trabalhos-tecnicos-e-amplia-a-participacao-da-comunidade-especializada/)_
+
+- **92%** — acurácia relatada pela Petrobras na classificação de perdas de produção com IA (ES)
+
+_Fonte: [One Energy News](https://oneenergynews.com/noticia/from-wells-to-fpsos-where-ai-is-entering-offshore-operations)_
+
+- **~70 mil b/d** — ganho de eficiência operacional da Petrobras no 2º trimestre de 2026
 
 _Fonte: [eixos](https://eixos.com.br/petroleo-e-gas/petroleiras-apostam-em-tecnologia-para-acelerar-novos-projetos-e-extrair-mais-oleo-de-campos-maduros/)_
 
@@ -94,16 +145,22 @@ _Fonte: [eixos](https://eixos.com.br/petroleo-e-gas/petroleiras-apostam-em-tecno
 
 ## Cortes (não vai no e-mail)
 
+- **datamint** — Preferência de Guilherme Cleffe (08/10/2026): não mencionar a Datamint por enquanto. Aprovado na régua (10/12) na primeira versão desta edição; volta a ser elegível com a liberação.
+- **datamint** — Mesmo veto de nome (08/10). Já reprovados antes pela régua: fonte de terceiro e fora da janela.
 - **neurocraft** — Regra do silêncio. Nenhum post da Neurocraft ou de Marcos Almeida datado de setembro foi encontrado; o mais recente é de 27/08.
 - **neurocraft** — Publicado em 27/08, fora da janela, e trata de lançamentos que aguardam liberação de Guilherme Cleffe (decisão de 30/09: publicar em momento apropriado). Público no LinkedIn — a restrição é de timing, não de sigilo.
 - **vexta** — Regra do silêncio. Últimos posts encontrados são de 18 e 23/08. Além disso, conteúdo da Vexta aguarda liberação de Guilherme Cleffe (30/09).
 - **bizmetric** — Régua 9/12 (Impacto 1, Proximidade 2, Novidade 3, Evidência 3), mas reprovado na lente de relevância: expansão para a Austrália não muda decisão de leitor no Brasil ou nos EUA. Escrever um e daí aqui seria esticar.
 - **bizmetric** — Presença em evento, sem fato novo para o leitor. Mesma lente do item acima.
-- **datamint** — Post de terceiro no LinkedIn (fonte vetada) e sem fato novo: retoma a rodada de junho, já coberta em agosto.
-- **datamint** — Publicado em 24/07, fora da janela. O número é de pilotos, sem cliente nem base divulgados: Evidência 1. Bom tema para deep dive de economia da decisão se houver caso documentado.
 - **Databricks Data + AI World Tour São Paulo (16/09), com cerca de 4.000 líderes de dados e IA** — Público de evento de fornecedor não muda decisão do leitor. Novidade 3, Impacto 1.
 - **TRACKFY | WAKECAP na ROG.e: 30% menos tempo de evacuação, ROI de até 9,3 vezes** — Números do próprio fornecedor em release, sem cliente nem base: Evidência 1. Reprovado.
 - **SONDA leva IA, drones e visão computacional à ROG.e** — Lente 1: capacidade anunciada sem o contexto que a torna útil. Release, não notícia.
 - **Petronemo segundo a Deloitte: 400 engenheiros de confiabilidade, economia estimada de R$ 20 milhões até 2029** — Página de case do fornecedor que construiu a solução, sem data. Usado só como contexto; os números não entram sem fonte da própria Petrobras.
 - **Marco Legal da IA (PL 2338/2023) na Câmara** — Sem fato novo em setembro: segue aguardando parecer do relator. A declaração de que a votação fica para depois das eleições é de 24/08 e veio de fonte secundária. Reavaliar em novembro.
 - **Presidente da Petrobras na ROG.e: exploração ativa e refino para até 100% do diesel nacional** — Fora do escopo da newsletter (Proximidade 0): estratégia de E&P e refino, sem dado nem decisão.
+- **Petrobras reduz em mais de 50% o peso de topsides em novos FPSOs; Shell trata o Brasil como pilar de resiliência** — Relevante para engenharia e capital, distante de dados e IA (Proximidade 1). Cortado pelo formato curto.
+- **MODEC: plataforma Lighthouse com frota acima de 98% de disponibilidade e retorno de até 25 vezes** — Números da própria empresa sobre a própria plataforma, sem base divulgada (Evidência 1). Mesmo critério aplicado à TRACKFY. Fonte: One Energy News, já usada em item publicado.
+- **Painel da Accenture na ROG.e (capex -20%, 65% do orçamento de IA em engenharia de dados)** — Post pessoal de painelista citando estudo do próprio fornecedor (fonte vetada).
+- **Firjan e Fiepa firmam parceria para mapear fornecedores na Margem Equatorial** — Fora do escopo (cadeia de fornecedores regional, sem dado ou IA).
+- **Moçambique (ENH) e Petrobras assinam memorando de E&P na abertura da ROG.e** — Fora do escopo (Proximidade 0).
+- **Shell: R$ 12,5 bi investidos em 2025 e apetite por novos ativos no Brasil** — Fonte secundária, publicada fora da janela (02/10), e fora do escopo de dados e IA.

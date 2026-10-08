@@ -19,9 +19,10 @@ Leia, nesta ordem:
 4. `references/voz-e-narrativa.md` — tom, equívocos a combater, repertório de origem, CTA.
 5. `references/tese-gtm-brasil.md` — as cinco lentes que filtram candidatos antes da régua.
 6. `references/fontes.md` — o que consultar e em que ordem de prioridade.
+7. `config/vetos.json` — termos que não podem aparecer na edição. O validador reprova se aparecerem.
 
-Antes de escrever (Fase 4), leia também `edicoes/2026-08/edicao.md` inteira — é a referência
-canônica de estilo, e imitar um exemplo bom funciona melhor que seguir uma regra abstrata.
+Antes de escrever (Fase 4), leia também `edicoes/2026-09/edicao.md` inteira — é a referência
+canônica de estilo e de formato (curto, formal, com mapa mental), e imitar um exemplo bom funciona melhor que seguir uma regra abstrata.
 
 Nunca reescreva regra editorial dentro deste arquivo: ela mora nas referências.
 
@@ -128,8 +129,10 @@ Preencha `edicoes/AAAA-MM/edicao.json`. Estrutura:
   "janela": { "inicio": "2026-08-01", "fim": "2026-08-31" },
   "assunto": "≤ 60 caracteres, específico",
   "preheader": "complementa o assunto, não repete",
-  "editorial": "3 a 5 linhas em primeira pessoa. Uma tese sobre o mês.",
+  "editorial": "2 a 3 linhas, tom formal. A tese do mês e como ler a edição.",
   "secoes": [
+    { "tipo": "mapa", "titulo": "O mês em um mapa", "centro": "a tese em uma frase",
+      "ramos": [ {"titulo": "", "pontos": ["frase curta, ≤ 90 caracteres"]} ] },
     { "tipo": "movimentos", "titulo": "O que mudou em agosto",
       "itens": [ { "titulo": "", "resumo": "", "so_what": "obrigatório aqui",
                    "fonte": {"nome": "", "url": ""}, "data": "2026-08-12" } ] },
@@ -155,7 +158,9 @@ Regras de escrita:
   para nenhuma dor da lista, ou ele não interessa, ou a lista está incompleta.
 - Automação se enquadra como capacidade liberada, nunca como headcount reduzido.
 - Ordene as seções pela relevância do mês, não pela ordem do `config`.
-- Alvo de 900 a 1.400 palavras. Um CTA só.
+- Alvo de 600 a 1.000 palavras. Um CTA só.
+- O mapa vem logo depois do editorial e **só resume** o que está nas seções abaixo: todo ponto
+  precisa estar sustentado por um item fonteado. Mapa não traz fato novo.
 - Se o texto sair padronizado demais, passe pela skill `humanizer` antes de validar.
 
 ## Fase 5 — Validar e renderizar
