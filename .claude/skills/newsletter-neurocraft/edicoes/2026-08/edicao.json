@@ -1,0 +1,208 @@
+{
+  "edicao": "2026-08",
+  "janela": {
+    "inicio": "2026-08-01",
+    "fim": "2026-08-31"
+  },
+  "status": "enviada",
+  "titulo": "Newsletter Neurocraft — agosto de 2026",
+  "assunto": "Agosto votou: agente com humano no comando",
+  "preheader": "Ainda em tempo: a edição de agosto, e por que a supervisão humana virou requisito de compra.",
+  "editorial": "Esta edição de agosto sai no último dia de setembro. Ainda em tempo — e o tema não envelheceu, o que diz mais sobre o tema do que sobre o nosso calendário.\n\nEm agosto, o setor mais regulado do país colocou a supervisão humana no título do seu maior evento de tecnologia. A Febraban escolheu \"Agentes Inteligentes, liderança humana\" como tema e pôs os CEOs dos sete maiores bancos no mesmo painel para discutir exatamente isso.\n\nNão é retórica de palco. É a forma como um setor que responde a auditoria anuncia o que passará a exigir de fornecedor — e essa exigência desce a cadeia inteira, muito além dos bancos.",
+  "secoes": [
+    {
+      "tipo": "movimentos",
+      "titulo": "O que mudou em agosto",
+      "itens": [
+        {
+          "titulo": "A Febraban pôs a supervisão humana no título do evento",
+          "resumo": "A 36ª edição do Febraban Tech aconteceu de 24 a 26 de agosto no Distrito Anhembi, com o tema \"Agentes Inteligentes, liderança humana\". Abriu com o presidente do Banco Central, Gabriel Galípolo, e seguiu com um painel dos CEOs dos sete maiores bancos do país. Entre as trilhas: agentes de IA em rede, identidade digital e compliance, e a passagem do big data para o real-time intelligent banking.",
+          "so_what": "Quando o setor mais regulado e mais avesso a risco do país coloca \"liderança humana\" no tema — e não na letra miúda — ele está sinalizando o requisito de compra que vai descer para toda a cadeia de fornecedores. Se o seu roadmap de IA para 2027 ainda promete autonomia sem trilha de aprovação, ele nasceu velho.",
+          "fonte": {
+            "nome": "Portal Febraban",
+            "url": "https://portal.febraban.org.br/noticia/4489/pt-br/"
+          },
+          "data": "2026-08-24"
+        }
+      ]
+    },
+    {
+      "tipo": "marca",
+      "marca": "datamint",
+      "titulo": "Datamint",
+      "itens": [
+        {
+          "titulo": "Parceria com a Neurocraft cobre as Américas",
+          "resumo": "A Datamint passa a ser a parceira de go-to-market da Neurocraft no Brasil, e a Neurocraft faz o mesmo pela Datamint nos Estados Unidos e em outros mercados internacionais. Hélio Côrtes Vieira Lopes, co-fundador da Datamint, descreveu o acordo como um caminho contínuo da tecnologia operacional no campo até a inteligência corporativa na diretoria.",
+          "so_what": "Para quem opera ativo pesado no Brasil e reporta a uma matriz nos EUA, some a escolha entre o fornecedor que entende o chão de fábrica e o que entende o data estate corporativo. É um contrato a menos para gerenciar e um ponto de integração a menos para pagar.",
+          "fonte": {
+            "nome": "Neurocraft Data Services (LinkedIn)",
+            "url": "https://www.linkedin.com/posts/neurocraft-data-services-inc_neurocraft-datamint-microsoft-activity-7491619097689067520-8Cug"
+          },
+          "data": "2026-08-07"
+        },
+        {
+          "titulo": "A rodada seed de US$ 5 milhões dá o contexto do movimento",
+          "resumo": "Em junho a Datamint levantou US$ 5 milhões em rodada liderada pela Headline, para expandir plataforma, engenharia e operação comercial dentro e fora do Brasil.",
+          "so_what": "A expansão internacional é a execução do plano que a rodada financiou dois meses antes, não oportunismo de anúncio. Para o cliente, isso reduz o risco de continuidade que costuma travar contrato com empresa jovem.",
+          "fonte": {
+            "nome": "TI INSIDE Online",
+            "url": "https://www.tiinside.com.br/en/15/06/2026/Datamint-raises-R%2425-million-in-seed-round-to-expand-proprietary-AI-platform-for-asset-management./"
+          },
+          "data": "2026-06-15",
+          "contexto": true
+        }
+      ]
+    },
+    {
+      "tipo": "marca",
+      "marca": "bizmetric",
+      "titulo": "Bizmetric",
+      "itens": [
+        {
+          "titulo": "Mesa executiva com a Databricks em Manila",
+          "resumo": "Em 4 de agosto a Bizmetric levou a líderes das Filipinas e da ASEAN as novidades do Data + AI Summit 2026, em mesa executiva com a Databricks. O foco declarado foi IA governada e escalável.",
+          "so_what": "Vale menos pelo evento e mais pelo padrão: a pauta que a Bizmetric leva à ASEAN é a mesma das conversas de modernização de Oracle e SAP no Brasil. Quem negocia contrato de plataforma agora negocia contra uma referência global de preço e escopo.",
+          "fonte": {
+            "nome": "Bizmetric (LinkedIn)",
+            "url": "https://www.linkedin.com/posts/bizmetric_bizevent-databricks-dataaisummit-activity-7490302447576457218-zqde"
+          },
+          "data": "2026-08-04"
+        }
+      ]
+    },
+    {
+      "tipo": "deepdive",
+      "titulo": "Deep dive · A supervisão humana virou requisito de compra",
+      "corpo": [
+        "Por dois anos, \"human in the loop\" foi a ressalva que se colocava no fim do slide para acalmar o jurídico. Agosto sugere que a ressalva virou especificação.",
+        "Repare em quem está dizendo. A Febraban, de um setor que não tolera indisponibilidade nem decisão sem responsável, pôs \"liderança humana\" no tema do evento e no título do painel dos sete maiores bancos. A Datamint, que vende automação de decisão sobre ativo crítico, construiu a tese inteira sobre trilha de auditoria e decisão explicável. E o regulador chegou ao mesmo lugar por outro caminho. Três origens distintas, nenhum incentivo para combinarem discurso.",
+        "A explicação mais simples é econômica. Autonomia total é fácil de demonstrar e difícil de contratar: ninguém assina embaixo de um sistema que abre ordem de serviço em ativo crítico sem que alguém responda pela decisão. Em ambiente regulado, o gargalo nunca foi a capacidade do modelo — foi a atribuição de responsabilidade. Enquanto essa pergunta não tem resposta, o piloto não vira produção. Some a isso o EU AI Act em aplicação escalonada e o ISO/IEC 42001 entrando nos processos de compra: rastreabilidade virou condição de participação, não diferencial.",
+        "Para quem compra, isso simplifica a avaliação. Três perguntas separam plataforma governada de demonstração bonita. Primeira: quando o sistema recomenda uma intervenção, consigo reconstruir por que — quais dados, qual regra, qual modelo — seis meses depois, para um auditor? Segunda: quem aprova o quê é configurável por criticidade do ativo, ou a autonomia é um botão liga-desliga? Terceira: quando o especialista discorda da recomendação, o desacordo fica registrado e volta para o sistema, ou some?",
+        "Fornecedor que responde as três com naturalidade já pensou no problema. Fornecedor que trata as três como requisito de fase dois está vendendo piloto — e piloto é o que a sua organização já tem de sobra."
+      ],
+      "fontes": [
+        {
+          "nome": "Portal Febraban — programação do Febraban Tech 2026",
+          "url": "https://portal.febraban.org.br/noticia/4484/pt-br/"
+        },
+        {
+          "nome": "Datamint — decisão auditável",
+          "url": "https://datamint.com.br/pt/"
+        }
+      ]
+    },
+    {
+      "tipo": "numeros",
+      "titulo": "Números do mês",
+      "itens": [
+        {
+          "valor": "7",
+          "rotulo": "CEOs dos maiores bancos do país no painel “Agentes inteligentes, liderança humana”",
+          "fonte": {
+            "nome": "Portal Febraban",
+            "url": "https://portal.febraban.org.br/noticia/4489/pt-br/"
+          }
+        },
+        {
+          "valor": "US$ 5M",
+          "rotulo": "rodada seed da Datamint, liderada pela Headline, para expandir plataforma e operação",
+          "fonte": {
+            "nome": "TI INSIDE Online",
+            "url": "https://www.tiinside.com.br/en/15/06/2026/Datamint-raises-R%2425-million-in-seed-round-to-expand-proprietary-AI-platform-for-asset-management./"
+          }
+        }
+      ]
+    }
+  ],
+  "cta": {
+    "texto": "Rodar as três perguntas no seu fornecedor atual",
+    "url": "https://neurocraft.ai/"
+  },
+  "cortes": [
+    {
+      "marca": "neurocraft",
+      "item": "Industrial Intelligence Ecosystem, apresentado em 18/08 reunindo os parceiros das Américas",
+      "motivo": "Aprovado na régua (10/12), cortado por equilíbrio editorial e extensão: três blocos da própria casa na mesma edição pesa como release e empurrou o texto para 1.577 palavras. O ponto que ele carregava — quem responde pela camada de campo e quem responde pela corporativa — merece um deep dive próprio, não um item de nota.",
+      "url": "https://www.linkedin.com/posts/marcos-almeida-94147610_industrialai-agenticai-microsoftfabric-activity-7495464755004940289-zABF"
+    },
+    {
+      "marca": "neurocraft",
+      "item": "Contrato de consultoria de IA com o Houston-Galveston Area Council (HGAC), 13 condados da costa do Texas, com Bizmetric e Maxari como parceiras",
+      "motivo": "Anúncio anterior à janela e sem data confirmada em fonte primária. Evidência 1 — reprovado. Vale uma edição própria se houver marco de entrega.",
+      "url": "https://www.linkedin.com/posts/neurocraft-data-services-inc_home-activity-7447351344543404032-TDRL"
+    },
+    {
+      "marca": "bizmetric",
+      "item": "Bizmetric torna-se Microsoft Fabric Featured Partner",
+      "motivo": "Publicado em 15/06/2026, fora da janela. Novidade 0 — reprovado.",
+      "url": "https://www.linkedin.com/posts/bizmetric_bizmetric-fabricfeaturedpartner-microsoft-activity-7472321187956568064-R_mR"
+    },
+    {
+      "marca": "bizmetric",
+      "item": "Elevação ao Silver Tier no Databricks Partner Program",
+      "motivo": "Publicado em 12/02/2026, muito fora da janela. Reprovado.",
+      "url": "https://www.linkedin.com/posts/bizmetric_bizmetric-is-promoted-to-silver-tier-in-databricks-activity-7427762980861440000-SkET"
+    },
+    {
+      "marca": "vexta",
+      "item": "Aliança com a Neurocraft para o mercado norte-americano e o Permian",
+      "motivo": "Anúncio de 02/06/2026, fora da janela e já coberto na ocasião. Novidade 0 — reprovado. Retomado apenas de forma indireta no item do Industrial Intelligence Ecosystem, que é de agosto.",
+      "url": "https://es.linkedin.com/posts/vexta-ai_industrialai-oilandgas-innovation-activity-7467678531351908352-zayL"
+    },
+    {
+      "item": "Bloco inteiro sobre o Venezuela Energy Week Houston Showcase, e o número de 600 participantes em Números do mês",
+      "url": "https://www.ogj.com/general-interest/economics-markets/news/55399249/venezuela-pitches-oil-gas-investment-opportunities-at-houston-showcase",
+      "motivo": "Decisão de Guilherme Cleffe (30/09), aplicando o pedido de Marcos de Almeida de 16/09. Reescrever para tom informativo reduziu o risco mas não o eliminou: enquanto sanções e compliance estiverem em aberto, a leitura mais segura é não ter o assunto na edição. Venezuela e PDVSA viram tema vetado por preferência permanente até liberação expressa."
+    },
+    {
+      "item": "Post de Marcos Almeida no LinkedIn sobre o evento da Venezuela em Houston",
+      "motivo": "Item pedido pelo usuário. Não foi possível localizar a URL do post nesta apuração; o evento entrou pela fonte primária (Oil & Gas Journal, 19/08), que é mais forte. Se o post existir, vale adicionar como fonte secundária antes do envio."
+    },
+    {
+      "item": "Número '303 bilhões de barris de reservas provadas da Venezuela' no bloco Números do mês",
+      "url": "https://www.ogj.com/general-interest/economics-markets/news/55399249/venezuela-pitches-oil-gas-investment-opportunities-at-houston-showcase",
+      "motivo": "Revisão de Marcos de Almeida (16/09): manter Venezuela estritamente informativa. O número é verdadeiro e confirmado na fonte, mas dimensionar a reserva ao lado de um item sobre busca de tecnologia lê como avaliação de oportunidade comercial. Substituído pelos 7 CEOs do painel da Febraban."
+    },
+    {
+      "item": "Venezuela Energy Week (22 a 25/02/2027, Caracas) no bloco Na agenda",
+      "url": "https://www.ogj.com/general-interest/economics-markets/news/55399249/venezuela-pitches-oil-gas-investment-opportunities-at-houston-showcase",
+      "motivo": "Revisão de Marcos de Almeida (16/09): item em 'Na agenda' funciona como recomendação de comparecimento. Com sanções e compliance em aberto, sai. O evento permanece citado como fato no corpo da notícia."
+    },
+    {
+      "marca": "neurocraft",
+      "item": "Bloco inteiro: lançamentos do NeuroEarthIQ™ e do NeuroMineIQ™, mais as menções no editorial e no deep dive",
+      "url": "https://www.linkedin.com/posts/neurocraft-data-services-inc_neuroearthiq-neurocraftai-agenticai-activity-7495830716673380352-kVk9",
+      "motivo": "Decisão de Guilherme Cleffe (30/09): publicar em momento apropriado. Nova preferência permanente: só material público e não sensível. Observação: ambos foram anunciados publicamente no LinkedIn em 17 e 19/08 — a restrição é de timing e ênfase, não de sigilo."
+    },
+    {
+      "marca": "neurocraft",
+      "item": "NeuroMineIQ™ (parte do bloco de lançamentos acima, registrado em separado para deduplicação)",
+      "url": "https://www.linkedin.com/posts/marcos-almeida-94147610_neuromineiq-neurocraftai-rocknrg-activity-7495105929072336896-kdEr",
+      "motivo": "Decisão de Guilherme Cleffe (30/09): publicar em momento apropriado. Nova preferência permanente: só material público e não sensível. Observação: ambos foram anunciados publicamente no LinkedIn em 17 e 19/08 — a restrição é de timing e ênfase, não de sigilo."
+    },
+    {
+      "marca": "vexta",
+      "item": "Bloco inteiro: ProdEng IQ e a detecção de derrame por drone em Santa Cruz, mais a menção ao CEO da Vexta no editorial",
+      "url": "https://es.linkedin.com/posts/vexta-ai_oilandgas-productionengineering-upstream-activity-7495479622067781634--LsJ",
+      "motivo": "Decisão de Guilherme Cleffe (30/09): publicar em momento apropriado. Mesma observação: os dois posts são públicos no LinkedIn da Vexta (18 e 23/08)."
+    },
+    {
+      "marca": "vexta",
+      "item": "Detecção de derrame por drone em Santa Cruz (parte do bloco Vexta acima, registrado em separado para deduplicação)",
+      "url": "https://www.linkedin.com/posts/vexta-ai_activity-7497311484696461312-GNR5",
+      "motivo": "Decisão de Guilherme Cleffe (30/09): publicar em momento apropriado. Mesma observação: os dois posts são públicos no LinkedIn da Vexta (18 e 23/08)."
+    },
+    {
+      "item": "ROG.e 2026 no bloco Na agenda",
+      "url": "https://roge.energy/",
+      "motivo": "O evento ocorreu de 21 a 24/09 e a edição só sai agora. Anunciar como futuro um evento já realizado, para um público em que parte esteve presente, data a edição. Bloco removido por não haver item futuro verificado."
+    }
+  ],
+  "marcas_avaliadas": [
+    "neurocraft",
+    "bizmetric",
+    "vexta",
+    "datamint"
+  ]
+}
