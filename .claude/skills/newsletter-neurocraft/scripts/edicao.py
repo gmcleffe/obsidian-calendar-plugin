@@ -29,7 +29,7 @@ RADAR = EDICOES / "radar.csv"
 COLUNAS_RADAR = ["registrado_em", "url", "titulo", "fonte", "marca",
                  "status", "edicao", "data_item", "motivo"]
 
-TIPOS = {"mapa", "movimentos", "marca", "deepdive", "radar", "numeros", "agenda"}
+TIPOS = {"mapa", "grafico", "movimentos", "marca", "deepdive", "radar", "numeros", "agenda"}
 TIPOS_COM_ITENS_FONTEADOS = {"movimentos", "marca", "radar"}
 MESES = ["janeiro", "fevereiro", "marco", "abril", "maio", "junho", "julho",
          "agosto", "setembro", "outubro", "novembro", "dezembro"]
@@ -77,6 +77,7 @@ def contar_palavras(dados):
         partes.append(secao.get("titulo", ""))
         partes.extend(secao.get("corpo", []))
         partes.append(secao.get("centro", ""))
+        partes.append(secao.get("legenda", ""))
         for ramo in secao.get("ramos", []):
             partes.append(ramo.get("titulo", ""))
             partes.extend(ramo.get("pontos", []))
@@ -370,6 +371,20 @@ def cmd_validar(args):
                 avisos.append("%s: deepdive com %d palavras (alvo %d-%d)"
                               % (ref, palavras, DEEPDIVE_MIN, DEEPDIVE_MAX))
 
+        if tipo == "grafico":
+            # Grafico redesenhado pela casa a partir de dado publico: a imagem mora na pasta
+            # da edicao e o credito vai na legenda e dentro da propria imagem.
+            img = secao.get("imagem", "")
+            if not img:
+                erros.append("%s: grafico sem 'imagem'" % ref)
+            elif not (Path(args.pasta) / img).is_file():
+                erros.append("%s: imagem %r nao existe na pasta da edicao" % (ref, img))
+            if not secao.get("alt"):
+                erros.append("%s: grafico sem 'alt' — o texto alternativo e o que le quem bloqueia imagem" % ref)
+            fonte = secao.get("fonte") or {}
+            if not fonte.get("nome") or not str(fonte.get("url", "")).startswith("http"):
+                erros.append("%s: grafico sem fonte (nome e url)" % ref)
+
         if tipo == "mapa":
             # O mapa resume a edicao; nao traz fato proprio, entao nao leva fonte.
             # Cada ponto precisa estar sustentado por um item fonteado mais abaixo.
@@ -566,6 +581,19 @@ def render_secao(secao):
         saida.append(render_mapa(secao))
         return "".join(saida)
 
+    if tipo == "grafico":
+        fonte = secao.get("fonte") or {}
+        legenda = e(secao.get("legenda", ""))
+        if fonte.get("url"):
+            legenda += (" " if legenda else "") + "Fonte: " + link(fonte["url"], fonte.get("nome", "fonte"), "#6b7688")
+        return (
+            # O titulo vai dentro da propria imagem; repeti-lo aqui duplicaria a leitura.
+            '<tr><td style="padding:4px 32px 18px 32px;">'
+            '<img src="%s" width="536" alt="%s" style="display:block;width:100%%;max-width:536px;'
+            'height:auto;border:0;border-radius:4px;">'
+            '<p style="margin:6px 0 0 0;font:400 12px/1.45 %s;color:#6b7688;">%s</p></td></tr>'
+            % (e(secao.get("imagem", "")), e(secao.get("alt", "")), FONTE_SANS, legenda))
+
     if tipo == "deepdive":
         for paragrafo in secao.get("corpo") or []:
             saida.append(bloco_paragrafo(e(paragrafo)))
@@ -627,6 +655,10 @@ def render_markdown(dados, cfg):
             linhas += ["_%s_" % secao["chapeu"], ""]
         for paragrafo in secao.get("corpo") or []:
             linhas += [paragrafo, ""]
+        if secao.get("tipo") == "grafico":
+            fonte = secao.get("fonte") or {}
+            linhas += ["![%s](%s)" % (secao.get("alt", ""), secao.get("imagem", "")), "",
+                       "_%s Fonte: [%s](%s)_" % (secao.get("legenda", ""), fonte.get("nome", ""), fonte.get("url", "")), ""]
         if secao.get("tipo") == "mapa":
             linhas += ["**%s**" % secao.get("centro", ""), ""]
             for ramo in secao.get("ramos") or []:
