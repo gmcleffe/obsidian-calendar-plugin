@@ -152,6 +152,20 @@ Na prática:
 - Se um item cortado por esta regra já for público, **diga isso no resumo ao usuário** — ele pode
   estar decidindo por timing achando que decide por sigilo. São coisas diferentes.
 
+## Oferta própria e CTA por resposta — preferência de 09/11/2026
+
+> Definida por Guilherme Cleffe em 09/11/2026.
+
+- **Seção de oferta pode ser comercial e provocativa.** Ex.: PoC gratuita ou financiada com a
+  Neurocraft. Pergunta direta ao leitor, frases curtas, primeira pessoa, editorial assinado.
+- **Sempre "mediante avaliação".** Nunca prometer verba de terceiro (Microsoft) como certa: quem
+  aprova é quem paga. Dizer isso no texto.
+- **Status junto a parceiro só com o nome oficial.** O programa da Microsoft não tem nível
+  "premium"; prefira o título que o leitor pode conferir (designação, especialização).
+- **CTA pode ser `mailto:`** quando o objetivo é resposta. Resposta é a métrica principal.
+- **Relatório de terceiro: um tópico, o mais ligado ao negócio, com link para o original**
+  (não para resumo de terceiros), salvo quando o original estiver indisponível.
+
 ## Conflito de interesse e sigilo
 
 - Nome de cliente só com autorização escrita registrada na pauta.

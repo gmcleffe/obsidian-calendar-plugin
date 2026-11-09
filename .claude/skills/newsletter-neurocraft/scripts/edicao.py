@@ -337,7 +337,8 @@ def cmd_validar(args):
     cta = dados.get("cta") or {}
     if not cta.get("texto") or not cta.get("url"):
         erros.append("CTA incompleto: texto e url sao obrigatorios")
-    if not str(cta.get("url", "")).startswith("http"):
+    # mailto: vale quando o CTA e "responda este e-mail" (preferencia de 09/11/2026).
+    if not str(cta.get("url", "")).startswith(("http", "mailto:")):
         erros.append("CTA com url invalida: %r" % cta.get("url"))
 
     secoes = dados.get("secoes") or []

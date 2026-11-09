@@ -47,3 +47,18 @@ Projeções com hachura, como segunda codificação além da cor.
   como fornecedora ECIF — o texto não afirma nenhuma das duas coisas, mas o leitor vai perguntar.
 - **Fontes secundárias nos itens da Microsoft.** ECIF (Fifty Five and Five) e FY27 (TD SYNNEX)
   vêm de parceiros e distribuidores; as regras de ECIF estão citadas do toolkit da Microsoft.
+
+## Revisão de 09/11/2026 — pedido de Guilherme Cleffe
+
+- **Funding da Microsoft mais vendedor e provocativo**, para gerar resposta: assunto e editorial
+  com pergunta direta, editorial assinado, nova seção "Como fazemos a sua PoC" e CTA
+  `mailto:` ("Quero avaliar uma PoC"). PoC "gratuita ou financiada", sempre **mediante
+  avaliação** — texto deixa claro que quem aprova a verba é a Microsoft.
+- **"Status premium junto à Microsoft"**: frase do editor, mantida. Não existe nível com esse nome
+  no programa de parceiros; recomendado trocar pelo título oficial da Neurocraft antes do envio.
+- **Um tópico por relatório**, com link para o original: a16z (só ~2% medem, com gráfico) e
+  McKinsey (IA na manutenção de ativos). Saíram capex, transição/expansão, Brasil, os gráficos
+  de capex e de data centers, a leitura conjunta e os números do mês.
+- Passada do humanizer: tirados dois pares de listas de três no editorial e títulos que repetiam
+  o nome da seção; incluída assinatura.
+- 563 palavras (abaixo do alvo de 600; mantido por ser pedido de texto objetivo).
