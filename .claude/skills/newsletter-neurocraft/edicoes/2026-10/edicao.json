@@ -185,6 +185,11 @@
     {
       "item": "Leitura conjunta e Números do mês",
       "motivo": "Revisão de 09/11: substituídos pela seção de oferta (como fazemos a PoC)."
+    },
+    {
+      "item": "a16z, State of Markets II — versão em a16z.com",
+      "url": "https://a16z.com/state-of-markets-ii/",
+      "motivo": "Mesmo texto do a16z.news. Revisão de 09/11: links apontam para o original indicado pelo editor (a16z.news)."
     }
   ],
   "marcas_avaliadas": [
