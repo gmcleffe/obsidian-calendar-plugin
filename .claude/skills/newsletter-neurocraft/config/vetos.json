@@ -1,0 +1,11 @@
+{
+  "_comentario": "Termos que nao podem aparecer em nenhum texto publico da edicao (corpo, titulos, fontes, links, CTA). O validador reprova a edicao. Vale para edicao em producao; edicao com status 'enviada' e registro historico e nao e checada. Termo so sai daqui com liberacao expressa de quem vetou. Cortes podem citar o termo: sao internos.",
+  "termos": [
+    {"termo": "Venezuela", "desde": "2026-09-30", "quem": "Marcos de Almeida (16/09), aplicado por Guilherme Cleffe", "motivo": "Sancoes e compliance em aberto; nenhum enquadramento.", "ate": "liberacao expressa"},
+    {"termo": "PDVSA", "desde": "2026-09-30", "quem": "Marcos de Almeida (16/09), aplicado por Guilherme Cleffe", "motivo": "Sancoes e compliance em aberto; nenhum enquadramento.", "ate": "liberacao expressa"},
+    {"termo": "NeuroEarthIQ", "desde": "2026-09-30", "quem": "Guilherme Cleffe", "motivo": "Lancamento proprio; publicar em momento apropriado. Publico no LinkedIn: restricao de timing, nao de sigilo.", "ate": "liberacao expressa"},
+    {"termo": "NeuroMineIQ", "desde": "2026-09-30", "quem": "Guilherme Cleffe", "motivo": "Lancamento proprio; publicar em momento apropriado. Publico no LinkedIn: restricao de timing, nao de sigilo.", "ate": "liberacao expressa"},
+    {"termo": "Vexta", "desde": "2026-09-30", "quem": "Guilherme Cleffe", "motivo": "Conteudo da Vexta aguarda o momento apropriado de publicacao.", "ate": "liberacao expressa"},
+    {"termo": "Datamint", "desde": "2026-10-08", "quem": "Guilherme Cleffe", "motivo": "Nao mencionar o nome por enquanto, em nenhuma secao nem fonte.", "ate": "liberacao expressa"}
+  ]
+}

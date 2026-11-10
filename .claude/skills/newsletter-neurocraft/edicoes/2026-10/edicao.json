@@ -1,0 +1,313 @@
+{
+  "edicao": "2026-10",
+  "janela": {
+    "inicio": "2026-10-01",
+    "fim": "2026-10-31"
+  },
+  "status": "enviada",
+  "assunto": "[Neurocraft.ai newsletter] Sua próxima PoC conosco pode sair por conta da Microsoft (Sim! Custo zero!)",
+  "preheader": "Orçamento de 2027 apertado? A Microsoft pode financiar a sua PoC de dados e IA. Veja como funciona.",
+  "editorial": "Existe uma verba que não aparece em proposta comercial, porque quem decide é o time da Microsoft, não o parceiro. Abaixo explicamos como ela funciona e como levamos o seu caso até lá. No fim, um dado do a16z e outro da McKinsey mostram por que vale testar agora.",
+  "secoes": [
+    {
+      "tipo": "mapa",
+      "titulo": "🗺️ O mês em um mapa",
+      "centro": "A PoC que parou por orçamento agora pode ser financiada",
+      "ramos": [
+        {
+          "titulo": "A Microsoft paga",
+          "icone": "💰",
+          "cor": "azul",
+          "pontos": [
+            "ECIF: verba para PoC e implantação",
+            "Azure Accelerate: créditos e engenheiros sem custo",
+            "Sempre mediante avaliação de elegibilidade"
+          ]
+        },
+        {
+          "titulo": "Como fazemos",
+          "icone": "🛠️",
+          "cor": "dourado",
+          "pontos": [
+            "Você responde com o problema",
+            "Avaliamos e levamos o caso à Microsoft",
+            "A PoC começa pela métrica"
+          ]
+        },
+        {
+          "titulo": "a16z",
+          "icone": "📊",
+          "cor": "laranja",
+          "pontos": [
+            "Só ~2% do S&P 500 publica métrica de IA"
+          ]
+        },
+        {
+          "titulo": "McKinsey",
+          "icone": "⚡",
+          "cor": "verde",
+          "pontos": [
+            "IA já é alavanca de manutenção de ativos"
+          ]
+        }
+      ]
+    },
+    {
+      "tipo": "numeros",
+      "titulo": "Números",
+      "itens": [
+        {
+          "valor": "30+",
+          "rotulo": "serviços Azure implantados sem custo adicional",
+          "cor": "azul",
+          "fonte": {
+            "nome": "Microsoft Azure Blog",
+            "url": "https://azure.microsoft.com/en-us/blog/introducing-azure-accelerate-fueling-transformation-with-experts-and-investments-across-your-cloud-and-ai-journey/"
+          }
+        },
+        {
+          "valor": "~2%",
+          "rotulo": "do S&P 500 acompanha uma métrica de IA",
+          "cor": "laranja",
+          "fonte": {
+            "nome": "a16z",
+            "url": "https://a16z.com/state-of-markets-ii/"
+          }
+        },
+        {
+          "valor": "+24%",
+          "rotulo": "ao ano: demanda de energia de data centers até 2030",
+          "cor": "verde",
+          "fonte": {
+            "nome": "McKinsey",
+            "url": "https://www.mckinsey.com/industries/energy-and-materials/our-insights/blog/global-energy-perspective-2026-key-takeaways"
+          }
+        }
+      ]
+    },
+    {
+      "tipo": "movimentos",
+      "rotulo": "Microsoft · ECIF",
+      "cor": "azul",
+      "titulo": "Sua PoC pode sair por conta da Microsoft",
+      "itens": [
+        {
+          "titulo": "A verba existe e tem regra",
+          "resumo": "O ECIF (End Customer Investment Funds) é dinheiro que o time comercial da Microsoft usa para pagar parceiros em provas de conceito e implantações. O parceiro (nós, no caso) precisa estar habilitado e o serviço é pago a preço de mercado. Não é desconto de licença.",
+          "so_what": "Se o seu piloto não avançou por falta de orçamento, talvez a pergunta certa nunca tenha sido feita a quem tem acesso a esses recursos.",
+          "fonte": {
+            "nome": "Fifty Five and Five",
+            "url": "https://fiftyfiveandfive.com/resources/microsoft-ecif-explained/"
+          },
+          "data": "2026-10-16"
+        }
+      ]
+    },
+    {
+      "tipo": "movimentos",
+      "rotulo": "Microsoft · Azure Accelerate",
+      "cor": "azul",
+      "titulo": "Além da verba, engenheiros da Microsoft",
+      "itens": [
+        {
+          "titulo": "Além da verba, engenheiros da Microsoft",
+          "resumo": "No Azure Accelerate, a Microsoft soma financiamento ao parceiro, créditos de Azure e o Cloud Accelerate Factory: engenheiros dela implantam mais de 30 serviços do Azure sem custo adicional, junto com o parceiro. Vale para avaliação, piloto e implantação.",
+          "so_what": "Parte do trabalho da PoC pode não sair do seu caixa. Quanto? Depende do escopo e da aprovação.",
+          "fonte": {
+            "nome": "Microsoft Azure Blog",
+            "url": "https://azure.microsoft.com/en-us/blog/introducing-azure-accelerate-fueling-transformation-with-experts-and-investments-across-your-cloud-and-ai-journey/"
+          },
+          "data": "2025-07-07",
+          "contexto": true,
+          "links_extras": [
+            {
+              "nome": "O que é o Cloud Accelerate Factory",
+              "url": "https://techcommunity.microsoft.com/blog/azuremigrationblog/introducing-cloud-accelerate-factory-unlock-zero-cost-deployment-assistance-for-/4409779"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tipo": "deepdive",
+      "rotulo": "NeuroCraft",
+      "cor": "dourado",
+      "titulo": "Como fazemos a sua PoC?",
+      "passos": [
+        "Você responde este e-mail com o problema que quer testar. Pode ser um ativo crítico, redução de custos ou uma falha que se repete.",
+        "Avaliamos o caso com você. Se ele se enquadra nos programas, levamos à Microsoft. Nosso track record junto à Microsoft facilita essa conversa.",
+        "Aprovado, a PoC pode sair gratuita ou financiada para você. Tudo mediante avaliação: quem aprova a verba é a Microsoft, não nós."
+      ],
+      "destaque": "🎯 Uma condição nossa: toda PoC começa com a métrica que ela vai mover. Sem número no início, não tem como provar nada no fim.",
+      "corpo": [
+        "O momento ajuda. No ano fiscal que começou em julho, a Microsoft concentrou investimento em Fabric, Foundry e IA agêntica, que é onde mora projeto de dado industrial."
+      ],
+      "fontes": [
+        {
+          "nome": "TD SYNNEX — prioridades da Microsoft no FY27",
+          "url": "https://news.tdsynnex.com/amplify/mcaps-microsoft-fy27-partner-strategy/"
+        },
+        {
+          "nome": "Microsoft Azure Blog — Azure Accelerate",
+          "url": "https://azure.microsoft.com/en-us/blog/introducing-azure-accelerate-fueling-transformation-with-experts-and-investments-across-your-cloud-and-ai-journey/"
+        }
+      ]
+    },
+    {
+      "tipo": "movimentos",
+      "rotulo": "a16z · State of Markets II",
+      "cor": "laranja",
+      "titulo": "Quase ninguém mede",
+      "itens": [
+        {
+          "titulo": "Quase ninguém mede",
+          "resumo": "No State of Markets II, o a16z mostra que cerca de 30% das empresas do S&P 500 relatam algum impacto mensurável com IA. Só cerca de 2% publicam uma métrica acompanhada ao longo do tempo.",
+          "so_what": "É por isso que a nossa PoC começa pela métrica. Piloto sem número não passa da próxima revisão de orçamento.",
+          "fonte": {
+            "nome": "a16z: State of Markets II (relatório original)",
+            "url": "https://a16z.com/state-of-markets-ii/"
+          },
+          "data": "2026-09-30",
+          "contexto": true,
+          "links_extras": [
+            {
+              "nome": "Podcast: The $1 Trillion AI Buildout",
+              "url": "https://a16z.com/podcast/the-1-trillion-ai-buildout-state-of-markets/",
+              "icone": "🎧"
+            }
+          ],
+          "grafico": {
+            "titulo": "Empresas do S&P 500",
+            "barras": [
+              {
+                "rotulo": "Relatam algum impacto mensurável com IA",
+                "valor": 30,
+                "texto": "~30%"
+              },
+              {
+                "rotulo": "Publicam uma métrica acompanhada ao longo do tempo",
+                "valor": 2,
+                "texto": "~2%"
+              }
+            ],
+            "legenda": "Redesenhado pela NeuroCraft.",
+            "fonte": {
+              "nome": "a16z, State of Markets II",
+              "url": "https://a16z.com/state-of-markets-ii/"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "tipo": "movimentos",
+      "rotulo": "McKinsey · Global Energy Perspective 2026",
+      "cor": "verde",
+      "titulo": "IA dos dois lados do sistema elétrico",
+      "itens": [
+        {
+          "titulo": "IA dos dois lados do sistema elétrico",
+          "so_what": "Manutenção de ativo está nessa lista. É um bom primeiro candidato para a sua PoC.",
+          "fonte": {
+            "nome": "McKinsey: Global Energy Perspective 2026, principais conclusões",
+            "url": "https://www.mckinsey.com/industries/energy-and-materials/our-insights/blog/global-energy-perspective-2026-key-takeaways"
+          },
+          "data": "2026-10-27",
+          "contexto": false,
+          "cartoes": [
+            {
+              "titulo": "Demanda",
+              "icone": "🔌",
+              "pontos": [
+                "Data centers puxam a demanda de energia, com alta de 24% ao ano até 2030 no cenário base."
+              ]
+            },
+            {
+              "titulo": "Eficiência",
+              "icone": "⚙️",
+              "pontos": [
+                "Onde a IA já reduz custo: previsão de rede, manutenção de ativos e engenharia."
+              ]
+            }
+          ],
+          "links_extras": [
+            {
+              "nome": "Relatório completo (PDF)",
+              "url": "https://www.mckinsey.com/~/media/mckinsey/industries/energy%20and%20materials/our%20insights/global%20energy%20perspective%202026/global-energy-perspective-2026.pdf",
+              "icone": "📄"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "cta": {
+    "texto": "✉️ Falar com o Guilherme",
+    "texto_topo": "Quero avaliar minha PoC →",
+    "pergunta": "Qual problema você quer testar em 2027?",
+    "apoio": "Responda em uma linha. A gente avalia se cabe nos programas da Microsoft.",
+    "url": "mailto:Guilherme.Cleffe@neurocraft.ai?subject=Quero%20avaliar%20uma%20PoC%20financiada&body=Ol%C3%A1%20Guilherme%2C%0A%0AO%20problema%20que%20queremos%20testar%20%C3%A9%3A%20"
+  },
+  "cortes": [
+    {
+      "marca": "neurocraft",
+      "item": "Escopo da edição limitado a três temas",
+      "motivo": "Decisão de Guilherme Cleffe (05/11/2026): outubro fala apenas de cofinanciamento da Microsoft, State of Markets II e Global Energy Perspective 2026. Marca aparece só como anfitriã."
+    },
+    {
+      "marca": "bizmetric",
+      "item": "Escopo da edição limitado a três temas",
+      "motivo": "Decisão de Guilherme Cleffe (05/11/2026). Não houve apuração da marca."
+    },
+    {
+      "marca": "vexta",
+      "item": "Escopo da edição limitado a três temas",
+      "motivo": "Decisão de 05/11/2026; além disso, sob veto até liberação (config/vetos.json)."
+    },
+    {
+      "marca": "datamint",
+      "item": "Escopo da edição limitado a três temas",
+      "motivo": "Decisão de 05/11/2026; além disso, sob veto de nome (config/vetos.json)."
+    },
+    {
+      "item": "AI Business Process Vouchers: até US$ 100 mil para implantar Dynamics 365 e Power Platform (FY27)",
+      "url": "https://fpc.microsoft.com/knowledgebase/article/KB-01682/en-us",
+      "motivo": "Fonte primária da Microsoft, mas fora do perfil do leitor (aplicações de negócio, segmento SMC; não combina com ECIF). Cortado pelo formato curto."
+    },
+    {
+      "item": "Fabric em duas trilhas de financiamento no FY27, até US$ 131.250 para parceiros especializados",
+      "url": "https://infinigate.cloud/ie/news/fy27-cloud-ai-platforms-program-incentives-updates",
+      "motivo": "Valores de distribuidor, não da Microsoft. A existência das duas trilhas entrou no item do FY27; o valor ficou de fora."
+    },
+    {
+      "item": "Capex de IA: US$ 777 bi em 2026 (gráfico a16z-capex.png)",
+      "url": "https://www.valusignal.com/blog/a16z-state-of-markets-ii",
+      "motivo": "Revisão de 09/11: um tópico por relatório, o mais ligado ao negócio. Capex é contexto de mercado, não decisão do leitor."
+    },
+    {
+      "item": "McKinsey: transição virou expansão; Brasil com custo do sistema em alta; gráfico de data centers",
+      "motivo": "Revisão de 09/11: um tópico por relatório. Ficou o de IA na manutenção de ativos."
+    },
+    {
+      "item": "Leitura conjunta e Números do mês",
+      "motivo": "Revisão de 09/11: substituídos pela seção de oferta (como fazemos a PoC)."
+    },
+    {
+      "item": "a16z, State of Markets II — versão em a16z.com",
+      "url": "https://a16z.com/state-of-markets-ii/",
+      "motivo": "Mesmo texto do a16z.news. Revisão de 09/11: links apontam para o original indicado pelo editor (a16z.news)."
+    }
+  ],
+  "marcas_avaliadas": [
+    "neurocraft",
+    "bizmetric",
+    "vexta",
+    "datamint"
+  ],
+  "titulo": "Newsletter Neurocraft — outubro de 2026",
+  "envio": "2026-11-09",
+  "chapeu": "Orçamento 2027",
+  "titulo_hero": "Quer investir em dados e IA, mas o orçamento de 2027 está apertado?",
+  "subtitulo": "Nós podemos ajudar. 🚀",
+  "_versao": "Revisão de Marcos de Almeida (10/11/2026), posterior ao envio de 09/11. O texto enviado está em revisao-marcos.md."
+}
