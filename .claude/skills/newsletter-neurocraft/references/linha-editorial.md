@@ -57,8 +57,12 @@ memória editorial — e evita que o mesmo item seja reavaliado do zero no mês 
 
 Só a abertura e o CTA são fixos. Todo o resto é condicional.
 
-1. **Assunto e preheader** — assunto ≤ 60 caracteres, específico. O preheader complementa, não repete.
-2. **Abertura do editor** — 2 a 3 linhas, tom formal. A tese do mês e como ler a edição.
+1. **Assunto e preheader** — prefixo fixo `[Neurocraft.ai newsletter]` + assunto específico, de
+   preferência até 60 caracteres (o editor já foi além de propósito; é aviso, não erro). O
+   preheader complementa, não repete.
+2. **Hero** — chapéu curto (ex.: "Orçamento 2027"), título que é a pergunta ou tese do mês,
+   subtítulo de uma linha e 2 a 3 linhas de editorial na primeira pessoa do plural. Botão de CTA
+   já no topo.
 2a. **Mapa do mês** — um nó central com a tese e 2 a 4 ramos de frases curtas. Resume a edição;
    não traz fato que não esteja fonteado mais abaixo.
 3. **O que mudou neste mês** — 3 a 5 movimentos do setor. Cada um com um "**e daí?**" explícito
@@ -67,9 +71,11 @@ Só a abertura e o CTA são fixos. Todo o resto é condicional.
 5. **Deep dive** — um tema por edição, 200 a 400 palavras, com posição assumida. Rotativo.
    Perguntas para o fornecedor em linhas numeradas, não em parágrafo.
 6. **Radar regulatório** — condicional. EU AI Act, LGPD/ANPD, ANP, ANEEL, ANS, ISO 42001.
-7. **Números do mês** — 1 a 3 métricas, cada uma com fonte.
+7. **Números do mês** — 1 a 3 métricas, cada uma com fonte. Vira a faixa escura de números,
+   logo abaixo do mapa.
 8. **Agenda** — condicional. Eventos e webinars dos próximos 60 dias.
-9. **CTA único** — uma ação. Nunca duas.
+9. **CTA único** — uma ação. Nunca duas. A mesma ação pode aparecer em dois pontos: botão no hero
+   e bloco de fecho com pergunta, uma linha de apoio e botão.
 
 Alvo total: **600 a 1.000 palavras.** Acima disso, corte — não resuma.
 
@@ -118,7 +124,8 @@ Proibido em qualquer edição:
 - Abertura por definição de dicionário ("A inteligência artificial é...").
 - "Não é apenas X, é Y" — a construção antitética vazia.
 - Conclusão que não conclui ("resta acompanhar os desdobramentos").
-- Emoji no corpo. No assunto, no máximo um, e só se houver motivo.
+- Emoji como enfeite ou no meio da frase. Emoji como **marcador** de seção, cartão, "e daí" e
+  link é parte da identidade visual (revisão de 10/11/2026). No assunto, no máximo um.
 
 ## Temas vetados
 
@@ -157,14 +164,61 @@ Na prática:
 > Definida por Guilherme Cleffe em 09/11/2026.
 
 - **Seção de oferta pode ser comercial e provocativa.** Ex.: PoC gratuita ou financiada com a
-  Neurocraft. Pergunta direta ao leitor, frases curtas, primeira pessoa, editorial assinado.
+  Neurocraft. Pergunta direta ao leitor, frases curtas, primeira pessoa do plural. No envio de
+  09/11 o editor tirou a assinatura e foi mais longe no assunto ("(Sim! Custo zero!)"): o tom
+  comercial pode ser explícito, desde que o corpo mantenha o "mediante avaliação".
 - **Sempre "mediante avaliação".** Nunca prometer verba de terceiro (Microsoft) como certa: quem
   aprova é quem paga. Dizer isso no texto.
 - **Status junto a parceiro só com o nome oficial.** O programa da Microsoft não tem nível
-  "premium"; prefira o título que o leitor pode conferir (designação, especialização).
+  "premium". O editor trocou por **"track record junto à Microsoft"** no envio de 09/11; use
+  isso ou o título que o leitor pode conferir (designação, especialização).
 - **CTA pode ser `mailto:`** quando o objetivo é resposta. Resposta é a métrica principal.
 - **Relatório de terceiro: um tópico, o mais ligado ao negócio, com link para o original**
   (não para resumo de terceiros), salvo quando o original estiver indisponível.
+
+## Identidade visual e formato — revisão de Marcos de Almeida (10/11/2026)
+
+> Marcos de Almeida (CEO) reescreveu o HTML da edição de outubro depois do envio. Guilherme
+> Cleffe pediu que as preferências fossem atualizadas a partir dela. Referência:
+> `edicoes/2026-10/revisao-marcos.html`; diferenças em `edicoes/2026-10/revisao-marcos.md`.
+> O template e o renderizador já seguem esta revisão.
+
+**Marca e cabeçalho**
+- Grafia **NeuroCraft**, logo "NeuroCraft**.ai**" em Georgia dourada sobre degradê azul-marinho.
+  Sempre com o ".ai" no logo: existe uma NeuroCraft AI em NY sem relação.
+- O cabeçalho mostra o **mês de envio** ("Newsletter · Nov 2026" na edição de outubro).
+- Rodapé escuro: logo, e-mail do remetente como `mailto:` e "© ano NeuroCraft · Orchestrated
+  Supervised Agentic AI".
+
+**Leitura visual**
+- Uma cor por tema e a mesma cor na etiqueta, no cartão do mapa, no "e daí" e nos links:
+  azul = Microsoft/plataforma, dourado = NeuroCraft (oferta, método), laranja = estudo de
+  mercado, verde = energia/setor.
+- Cada seção abre com uma **etiqueta** ("Microsoft · ECIF") e um título de frase.
+- O mapa tem 2 a 4 cartões com emoji; a tese do mês é o título do mapa.
+- O "e daí" fica em caixa: **"👉 E daí?"**.
+- A seção da casa ("Como fazemos") vira **cartão dourado com passos numerados** e a condição em
+  caixa escura.
+- **Gráfico em barras HTML**, não em imagem: não some quando o cliente bloqueia imagem, não depende
+  de hospedagem, não se perde ao colar no Outlook. Vai logo depois do fato que mostra, antes do
+  "e daí". PNG só quando a forma não cabe em barras.
+- Dados de um relatório podem virar **cartões** (🔌 Demanda / ⚙️ Eficiência) em vez de parágrafo.
+
+**Links**
+- Fonte com 🔗 e data; links extras com ícone próprio (🎧 podcast, 📄 PDF completo). A data é a
+  de publicação **da página linkada**.
+- Original primeiro (página oficial, não newsletter de terceiros nem resumo). Material
+  complementar do próprio autor (podcast, página de conclusões) é bem-vindo.
+- **Fonte sempre com link.** Na revisão, algumas fontes ficaram em texto puro; aqui vale a
+  preferência de 09/11.
+- CTA `mailto:` com **assunto e corpo pré-preenchidos** ("Olá Guilherme, O problema que
+  queremos testar é: "). Botão do fecho com nome de pessoa: "✉️ Falar com o Guilherme".
+
+**Texto**
+- Primeira pessoa do plural ("explicamos", "nós, no caso"). Abertura com pergunta direta ao
+  leitor e resposta curta ("Nós podemos ajudar.").
+- "Parceiro", não "fornecedor".
+- Relação com a Microsoft: **"track record"**, nunca "status premium".
 
 ## Conflito de interesse e sigilo
 

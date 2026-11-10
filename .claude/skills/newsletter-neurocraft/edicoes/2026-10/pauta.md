@@ -62,3 +62,22 @@ Projeções com hachura, como segunda codificação além da cor.
 - Passada do humanizer: tirados dois pares de listas de três no editorial e títulos que repetiam
   o nome da seção; incluída assinatura.
 - 563 palavras (abaixo do alvo de 600; mantido por ser pedido de texto objetivo).
+
+## Envio (09/11/2026) e revisão do Marcos (10/11/2026)
+
+- **Enviado por Guilherme em 09/11** pelo Outlook, com edições próprias: prefixo
+  `[Neurocraft.ai newsletter]`, assunto "…conosco… (Sim! Custo zero!)", nova abertura, "track
+  record" no lugar de "status premium", sem assinatura. O visual, o gráfico, o preheader e o CTA
+  se perderam na colagem, e os links passaram pelo redirecionador do Gmail. Houve uma devolução
+  definitiva.
+- **Revisão de Marcos de Almeida em 10/11**, depois do envio, com nova identidade visual. O
+  diff completo está em `revisao-marcos.md`. As preferências foram atualizadas em
+  `linha-editorial.md` (seção "Identidade visual e formato") e o template/renderizador passou a
+  reproduzi-la.
+- `edicao.json` agora registra a versão do Marcos (`status: enviada`), com três correções:
+  - data da McKinsey: 27/10;
+  - fontes de volta com link;
+  - fora o link defasado de partner.microsoft.com (página dos antigos Azure Migrate and
+    Modernize / Azure Innovate).
+- O PNG `graficos/a16z-adocao.png` deixou de ser usado: o gráfico agora é em barras HTML. Os
+  PNGs ficam como histórico.

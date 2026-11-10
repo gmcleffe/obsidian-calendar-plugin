@@ -64,6 +64,21 @@ def rotulo_por_extenso(rotulo):
     return "%s de %d" % (MESES_EXIBICAO[mes - 1], ano)
 
 
+MESES_CURTOS = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
+
+
+def rotulo_curto_envio(dados):
+    """Cabecalho mostra o mes de ENVIO (revisao de 10/11/2026): a edicao de outubro sai em novembro."""
+    envio = str(dados.get("envio") or "")
+    try:
+        quando = date.fromisoformat(envio)
+        ano, mes = quando.year, quando.month
+    except ValueError:
+        ano, mes = (int(x) for x in dados.get("edicao", "1970-01").split("-"))
+        ano, mes = (ano + 1, 1) if mes == 12 else (ano, mes + 1)
+    return "%s %d" % (MESES_CURTOS[mes - 1], ano)
+
+
 def ler_edicao(pasta):
     caminho = Path(pasta) / "edicao.json"
     if not caminho.exists():
@@ -76,6 +91,8 @@ def contar_palavras(dados):
     for secao in dados.get("secoes", []):
         partes.append(secao.get("titulo", ""))
         partes.extend(secao.get("corpo", []))
+        partes.extend(secao.get("passos", []))
+        partes.append(secao.get("destaque", ""))
         partes.append(secao.get("centro", ""))
         partes.append(secao.get("legenda", ""))
         for ramo in secao.get("ramos", []):
@@ -84,6 +101,9 @@ def contar_palavras(dados):
         for item in secao.get("itens", []):
             for chave in ("titulo", "resumo", "so_what", "rotulo", "quando", "onde"):
                 partes.append(str(item.get(chave, "")))
+            for cartao in item.get("cartoes", []):
+                partes.append(cartao.get("titulo", ""))
+                partes.extend(cartao.get("pontos", []))
     return len(re.findall(r"\S+", " ".join(partes)))
 
 
@@ -329,8 +349,14 @@ def cmd_validar(args):
             erros.append("campo obrigatorio vazio: %s" % campo)
 
     assunto = dados.get("assunto", "")
-    if len(assunto) > LIMITE_ASSUNTO:
-        erros.append("assunto com %d caracteres (limite %d)" % (len(assunto), LIMITE_ASSUNTO))
+    # O prefixo fixo ("[Neurocraft.ai newsletter]") nao conta no limite. Passar do limite e aviso,
+    # nao erro: o editor ja enviou assunto mais longo de proposito (09/11/2026).
+    prefixo = cfg["publicacao"].get("prefixo_assunto", "")
+    miolo = assunto[len(prefixo):].strip() if prefixo and assunto.startswith(prefixo) else assunto
+    if len(miolo) > LIMITE_ASSUNTO:
+        avisos.append("assunto com %d caracteres sem o prefixo (alvo ate %d)" % (len(miolo), LIMITE_ASSUNTO))
+    if prefixo and not assunto.startswith(prefixo):
+        avisos.append("assunto sem o prefixo fixo %r" % prefixo)
     if assunto and dados.get("preheader", "").strip().lower() == assunto.strip().lower():
         erros.append("preheader repete o assunto")
 
@@ -364,10 +390,10 @@ def cmd_validar(args):
                              % (ref, marca))
 
         if tipo == "deepdive":
-            corpo = secao.get("corpo") or []
+            corpo = (secao.get("passos") or []) + (secao.get("corpo") or [])
             if not corpo:
                 erros.append("%s: deepdive sem corpo" % ref)
-            palavras = len(re.findall(r"\S+", " ".join(corpo)))
+            palavras = len(re.findall(r"\S+", " ".join(corpo + [secao.get("destaque", "")])))
             if corpo and not DEEPDIVE_MIN <= palavras <= DEEPDIVE_MAX:
                 avisos.append("%s: deepdive com %d palavras (alvo %d-%d)"
                               % (ref, palavras, DEEPDIVE_MIN, DEEPDIVE_MAX))
@@ -375,12 +401,18 @@ def cmd_validar(args):
         if tipo == "grafico":
             # Grafico redesenhado pela casa a partir de dado publico: a imagem mora na pasta
             # da edicao e o credito vai na legenda e dentro da propria imagem.
+            # Preferencia de 10/11/2026: barras em HTML ('barras') no lugar de imagem hospedada.
+            barras = secao.get("barras") or []
             img = secao.get("imagem", "")
-            if not img:
-                erros.append("%s: grafico sem 'imagem'" % ref)
+            if barras:
+                for k, barra in enumerate(barras):
+                    if not barra.get("rotulo") or not isinstance(barra.get("valor"), (int, float)):
+                        erros.append("%s.barra[%d]: precisa de 'rotulo' e 'valor' numerico" % (ref, k))
+            elif not img:
+                erros.append("%s: grafico sem 'barras' nem 'imagem'" % ref)
             elif not (Path(args.pasta) / img).is_file():
                 erros.append("%s: imagem %r nao existe na pasta da edicao" % (ref, img))
-            if not secao.get("alt"):
+            if img and not barras and not secao.get("alt"):
                 erros.append("%s: grafico sem 'alt' — o texto alternativo e o que le quem bloqueia imagem" % ref)
             fonte = secao.get("fonte") or {}
             if not fonte.get("nome") or not str(fonte.get("url", "")).startswith("http"):
@@ -421,6 +453,14 @@ def cmd_validar(args):
                 else:
                     vistos.setdefault(url, []).append(iref)
 
+                g = item.get("grafico") or {}
+                if g and (not g.get("barras") or not (g.get("fonte") or {}).get("url")):
+                    erros.append("%s: grafico do item precisa de 'barras' e 'fonte'" % iref)
+
+                for extra in item.get("links_extras") or []:
+                    if not extra.get("nome") or not str(extra.get("url", "")).startswith("http"):
+                        erros.append("%s: link extra precisa de 'nome' e url http" % iref)
+
                 if not item.get("so_what") and tipo == "movimentos":
                     erros.append("%s: sem 'so_what' — todo movimento precisa dizer o que muda para o leitor" % iref)
 
@@ -448,6 +488,11 @@ def cmd_validar(args):
     palavras = contar_palavras(dados)
     if not PALAVRAS_MIN <= palavras <= PALAVRAS_MAX:
         avisos.append("edicao com %d palavras (alvo %d-%d)" % (palavras, PALAVRAS_MIN, PALAVRAS_MAX))
+
+    # Link colado do Gmail para o Outlook vira google.com/url?q=... e expira (envio de 09/11/2026).
+    for texto in textos_publicos(dados):
+        if re.search(r"(?i)https?://(www\.)?google\.[a-z.]+/url\?", texto):
+            erros.append("link passa por redirecionador do Google: %s" % texto[:80])
 
     cortes = dados.get("cortes") or []
     sem_url = [c.get("item", "?") for c in cortes if not c.get("url")]
@@ -494,45 +539,102 @@ def e(texto):
     return html.escape(str(texto), quote=True)
 
 
-def link(url, texto, cor="#0b6bcb"):
-    return '<a href="%s" style="color:%s;text-decoration:underline;">%s</a>' % (e(url), cor, e(texto))
+# Paleta e componentes da identidade visual revisada por Marcos de Almeida (10/11/2026).
+# Referencia: edicoes/2026-10/revisao-marcos.html.
+CORES = {
+    "azul":    {"forte": "#0B6BCB", "texto": "#0B6BCB", "fundo": "#EAF3FE", "barra": "#5CB8FF", "trilho": "#D6E8FB", "stat": "#5CB8FF"},
+    "dourado": {"forte": "#E8B84A", "texto": "#A87512", "fundo": "#FFF6E0", "barra": "#E8B84A", "trilho": "#F7E7BE", "stat": "#F6D77B"},
+    "laranja": {"forte": "#E8590C", "texto": "#C2410C", "fundo": "#FFEDE6", "barra": "#FF8A4C", "trilho": "#FBDCCB", "stat": "#FF8A4C"},
+    "verde":   {"forte": "#0E9F86", "texto": "#0B7A67", "fundo": "#E3F7F3", "barra": "#3FD9B5", "trilho": "#C9EFE6", "stat": "#3FD9B5"},
+}
+ORDEM_CORES = ["azul", "dourado", "laranja", "verde"]
+TINTA = "#0A1630"
+TEXTO = "#33415C"
+TEXTO_CARTAO = "#24324A"
+CINZA = "#7A869C"
 
 
-def bloco_titulo(texto):
-    return ('<tr><td style="padding:28px 32px 8px 32px;">'
-            '<h2 style="margin:0;font:600 13px/1.4 -apple-system,BlinkMacSystemFont,\'Segoe UI\',Arial,sans-serif;'
-            'letter-spacing:.09em;text-transform:uppercase;color:#7c8798;">%s</h2></td></tr>' % e(texto))
+def cor(nome, indice=0):
+    return CORES.get(nome) or CORES[ORDEM_CORES[indice % len(ORDEM_CORES)]]
 
 
-def bloco_paragrafo(texto, tamanho=16):
-    return ('<tr><td style="padding:0 32px 14px 32px;">'
-            '<p style="margin:0;font:400 %dpx/1.62 -apple-system,BlinkMacSystemFont,\'Segoe UI\',Georgia,serif;'
-            'color:#2b3440;">%s</p></td></tr>' % (tamanho, texto))
+def link(url, texto, cor_link="#0B6BCB", negrito=False):
+    peso = "font-weight:600;" if negrito else ""
+    return '<a href="%s" style="color:%s;%stext-decoration:underline;">%s</a>' % (e(url), cor_link, peso, e(texto))
 
 
-def bloco_item(item, mostrar_so_what=True):
-    partes = ['<tr><td style="padding:0 32px 18px 32px;">',
-              '<div style="border-left:3px solid #d8dee7;padding-left:14px;">',
-              '<p style="margin:0 0 5px 0;font:600 16px/1.45 -apple-system,BlinkMacSystemFont,'
-              '\'Segoe UI\',Arial,sans-serif;color:#121a24;">%s</p>' % e(item.get("titulo", ""))]
-    if item.get("resumo"):
-        partes.append('<p style="margin:0 0 7px 0;font:400 15px/1.6 -apple-system,BlinkMacSystemFont,'
-                      '\'Segoe UI\',Arial,sans-serif;color:#3c4758;">%s</p>' % e(item["resumo"]))
-    if mostrar_so_what and item.get("so_what"):
-        partes.append('<p style="margin:0 0 7px 0;font:400 15px/1.6 -apple-system,BlinkMacSystemFont,'
-                      '\'Segoe UI\',Arial,sans-serif;color:#121a24;">'
-                      '<strong style="color:#0b6bcb;">E daí:</strong> %s</p>' % e(item["so_what"]))
+def _linha(conteudo, topo=30, base=6):
+    return ('<tr><td class="px" style="padding:%dpx 36px %dpx 36px;">%s</td></tr>' % (topo, base, conteudo))
+
+
+def rotulo_pequeno(texto, cor_texto="#1B3F8B"):
+    return ('<p style="margin:0 0 4px 0;font-size:12px;font-weight:bold;letter-spacing:1.5px;'
+            'text-transform:uppercase;color:%s;">%s</p>' % (cor_texto, e(texto)))
+
+
+def pilula(texto, c):
+    # Dourado e claro demais para texto branco: a pilula dourada leva texto escuro.
+    tinta = TINTA if c is CORES["dourado"] else "#FFFFFF"
+    return ('<div style="display:inline-block;background:%s;color:%s;font-size:11px;font-weight:bold;'
+            'letter-spacing:1.2px;text-transform:uppercase;padding:4px 10px;border-radius:4px;">%s</div>'
+            % (c["forte"], tinta, e(texto)))
+
+
+def titulo_h2(texto, topo=12):
+    return ('<h2 style="margin:%dpx 0 10px 0;font-size:22px;line-height:28px;color:%s;">%s</h2>'
+            % (topo, TINTA, e(texto)))
+
+
+def paragrafo(texto, tamanho=15):
+    return ('<p style="margin:0 0 14px 0;font-size:%dpx;line-height:24px;color:%s;">%s</p>'
+            % (tamanho, TEXTO, texto))
+
+
+def caixa_e_dai(texto, c):
+    return ('<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0" '
+            'style="background:#F3F7FD;border-radius:8px;margin:0 0 4px 0;"><tr>'
+            '<td style="padding:14px 18px;font-size:14px;line-height:22px;color:%s;">'
+            '<strong style="color:%s;">&#128073; E daí?</strong> %s</td></tr></table>'
+            % (TEXTO_CARTAO, c["texto"], e(texto)))
+
+
+def linhas_de_fonte(item, c):
+    """Fonte principal com data e links extras (podcast, PDF, pagina do programa)."""
     fonte = item.get("fonte") or {}
+    linhas = []
     if fonte.get("url"):
-        rodape = link(fonte["url"], fonte.get("nome", "fonte"), "#6b7688")
+        txt = "&#128279; " + link(fonte["url"], fonte.get("nome", "fonte"), c["texto"], True)
         if item.get("data"):
-            rodape += ' <span style="color:#98a2b3;">· %s</span>' % e(_data_br(item["data"]))
-        if item.get("contexto"):
-            rodape += ' <span style="color:#98a2b3;">· contexto</span>'
-        partes.append('<p style="margin:0;font:400 13px/1.5 -apple-system,BlinkMacSystemFont,'
-                      '\'Segoe UI\',Arial,sans-serif;color:#6b7688;">%s</p>' % rodape)
-    partes.append("</div></td></tr>")
-    return "".join(partes)
+            txt += " &middot; %s" % e(_data_br(item["data"]))
+        linhas.append(txt)
+    for extra in item.get("links_extras") or []:
+        if extra.get("url"):
+            icone = e(extra.get("icone", "")) or "&#128279;"
+            linhas.append("%s %s" % (icone, link(extra["url"], extra.get("nome", extra["url"]), c["texto"], True)))
+    if not linhas:
+        return ""
+    return ('<p style="margin:12px 0 0 0;font-size:13px;line-height:22px;color:%s;">%s</p>'
+            % (CINZA, "<br>".join(linhas)))
+
+
+def cartoes(cards, c_padrao=None):
+    """Grade de cartoes em duas colunas; empilha no celular (classe .stack)."""
+    celulas = []
+    for i, card in enumerate(cards):
+        c = cor(card.get("cor"), i) if c_padrao is None else c_padrao
+        titulo = ((e(card["icone"]) + " ") if card.get("icone") else "") + e(card.get("titulo", ""))
+        corpo = card.get("html") or "<br>".join("&#9656; %s" % e(p) for p in card.get("pontos") or [])
+        celulas.append(
+            '<td class="stack" width="50%%" valign="top" style="padding:8px;">'
+            '<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0" '
+            'style="background:%s;border-left:5px solid %s;border-radius:10px;"><tr><td style="padding:16px 18px;">'
+            '<p style="margin:0 0 8px 0;font-size:14px;font-weight:800;color:%s;">%s</p>'
+            '<p style="margin:0;font-size:14px;line-height:22px;color:%s;">%s</p>'
+            '</td></tr></table></td>' % (c["fundo"], c["forte"], c["texto"], titulo, TEXTO_CARTAO, corpo))
+    linhas = "".join("<tr>%s</tr>" % "".join(celulas[i:i + 2] +
+                                             (['<td class="stack" width="50%"></td>'] if len(celulas[i:i + 2]) == 1 else []))
+                     for i in range(0, len(celulas), 2))
+    return ('<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0">%s</table>' % linhas)
 
 
 def _data_br(iso):
@@ -542,108 +644,159 @@ def _data_br(iso):
         return str(iso)
 
 
-FONTE_SANS = "-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif"
-
-
 def render_mapa(secao):
-    """Mapa mental em tabela: no central e ramos em grade de duas colunas."""
-    ramos = secao.get("ramos") or []
-    celulas = []
-    for ramo in ramos:
-        pontos = "".join(
-            '<p style="margin:0 0 5px 0;font:400 13px/1.45 %s;color:#2b3440;">'
-            '<span style="color:#0b6bcb;">&#9656;</span>&nbsp;%s</p>' % (FONTE_SANS, e(p))
-            for p in ramo.get("pontos") or [])
-        celulas.append(
-            '<td width="50%%" valign="top" style="padding:6px;">'
-            '<div style="background:#f6f8fb;border-top:3px solid #0b6bcb;border-radius:4px;padding:10px 12px;">'
-            '<p style="margin:0 0 7px 0;font:700 12px/1.3 %s;letter-spacing:.06em;text-transform:uppercase;'
-            'color:#0f1b2b;">%s</p>%s</div></td>' % (FONTE_SANS, e(ramo.get("titulo", "")), pontos))
-    linhas = "".join("<tr>%s</tr>" % "".join(celulas[i:i + 2] +
-                                             (['<td width="50%"></td>'] if len(celulas[i:i + 2]) == 1 else []))
-                     for i in range(0, len(celulas), 2))
-    return (
-        '<tr><td style="padding:0 26px 6px 26px;">'
-        '<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0">'
-        '<tr><td align="center" style="padding:0 6px;">'
-        '<div style="background:#0f1b2b;border-radius:6px;padding:14px 18px;">'
-        '<p style="margin:0;font:600 16px/1.4 %s;color:#ffffff;">%s</p></div>'
-        '<div style="width:2px;height:12px;background:#c9d3e0;line-height:12px;font-size:1px;">&nbsp;</div>'
-        '</td></tr></table>'
-        '<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0">%s</table>'
-        '</td></tr>' % (FONTE_SANS, e(secao.get("centro", "")), linhas))
+    """Mapa mental: rotulo, tese do mes como titulo e ramos em cartoes coloridos."""
+    cabeca = rotulo_pequeno(secao.get("titulo", "")) + titulo_h2(secao.get("centro", ""), 0)
+    grade = cartoes(secao.get("ramos") or [])
+    return (_linha(cabeca, 32, 8) +
+            '<tr><td class="px" style="padding:0 28px 8px 28px;">%s</td></tr>' % grade)
 
 
-def render_secao(secao):
+def render_barras(secao, c):
+    """Grafico de barras em HTML puro: nao depende de imagem hospedada nem de bloqueio de imagem."""
+    maximo = max([float(b.get("valor", 0)) for b in secao.get("barras") or []] + [100.0])
+    blocos = []
+    for b in secao.get("barras") or []:
+        pct = max(1, min(99, round(float(b.get("valor", 0)) * 100 / maximo)))
+        rotulo_valor = e(b.get("texto") or ("%s%%" % b.get("valor")))
+        # Barra curta demais para caber o numero: o numero vai no trilho.
+        if pct >= 12:
+            cheia = ('<td width="%d%%" style="background:%s;height:22px;border-radius:4px 0 0 4px;font-size:12px;'
+                     'font-weight:bold;color:#FFFFFF;padding-left:8px;">%s</td>' % (pct, c["barra"], rotulo_valor))
+            vazia = ('<td width="%d%%" style="background:%s;height:22px;border-radius:0 4px 4px 0;">&nbsp;</td>'
+                     % (100 - pct, c["trilho"]))
+        else:
+            cheia = ('<td width="%d%%" style="background:%s;height:22px;border-radius:4px 0 0 4px;">&nbsp;</td>'
+                     % (pct, c["texto"]))
+            vazia = ('<td width="%d%%" style="background:%s;height:22px;border-radius:0 4px 4px 0;font-size:12px;'
+                     'font-weight:bold;color:%s;padding-left:8px;">%s</td>' % (100 - pct, c["trilho"], c["texto"], rotulo_valor))
+        blocos.append('<tr><td style="padding:6px 20px 10px 20px;">'
+                      '<p style="margin:0 0 4px 0;font-size:13px;color:%s;">%s</p>'
+                      '<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0"><tr>%s%s</tr></table>'
+                      '</td></tr>' % (TEXTO, e(b.get("rotulo", "")), cheia, vazia))
+    titulo = ('<tr><td style="padding:18px 20px 6px 20px;font-size:12px;font-weight:bold;letter-spacing:1px;'
+              'text-transform:uppercase;color:%s;">%s</td></tr>' % (c["texto"], e(secao.get("titulo", ""))))
+    return ('<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0" '
+            'style="background:%s;border-radius:10px;">%s%s<tr><td style="height:8px;line-height:8px;">&nbsp;</td></tr></table>'
+            % (c["fundo"], titulo, "".join(blocos)))
+
+
+def render_item(item, c, mostrar_so_what=True, nivel_titulo=True):
+    partes = []
+    if nivel_titulo and item.get("titulo"):
+        partes.append('<h3 style="margin:6px 0 8px 0;font-size:17px;line-height:24px;color:%s;">%s</h3>'
+                      % (TINTA, e(item["titulo"])))
+    if item.get("cartoes"):
+        partes.append(cartoes(item["cartoes"], c))
+    elif item.get("resumo"):
+        partes.append(paragrafo(e(item["resumo"])))
+    if item.get("grafico"):
+        # Grafico logo depois do fato que ele mostra, antes do "e dai" (revisao de 10/11/2026).
+        g = item["grafico"]
+        fonte = g.get("fonte") or {}
+        legenda = e(g.get("legenda", ""))
+        if fonte.get("url"):
+            legenda += (" " if legenda else "") + "Fonte: " + link(fonte["url"], fonte.get("nome", "fonte"), CINZA)
+        partes.append(render_barras(g, c) +
+                      '<p style="margin:6px 0 14px 0;font-size:11px;color:%s;">%s</p>' % (CINZA, legenda))
+    if mostrar_so_what and item.get("so_what"):
+        partes.append(caixa_e_dai(item["so_what"], c))
+    partes.append(linhas_de_fonte(item, c))
+    return "".join(partes)
+
+
+def render_secao(secao, indice=0):
     tipo = secao.get("tipo")
-    saida = [bloco_titulo(secao.get("titulo", ""))]
+    c = cor(secao.get("cor"), indice)
 
     if tipo == "mapa":
-        saida.append(render_mapa(secao))
-        return "".join(saida)
+        return render_mapa(secao)
+
+    if tipo == "numeros":
+        # Faixa de numeros em fundo escuro (stat strip). Fonte e obrigatoria e vai na legenda.
+        itens = secao.get("itens") or []
+        largura = 100 // max(len(itens), 1)
+        celulas, fontes = [], []
+        for i, item in enumerate(itens):
+            ci = cor(item.get("cor"), i)
+            borda = "border-left:1px solid #22355E;" if i else ""
+            celulas.append(
+                '<td class="stack" width="%d%%" align="center" style="padding:20px 10px;%s">'
+                '<div class="stat" style="font-size:38px;font-weight:800;color:%s;line-height:42px;">%s</div>'
+                '<div style="font-size:12px;line-height:17px;color:#C9D6EE;">%s</div></td>'
+                % (largura, borda, ci["stat"], e(item.get("valor", "")), e(item.get("rotulo", ""))))
+            fonte = item.get("fonte") or {}
+            if fonte.get("url"):
+                fontes.append(link(fonte["url"], fonte.get("nome", "fonte"), CINZA))
+        rodape = ('<p style="margin:6px 0 0 0;font-size:11px;color:%s;">Fontes: %s</p>'
+                  % (CINZA, " &middot; ".join(fontes))) if fontes else ""
+        return _linha('<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0" '
+                      'style="background:%s;border-radius:12px;"><tr>%s</tr></table>%s'
+                      % (TINTA, "".join(celulas), rodape), 20, 20)
+
+    cabeca = (pilula(secao["rotulo"], c) + titulo_h2(secao.get("titulo", ""))) if secao.get("rotulo") \
+        else titulo_h2(secao.get("titulo", ""), 0)
 
     if tipo == "grafico":
         fonte = secao.get("fonte") or {}
         legenda = e(secao.get("legenda", ""))
         if fonte.get("url"):
-            legenda += (" " if legenda else "") + "Fonte: " + link(fonte["url"], fonte.get("nome", "fonte"), "#6b7688")
-        return (
-            # O titulo vai dentro da propria imagem; repeti-lo aqui duplicaria a leitura.
-            '<tr><td style="padding:4px 32px 18px 32px;">'
-            '<img src="%s" width="536" alt="%s" style="display:block;width:100%%;max-width:536px;'
-            'height:auto;border:0;border-radius:4px;">'
-            '<p style="margin:6px 0 0 0;font:400 12px/1.45 %s;color:#6b7688;">%s</p></td></tr>'
-            % (e(secao.get("imagem", "")), e(secao.get("alt", "")), FONTE_SANS, legenda))
+            legenda += (" " if legenda else "") + "Fonte: " + link(fonte["url"], fonte.get("nome", "fonte"), CINZA)
+        if secao.get("barras"):
+            corpo = render_barras(secao, c)
+        else:
+            corpo = ('<img src="%s" width="568" alt="%s" style="display:block;width:100%%;max-width:568px;'
+                     'height:auto;border:0;border-radius:6px;">' % (e(secao.get("imagem", "")), e(secao.get("alt", ""))))
+        return _linha(corpo + '<p style="margin:6px 0 0 0;font-size:11px;color:%s;">%s</p>' % (CINZA, legenda), 4, 14)
 
     if tipo == "deepdive":
-        for paragrafo in secao.get("corpo") or []:
-            saida.append(bloco_paragrafo(e(paragrafo)))
+        # Secao da casa (oferta, metodo): cartao com passos numerados e condicao em destaque.
+        partes = []
+        for n, passo in enumerate(secao.get("passos") or [], 1):
+            partes.append(
+                '<tr><td width="48" valign="top" style="padding:0 0 16px 0;"><div style="width:36px;height:36px;'
+                'line-height:36px;border-radius:18px;background:%s;color:#F6D77B;text-align:center;font-weight:800;'
+                'font-size:16px;">%d</div></td><td valign="top" style="padding:0 0 16px 0;font-size:15px;'
+                'line-height:23px;color:%s;">%s</td></tr>' % (TINTA, n, TEXTO, e(passo)))
+        passos = ('<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0">%s</table>'
+                  % "".join(partes)) if partes else ""
+        extra = []
+        if secao.get("destaque"):
+            extra.append('<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0" '
+                         'style="background:%s;border-radius:8px;margin:0 0 14px 0;"><tr>'
+                         '<td style="padding:14px 18px;font-size:14px;line-height:22px;color:#FFFFFF;">%s</td></tr></table>'
+                         % (TINTA, e(secao["destaque"])))
+        for p in secao.get("corpo") or []:
+            extra.append('<p style="margin:0 0 10px 0;font-size:14px;line-height:22px;color:%s;">%s</p>' % (TEXTO, e(p)))
         fontes = secao.get("fontes") or []
         if fontes:
-            links = " · ".join(link(f["url"], f.get("nome", f["url"]), "#6b7688") for f in fontes if f.get("url"))
-            saida.append('<tr><td style="padding:0 32px 14px 32px;">'
-                         '<p style="margin:0;font:400 13px/1.5 -apple-system,BlinkMacSystemFont,'
-                         '\'Segoe UI\',Arial,sans-serif;color:#6b7688;">Fontes: %s</p></td></tr>' % links)
-        return "".join(saida)
-
-    if tipo == "numeros":
-        itens = secao.get("itens") or []
-        largura = "%d%%" % (100 // max(len(itens), 1))
-        celulas = []
-        for item in itens:
-            fonte = item.get("fonte") or {}
-            rodape = link(fonte["url"], fonte.get("nome", "fonte"), "#6b7688") if fonte.get("url") else ""
-            celulas.append(
-                '<td width="%s" valign="top" style="padding:0 8px;">' % largura +
-                '<p style="margin:0;font:700 26px/1.15 -apple-system,BlinkMacSystemFont,'
-                '\'Segoe UI\',Arial,sans-serif;color:#0b6bcb;">%s</p>'
-                '<p style="margin:4px 0 0 0;font:400 14px/1.45 -apple-system,BlinkMacSystemFont,'
-                '\'Segoe UI\',Arial,sans-serif;color:#3c4758;">%s</p>'
-                '<p style="margin:4px 0 0 0;font:400 12px/1.4 -apple-system,BlinkMacSystemFont,'
-                '\'Segoe UI\',Arial,sans-serif;color:#6b7688;">%s</p></td>'
-                % (e(item.get("valor", "")), e(item.get("rotulo", "")), rodape))
-        saida.append('<tr><td style="padding:0 24px 18px 24px;">'
-                     '<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0">'
-                     '<tr>%s</tr></table></td></tr>' % "".join(celulas))
-        return "".join(saida)
+            links = " &middot; ".join(link(f["url"], f.get("nome", f["url"]), CINZA) for f in fontes if f.get("url"))
+            extra.append('<p style="margin:0;font-size:12px;line-height:20px;color:%s;">Fontes: %s</p>' % (CINZA, links))
+        cartao = ('<table role="presentation" width="100%%" cellpadding="0" cellspacing="0" border="0" '
+                  'style="background:#FFF9EC;border:1px solid #F1D99A;border-radius:12px;">'
+                  '<tr><td style="padding:24px 24px 4px 24px;">%s</td></tr>'
+                  '<tr><td style="padding:0 24px;">%s</td></tr>'
+                  '<tr><td style="padding:4px 24px 20px 24px;">%s</td></tr></table>'
+                  % (cabeca, passos, "".join(extra)))
+        return _linha(cartao)
 
     if tipo == "agenda":
         linhas = []
         for item in secao.get("itens") or []:
-            titulo = link(item["url"], item.get("titulo", "")) if item.get("url") else e(item.get("titulo", ""))
-            detalhe = " · ".join(x for x in (item.get("quando"), item.get("onde")) if x)
-            linhas.append('<li style="margin:0 0 8px 0;font:400 15px/1.55 -apple-system,BlinkMacSystemFont,'
-                          '\'Segoe UI\',Arial,sans-serif;color:#3c4758;">%s%s</li>'
-                          % (titulo, (' <span style="color:#6b7688;">— %s</span>' % e(detalhe)) if detalhe else ""))
-        saida.append('<tr><td style="padding:0 32px 14px 32px;">'
-                     '<ul style="margin:0;padding-left:18px;">%s</ul></td></tr>' % "".join(linhas))
-        return "".join(saida)
+            titulo = link(item["url"], item.get("titulo", ""), c["texto"], True) if item.get("url") else e(item.get("titulo", ""))
+            detalhe = " &middot; ".join(e(x) for x in (item.get("quando"), item.get("onde")) if x)
+            linhas.append('<li style="margin:0 0 8px 0;font-size:15px;line-height:24px;color:%s;">%s%s</li>'
+                          % (TEXTO, titulo, (' <span style="color:%s;">— %s</span>' % (CINZA, detalhe)) if detalhe else ""))
+        return _linha(cabeca + '<ul style="margin:0;padding-left:18px;">%s</ul>' % "".join(linhas))
 
+    partes = [cabeca]
     if secao.get("chapeu"):
-        saida.append(bloco_paragrafo('<em style="color:#3c4758;">%s</em>' % e(secao["chapeu"]), 15))
-    for item in secao.get("itens") or []:
-        saida.append(bloco_item(item, mostrar_so_what=True))
-    return "".join(saida)
+        partes.append(paragrafo('<em>%s</em>' % e(secao["chapeu"])))
+    itens = secao.get("itens") or []
+    for item in itens:
+        # Item unico cujo titulo repete o da secao nao ganha subtitulo.
+        partes.append(render_item(item, c, True, not (len(itens) == 1 and item.get("titulo") == secao.get("titulo"))))
+    return _linha("".join(partes))
 
 
 def render_markdown(dados, cfg):
@@ -704,23 +857,62 @@ def cmd_render(args):
     if not TEMPLATE.exists():
         sys.exit("erro: template nao encontrado em %s" % TEMPLATE)
 
-    conteudo = "".join(render_secao(s) for s in dados.get("secoes", []))
-    editorial = "".join(bloco_paragrafo(e(p))
-                        for p in re.split(r"\n\s*\n", dados.get("editorial", "").strip()) if p)
+    conteudo = "".join(render_secao(s, i) for i, s in enumerate(dados.get("secoes", [])))
+    editorial = "".join(
+        '<p style="margin:0 0 18px 0;font-size:15px;line-height:24px;color:#C9D6EE;">%s</p>' % e(p)
+        for p in re.split(r"\n\s*\n", dados.get("editorial", "").strip()) if p)
     cta = dados.get("cta") or {}
     rotulo = dados.get("edicao", "")
+    marca = pub.get("marca_visual") or {}
+
+    chapeu = dados.get("chapeu", "")
+    chapeu_html = ('<div style="display:inline-block;background:#E8B84A;color:#0A1630;font-size:11px;font-weight:bold;'
+                   'letter-spacing:1.5px;text-transform:uppercase;padding:5px 10px;border-radius:20px;">%s</div>'
+                   % e(chapeu)) if chapeu else ""
+    subtitulo = dados.get("subtitulo", "")
+    subtitulo_html = ('<p style="margin:0 0 20px 0;font-size:20px;line-height:28px;color:#F6D77B;font-weight:700;">%s</p>'
+                      % e(subtitulo)) if subtitulo else ""
+    # O mesmo CTA pode aparecer no topo e no fim: uma acao, dois pontos de clique.
+    cta_topo = ""
+    if cta.get("texto_topo"):
+        cta_topo = ('<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>'
+                    '<td style="border-radius:8px;background:#E8B84A;"><a href="%s" style="display:inline-block;'
+                    'padding:14px 24px;font-size:15px;font-weight:bold;color:#0A1630;text-decoration:none;">%s</a>'
+                    '</td></tr></table>' % (e(cta.get("url", "#")), e(cta["texto_topo"])))
+    pergunta = ""
+    if cta.get("pergunta"):
+        pergunta += ('<p style="margin:0 0 6px 0;font-size:22px;line-height:28px;font-weight:800;color:#FFFFFF;">%s</p>'
+                     % e(cta["pergunta"]))
+    if cta.get("apoio"):
+        pergunta += ('<p style="margin:0 0 18px 0;font-size:14px;line-height:22px;color:#C9D6EE;">%s</p>'
+                     % e(cta["apoio"]))
+    tagline = pub.get("tagline", "")
 
     saida = (TEMPLATE.read_text(encoding="utf-8")
              .replace("{{ASSUNTO}}", e(dados.get("assunto", "")))
              .replace("{{PREHEADER}}", e(dados.get("preheader", "")))
-             .replace("{{EDICAO}}", e(rotulo_por_extenso(rotulo) if rotulo else ""))
+             .replace("{{EDICAO_CURTA}}", e(rotulo_curto_envio(dados)))
+             .replace("{{MARCA}}", e(marca.get("nome", pub.get("remetente_nome", ""))))
+             .replace("{{MARCA_SUFIXO}}", e(marca.get("sufixo", "")))
+             .replace("{{CHAPEU}}", chapeu_html)
+             .replace("{{TITULO_HERO}}", e(dados.get("titulo_hero") or dados.get("assunto", "")))
+             .replace("{{SUBTITULO}}", subtitulo_html)
              .replace("{{EDITORIAL}}", editorial)
+             .replace("{{CTA_TOPO}}", cta_topo)
              .replace("{{CONTEUDO}}", conteudo)
+             .replace("{{CTA_PERGUNTA}}", pergunta)
              .replace("{{CTA_TEXTO}}", e(cta.get("texto", "")))
              .replace("{{CTA_URL}}", e(cta.get("url", "#")))
+             .replace("{{SITE_URL}}", e(marca.get("site", "")))
+             .replace("{{SITE_ROTULO}}", e(marca.get("site_rotulo", "")))
              .replace("{{REMETENTE}}", e(pub.get("remetente_nome", "")))
+             .replace("{{TAGLINE}}", (" &middot; " + e(tagline)) if tagline else "")
              .replace("{{REMETENTE_EMAIL}}", e(pub.get("remetente_email", "")))
              .replace("{{ANO}}", str(date.today().year)))
+
+    sobras = re.findall(r"\{\{[A-Z_]+\}\}", saida)
+    if sobras:
+        sys.exit("erro: placeholders nao preenchidos no template: %s" % ", ".join(sorted(set(sobras))))
 
     destino = Path(args.pasta)
     (destino / "edicao.html").write_text(saida, encoding="utf-8")

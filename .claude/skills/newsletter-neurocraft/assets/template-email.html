@@ -7,51 +7,77 @@
 <meta name="color-scheme" content="light">
 <meta name="supported-color-schemes" content="light">
 <title>{{ASSUNTO}}</title>
+<!-- Identidade visual definida na revisão de Marcos de Almeida (10/11/2026).
+     Referência: edicoes/2026-10/revisao-marcos.html. Ver linha-editorial.md. -->
+<style>
+  body{margin:0;padding:0;background:#E9EDF3;}
+  a{color:#0B6BCB;}
+  @media only screen and (max-width:620px){
+    .container{width:100%!important;}
+    .stack{display:block!important;width:100%!important;box-sizing:border-box;}
+    .px{padding-left:20px!important;padding-right:20px!important;}
+    .h1{font-size:28px!important;line-height:34px!important;}
+    .stat{font-size:34px!important;}
+  }
+</style>
 </head>
-<body style="margin:0;padding:0;background:#eef1f5;-webkit-text-size-adjust:100%;">
+<body style="margin:0;padding:0;background:#E9EDF3;font-family:'Segoe UI',Helvetica,Arial,sans-serif;-webkit-text-size-adjust:100%;">
 
-<div style="display:none;font-size:1px;color:#eef1f5;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;">{{PREHEADER}}&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;</div>
+<div style="display:none;font-size:1px;color:#E9EDF3;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;">{{PREHEADER}}&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;</div>
 
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#eef1f5;">
-<tr><td align="center" style="padding:24px 12px;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#E9EDF3;">
+<tr><td align="center" style="padding:24px 10px;">
 
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;background:#ffffff;border-radius:10px;overflow:hidden;">
+<table role="presentation" class="container" width="640" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:640px;background:#FFFFFF;border-radius:14px;overflow:hidden;">
 
+  <!-- ===== HEADER ===== -->
   <tr>
-    <td style="padding:30px 32px 22px 32px;background:#0f1b2b;">
-      <p style="margin:0;font:700 19px/1.2 -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:#ffffff;letter-spacing:-.01em;">Neurocraft</p>
-      <p style="margin:5px 0 0 0;font:400 13px/1.4 -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:#8fa3bd;">Industrial &amp; Agentic AI &middot; edição de {{EDICAO}}</p>
+    <td class="px" style="background:#0A1630;background-image:linear-gradient(135deg,#0A1630 0%,#13285A 55%,#1B3F8B 100%);padding:28px 36px 8px 36px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td style="font-family:Georgia,'Times New Roman',serif;font-size:26px;font-weight:bold;letter-spacing:0.5px;color:#E8B84A;text-shadow:0 1px 0 #8A6414,0 2px 0 #6E4F0E,0 3px 6px rgba(0,0,0,.45);">{{MARCA}}<span style="color:#F6D77B;">{{MARCA_SUFIXO}}</span></td>
+        <td align="right" style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#9FB3D9;">Newsletter &middot; {{EDICAO_CURTA}}</td>
+      </tr></table>
     </td>
   </tr>
 
-  <tr><td style="padding:30px 32px 6px 32px;">
-    <h1 style="margin:0;font:700 25px/1.28 -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:#0f1b2b;letter-spacing:-.015em;">{{ASSUNTO}}</h1>
-  </td></tr>
-
-  <tr><td style="padding:14px 32px 0 32px;"><div style="height:1px;background:#e4e9f0;line-height:1px;">&nbsp;</div></td></tr>
-  <tr><td style="height:18px;line-height:18px;">&nbsp;</td></tr>
-
-  {{EDITORIAL}}
+  <!-- ===== HERO: chapéu, título, subtítulo, editorial e CTA do topo ===== -->
+  <tr>
+    <td class="px" style="background:#13285A;background-image:linear-gradient(135deg,#0A1630 0%,#13285A 55%,#1B3F8B 100%);padding:22px 36px 34px 36px;">
+      {{CHAPEU}}
+      <h1 class="h1" style="margin:14px 0 12px 0;font-size:34px;line-height:40px;color:#FFFFFF;font-weight:800;">{{TITULO_HERO}}</h1>
+      {{SUBTITULO}}
+      {{EDITORIAL}}
+      {{CTA_TOPO}}
+    </td>
+  </tr>
 
   {{CONTEUDO}}
 
-  <tr><td style="padding:12px 32px 0 32px;"><div style="height:1px;background:#e4e9f0;line-height:1px;">&nbsp;</div></td></tr>
-  <tr><td align="center" style="padding:26px 32px 30px 32px;">
-    <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
-      <td style="background:#0b6bcb;border-radius:6px;">
-        <a href="{{CTA_URL}}" style="display:inline-block;padding:13px 26px;font:600 15px/1 -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:#ffffff;text-decoration:none;">{{CTA_TEXTO}}</a>
-      </td>
-    </tr></table>
-  </td></tr>
-
+  <!-- ===== CTA FINAL ===== -->
   <tr>
-    <td style="padding:22px 32px 28px 32px;background:#f6f8fb;border-top:1px solid #e4e9f0;">
-      <p style="margin:0 0 6px 0;font:400 13px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:#5c6878;">
-        Você recebe esta edição porque já conversamos sobre dados e operação. Responder chega direto em {{REMETENTE_EMAIL}}, e as respostas são lidas e respondidas. Se preferir não receber as próximas, basta responder dizendo isso numa linha.
+    <td class="px" style="padding:34px 36px 30px 36px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#13285A;background-image:linear-gradient(135deg,#0A1630 0%,#1B3F8B 100%);border-radius:14px;">
+        <tr><td align="center" style="padding:28px 24px;">
+          {{CTA_PERGUNTA}}
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+            <td style="border-radius:8px;background:#E8B84A;">
+              <a href="{{CTA_URL}}" style="display:inline-block;padding:14px 26px;font-size:15px;font-weight:bold;color:#0A1630;text-decoration:none;">{{CTA_TEXTO}}</a>
+            </td>
+          </tr></table>
+          <p style="margin:14px 0 0 0;font-size:13px;color:#9FB3D9;"><a href="{{SITE_URL}}" style="color:#F6D77B;text-decoration:none;font-weight:600;">{{SITE_ROTULO}}</a></p>
+        </td></tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- ===== FOOTER ===== -->
+  <tr>
+    <td class="px" style="background:#0A1630;padding:24px 36px;">
+      <p style="margin:0 0 10px 0;font-family:Georgia,'Times New Roman',serif;font-size:18px;font-weight:bold;color:#E8B84A;text-shadow:0 1px 0 #8A6414,0 2px 4px rgba(0,0,0,.4);">{{MARCA}}<span style="color:#F6D77B;">{{MARCA_SUFIXO}}</span></p>
+      <p style="margin:0 0 10px 0;font-size:12px;line-height:19px;color:#9FB3D9;">
+        Você recebe esta edição porque já conversamos sobre dados e operação. Responder chega direto em <a href="mailto:{{REMETENTE_EMAIL}}" style="color:#F6D77B;">{{REMETENTE_EMAIL}}</a>, e as respostas são lidas e respondidas. Se preferir não receber as próximas, basta responder dizendo isso numa linha.
       </p>
-      <p style="margin:0;font:400 12px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:#8792a3;">
-        &copy; {{ANO}} {{REMETENTE}}
-      </p>
+      <p style="margin:0;font-size:11px;color:#6F82A8;">&copy; {{ANO}} {{REMETENTE}}{{TAGLINE}}</p>
     </td>
   </tr>
 

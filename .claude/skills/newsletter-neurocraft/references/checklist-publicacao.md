@@ -33,8 +33,11 @@ Rodar **inteiro** antes de criar o rascunho. Qualquer item reprovado bloqueia a 
 - [ ] Número do Panorama do GTM Brasil está atribuído à HubSpot, e não é fonte única de tese nossa.
 - [ ] Total entre 600 e 1.000 palavras. Tom formal, sem humor (preferência de 08/10).
 - [ ] Todo ponto do mapa está sustentado por um item fonteado da edição.
-- [ ] Um único CTA.
-- [ ] Assunto ≤ 60 caracteres e específico. Preheader não repete o assunto.
+- [ ] Uma única ação de CTA (pode aparecer no hero e no fecho), `mailto:` com corpo pré-preenchido.
+- [ ] Assunto com o prefixo `[Neurocraft.ai newsletter]`, específico. Preheader não repete o assunto.
+- [ ] Identidade visual da revisão de 10/11: etiqueta e cor por seção, "👉 E daí?" em caixa,
+      gráfico em barras HTML. Ver `linha-editorial.md`.
+- [ ] Nada de "status premium": "track record junto à Microsoft" ou título oficial.
 
 ## 4. Linguagem
 
@@ -48,6 +51,8 @@ Rodar **inteiro** antes de criar o rascunho. Qualquer item reprovado bloqueia a 
 - [ ] `python3 scripts/edicao.py validar <pasta>` passou sem erro.
 - [ ] HTML renderizado abre corretamente e é legível no modo escuro.
 - [ ] Todos os links clicados uma vez no HTML final (link quebrado é o erro mais comum e o mais barato de evitar).
+- [ ] A data ao lado de cada link é a da página linkada (a revisão de 10/11 datou a McKinsey de 30/09; a página é de 27/10).
+- [ ] Nenhum link passa por `google.com/url?q=` (o validador reprova).
 - [ ] Peso do HTML < 100 KB (acima disso o Gmail corta a mensagem).
 - [ ] Rascunho criado — **nunca enviado** pelo agente.
 

@@ -116,8 +116,28 @@ Consequência prática, quando o envio for pelo Outlook pessoal:
 | Caminho | O que preserva | Quando usar |
 |---|---|---|
 | **Rascunho via connector** | Texto, hierarquia, links, listas. Perde template, cores, largura fixa e preheader. | Lote pequeno e pessoal, onde o remetente é uma pessoa e não a marca. O visual "e-mail escrito à mão" até ajuda. |
-| **Colar o HTML renderizado no Outlook** | Tudo. | Quando o template importa. Exige ação manual do Guilherme. |
+| **Abrir o `edicao.html` no navegador e colar no Outlook** | Quase tudo (ver abaixo). | Quando o template importa. Exige ação manual do Guilherme. |
 | **Ferramenta de disparo (Apollo etc.)** | Tudo. | Lote grande, com descadastro funcionando. |
 
 Não tente contornar a allowlist. Gere a redução em HTML simples a partir do `edicao.json`
 e registre na pauta qual variante foi para cada lote.
+
+### O que se perdeu no envio de 09/11/2026
+
+A edição de outubro foi para os clientes **copiada do rascunho do Gmail e colada no Outlook**. O
+resultado foi texto Aptos 11pt preto, sem cores, sem preheader, sem botão e **sem o gráfico**. Pior:
+todos os links viraram `https://www.google.com/url?q=…&source=gmail`, o redirecionador do Gmail, que
+expira e pode abrir uma tela de aviso.
+
+Para não repetir:
+
+- **Copie da fonte certa.** Abra `edicao.html` direto no navegador (não o rascunho do Gmail), selecione
+  tudo e cole no Outlook. Se o Outlook perguntar, escolha manter a formatação de origem.
+- **Gráfico em barras HTML**, não em imagem (preferência de 10/11). Barras em tabela sobrevivem à colagem;
+  uma imagem hospedada pode não sobreviver.
+- **Antes de disparar, envie para si mesmo** e confira três coisas: o gráfico aparece, o botão abre o e-mail
+  com o corpo preenchido, e um link qualquer **não** começa com `google.com/url`.
+- O validador reprova `google.com/url?q=` em qualquer campo do `edicao.json`.
+- A versão revisada por Marcos tem `<style>` com media query. O Outlook para Windows ignora esse
+  bloco; o layout continua legível porque os estilos principais estão inline.
+

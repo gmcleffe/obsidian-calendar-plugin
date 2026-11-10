@@ -101,6 +101,11 @@ mental). `edicoes/2026-08/` segue útil para o "E daí" e o deep dive. Ao escrev
 inteira antes de começar: comprimento de frase, densidade de número, como o "E daí" é construído e onde o texto
 admite incerteza. Quando uma edição melhor existir, troque o ponteiro aqui.
 
+**Visual e oferta própria:** `edicoes/2026-10/revisao-marcos.html` (revisão do CEO, 10/11/2026) é a
+referência de layout, e `edicoes/2026-10/edicao.json` mostra como o schema a reproduz. Para texto
+de setor, continue seguindo 2026-09; para seção comercial (PoC, programa de parceiro), siga
+2026-10.
+
 ## Perguntas abertas para o Guilherme
 
 1. A frase da mensagem-síntese acima é a que tu quer que fique? É a decisão mais estratégica

@@ -1,8 +1,15 @@
 {
   "_comentario": "Registro das marcas cobertas pela newsletter. Editar aqui e nao no SKILL.md. 'ativa: false' remove a marca da curadoria sem apagar o historico.",
   "publicacao": {
-    "remetente_nome": "Neurocraft",
+    "remetente_nome": "NeuroCraft",
     "remetente_email": "Guilherme.Cleffe@neurocraft.ai",
+    "prefixo_assunto": "[Neurocraft.ai newsletter]",
+    "marca_visual": {
+      "_comentario": "Grafia e logo da revisao de Marcos de Almeida (10/11/2026). Sempre com o .ai: existe uma 'NeuroCraft AI' em NY sem relacao (ver fontes.md).",
+      "nome": "NeuroCraft", "sufixo": ".ai",
+      "site": "https://neurocraft.ai", "site_rotulo": "neurocraft.ai"
+    },
+    "tagline": "Orchestrated Supervised Agentic AI",
     "conta_rascunho": "gmcleffe@gmail.com",
     "idioma": "pt-BR",
     "publico": "C-level e lideres de dados/operacoes (CEO, COO, CIO, CDO, VP Eng.)",

@@ -23,6 +23,8 @@ Leia, nesta ordem:
 
 Antes de escrever (Fase 4), leia também `edicoes/2026-09/edicao.md` inteira — é a referência
 canônica de estilo e de formato (curto, formal, com mapa mental), e imitar um exemplo bom funciona melhor que seguir uma regra abstrata.
+Para o visual e para seção de oferta própria, a referência é `edicoes/2026-10/` (revisão do Marcos
+de 10/11/2026, ver `revisao-marcos.md`).
 
 Nunca reescreva regra editorial dentro deste arquivo: ela mora nas referências.
 
@@ -126,27 +128,41 @@ Preencha `edicoes/AAAA-MM/edicao.json`. Estrutura:
 ```jsonc
 {
   "edicao": "2026-08",
+  "envio": "2026-09-05",            // opcional; o cabeçalho mostra o mês de envio
   "janela": { "inicio": "2026-08-01", "fim": "2026-08-31" },
-  "assunto": "≤ 60 caracteres, específico",
+  "assunto": "[Neurocraft.ai newsletter] assunto específico (≤ 60 sem o prefixo)",
   "preheader": "complementa o assunto, não repete",
-  "editorial": "2 a 3 linhas, tom formal. A tese do mês e como ler a edição.",
+  "chapeu": "etiqueta curta do hero, opcional",
+  "titulo_hero": "pergunta ou tese do mês (padrão: o assunto)",
+  "subtitulo": "uma linha, opcional",
+  "editorial": "2 a 3 linhas, primeira pessoa do plural. A tese do mês e como ler a edição.",
   "secoes": [
-    { "tipo": "mapa", "titulo": "O mês em um mapa", "centro": "a tese em uma frase",
-      "ramos": [ {"titulo": "", "pontos": ["frase curta, ≤ 90 caracteres"]} ] },
-    { "tipo": "movimentos", "titulo": "O que mudou em agosto",
+    // "cor" opcional em toda seção: azul | dourado | laranja | verde (ver linha-editorial.md)
+    // "rotulo" opcional: etiqueta acima do título ("Microsoft · ECIF")
+    { "tipo": "mapa", "titulo": "🗺️ O mês em um mapa", "centro": "a tese em uma frase",
+      "ramos": [ {"titulo": "", "icone": "💰", "cor": "azul", "pontos": ["frase curta, ≤ 90 caracteres"]} ] },
+    { "tipo": "numeros","titulo": "Números", "itens": [ {"valor": "30+", "rotulo": "", "cor": "azul",
+                                                  "fonte": {"nome": "", "url": ""}} ] },
+    { "tipo": "movimentos", "rotulo": "Microsoft · ECIF", "cor": "azul", "titulo": "",
       "itens": [ { "titulo": "", "resumo": "", "so_what": "obrigatório aqui",
-                   "fonte": {"nome": "", "url": ""}, "data": "2026-08-12" } ] },
+                   "fonte": {"nome": "", "url": ""}, "data": "2026-08-12",
+                   "links_extras": [ {"nome": "Podcast: …", "url": "", "icone": "🎧"} ],
+                   "cartoes": [ {"titulo": "Demanda", "icone": "🔌", "pontos": [""]} ],   // no lugar do resumo
+                   "grafico": { "titulo": "", "barras": [ {"rotulo": "", "valor": 30, "texto": "~30%"} ],
+                                "legenda": "Redesenhado pela NeuroCraft.", "fonte": {"nome": "", "url": ""} } } ] },
     { "tipo": "marca", "marca": "datamint", "titulo": "", "chapeu": "opcional",
       "itens": [ { "titulo": "", "resumo": "", "so_what": "",
                    "fonte": {"nome": "", "url": ""}, "data": "2026-08-07" } ] },
-    { "tipo": "deepdive", "titulo": "", "corpo": ["parágrafo", "parágrafo"],
-      "fontes": [ {"nome": "", "url": ""} ] },
+    { "tipo": "deepdive", "rotulo": "NeuroCraft", "cor": "dourado", "titulo": "",
+      "passos": ["opcional: passos numerados"], "destaque": "opcional: caixa escura",
+      "corpo": ["parágrafo"], "fontes": [ {"nome": "", "url": ""} ] },
+    { "tipo": "grafico", "titulo": "", "barras": [ /* como acima */ ], "legenda": "", "fonte": {} },
     { "tipo": "radar",  "titulo": "", "itens": [ /* como marca */ ] },
-    { "tipo": "numeros","titulo": "", "itens": [ {"valor": "US$ 5M", "rotulo": "",
-                                                  "fonte": {"nome": "", "url": ""}} ] },
     { "tipo": "agenda", "titulo": "", "itens": [ {"titulo": "", "quando": "", "onde": "", "url": ""} ] }
   ],
-  "cta": { "texto": "uma única ação", "url": "https://" },
+  "cta": { "texto": "✉️ Falar com o Guilherme", "texto_topo": "botão do hero, opcional",
+           "pergunta": "pergunta do bloco de fecho", "apoio": "uma linha",
+           "url": "mailto:…?subject=…&body=… (corpo pré-preenchido) ou https://" },
   "cortes": [ { "marca": "vexta", "item": "", "motivo": "" } ]
 }
 ```
@@ -158,7 +174,7 @@ Regras de escrita:
   para nenhuma dor da lista, ou ele não interessa, ou a lista está incompleta.
 - Automação se enquadra como capacidade liberada, nunca como headcount reduzido.
 - Ordene as seções pela relevância do mês, não pela ordem do `config`.
-- Alvo de 600 a 1.000 palavras. Um CTA só.
+- Alvo de 600 a 1.000 palavras. Uma ação de CTA (botão no hero e bloco de fecho podem repeti-la).
 - O mapa vem logo depois do editorial e **só resume** o que está nas seções abaixo: todo ponto
   precisa estar sustentado por um item fonteado. Mapa não traz fato novo.
 - Se o texto sair padronizado demais, passe pela skill `humanizer` antes de validar.
